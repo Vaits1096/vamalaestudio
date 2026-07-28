@@ -8,6 +8,9 @@ const routes = {
   "/taller-halloween": { view: "taller-halloween", title: "Taller de Halloween · VAMALA" },
   "/taller-tarjetas-navidenas": { view: "taller-tarjetas-navidenas", title: "Taller de tarjetas navideñas · VAMALA" },
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
+  "/encargo": { view: "encargo", title: "Quiero un encargo · VAMALA" },
+  "/encargo-formulario": { view: "encargo-formulario", title: "Cuéntame tu idea · VAMALA" },
+  "/encargo-galeria": { view: "encargo-galeria", title: "Obras que ya encontraron su hogar · VAMALA" },
 };
 
 const menuButton = document.querySelector("[data-menu-toggle]");
@@ -232,4 +235,25 @@ if (calendarModal && calendarToggleButtons.length) {
   });
 
   window.addEventListener("hashchange", closeCalendar);
+}
+
+const commissionForm = document.querySelector("[data-commission-form]");
+
+if (commissionForm) {
+  commissionForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(commissionForm);
+    const lines = [
+      "Hola Valeria, quiero hacerte un encargo:",
+      `¿Qué te gustaría crear? ${data.get("tipo") || "-"}`,
+      `¿Para quién es? ${data.get("destinatario") || "-"}`,
+      `Presupuesto: ${data.get("presupuesto") || "-"}`,
+      `Idea: ${data.get("idea") || "-"}`,
+      `¿Cuándo lo necesita? ${data.get("fecha") || "-"}`,
+      `Nombre: ${data.get("nombre") || "-"}`,
+      `WhatsApp o email: ${data.get("contacto") || "-"}`,
+    ];
+    const message = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/34649599775?text=${message}`, "_blank", "noreferrer");
+  });
 }

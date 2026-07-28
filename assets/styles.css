@@ -6,6 +6,7 @@
   --ink-soft: #56594e;
   --paper: #fbf9f5;
   --line: rgba(52, 54, 46, 0.82);
+  --tobacco: #4a3222;
   --header-height: 84px;
   --page-pad: clamp(28px, 5.7vw, 92px);
   --font: "Century Gothic", "Avenir Next", Avenir, "Trebuchet MS", sans-serif;
@@ -300,6 +301,13 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .info-card p { align-self: start; margin-bottom: 0; font-size: clamp(0.96rem, 1.35vw, 1.35rem); line-height: 1.5; }
 .info-card .outline-button { align-self: start; margin-top: 0; }
 
+[data-view="home"] { color: var(--tobacco); }
+[data-view="home"] .outline-button,
+[data-view="home"] .text-link { color: var(--tobacco); border-color: var(--tobacco); }
+[data-view="home"] .outline-button:hover { background: var(--tobacco); }
+[data-view="home"] .info-card::before,
+[data-view="home"] .manifesto__rule { background: var(--tobacco); }
+
 .page-heading h1 { margin-bottom: 22px; font-size: clamp(3.2rem, 6vw, 6.2rem); font-weight: 400; line-height: 1; }
 .page-lead { max-width: 1160px; font-size: clamp(1rem, 1.4vw, 1.32rem); }
 .page-lead em { display: inline-block; margin-bottom: 4px; }
@@ -329,6 +337,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .schedule-block h2 { font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
 .schedule-block h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
 .schedule-block p { margin-bottom: 16px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); line-height: 1.25; }
+.rate-label { margin: 0; font-size: clamp(0.85rem, 1.05vw, 1.05rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
+.rate-list { margin: -13px 0 12px; padding-left: 1.1em; list-style: "\2022\0020"; font-size: clamp(0.85rem, 1.05vw, 1.05rem); line-height: 1.25; }
+.rate-list li { margin-bottom: 0; }
 .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
 .time-grid p { margin-bottom: 16px; }
@@ -449,6 +460,55 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+.encargo-actions { display: flex; flex-direction: column; gap: 14px; margin-top: 30px; max-width: 360px; }
+
+.commission-page { padding-top: 0; }
+.commission-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
+.commission-form { width: min(100%, 620px); margin-top: 40px; }
+.form-field { border: none; margin: 0 0 30px; padding: 0; }
+.form-field legend, .form-label { display: block; margin-bottom: 12px; padding: 0; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.radio-options { display: flex; flex-wrap: wrap; gap: 10px; }
+.radio-chip { position: relative; }
+.radio-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.radio-chip span {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 18px;
+  border: 1px solid var(--line);
+  background: rgba(251, 249, 245, 0.4);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+.radio-chip input:checked + span { background: var(--ink); color: var(--cream); }
+.radio-chip input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 3px; }
+.form-textarea, .form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: rgba(251, 249, 245, 0.4);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+.form-textarea:focus, .form-input:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
+.form-submit { margin-top: 6px; }
+
+[data-view="encargo"] .event-detail__content { text-align: center; }
+[data-view="encargo"] .encargo-actions { margin-inline: auto; }
+
+[data-view="encargo-galeria"] .page-heading { text-align: center; }
+[data-view="encargo-galeria"] .page-lead { margin-inline: auto; }
+
+@media (min-width: 561px) {
+  [data-view="encargo-galeria"] .page-heading h1,
+  [data-view="encargo-formulario"] .page-heading h1 {
+    font-size: clamp(2.4rem, 4.4vw, 4.4rem);
+  }
+}
 
 @media (max-width: 1100px) {
   :root { --header-height: 74px; }

@@ -33,6 +33,7 @@
           <li><a href="#/horarios-y-tarifas" data-route-link>Horarios y tarifas</a></li>
           <li><a href="#/talleres-y-monograficos" data-route-link>Talleres y monográficos</a></li>
           <li><a href="#/quien-hay-detras" data-route-link>¿Quién hay detrás?</a></li>
+          <li><a href="#/encargo" data-route-link>Quiero un encargo</a></li>
         </ol>
       </nav>
       <div class="menu-panel__contact">
@@ -149,9 +150,17 @@
                 <h2>Tarifas</h2>
                 <div>
                   <h3>Adultos/as</h3>
-                  <p>2h un día/semana: 70 €/mes<br />4h dos días/semana: 125 €/mes</p>
+                  <p class="rate-label">Mes</p>
+                  <ul class="rate-list">
+                    <li>1 día a la semana (2h) 70 €</li>
+                    <li>2 días a la semana (4h) 125 €</li>
+                  </ul>
                   <h3>Niños/as</h3>
-                  <p>1h y 30min un día/semana: 50 €<br />3h dos días/semana: 90 €</p>
+                  <p class="rate-label">Mes</p>
+                  <ul class="rate-list">
+                    <li>1 día a la semana (1h y media) 50 €</li>
+                    <li>2 días a la semana (3h) 90 €</li>
+                  </ul>
                 </div>
               </div>
 
@@ -161,13 +170,13 @@
                   <h3>Adultos/as</h3>
                   <div class="time-grid time-grid--adults">
                     <p>Jueves y viernes<br /><strong>11:00 a 13:00</strong></p>
-                    <p>Jueves<br /><strong>18:00 a 20:00</strong></p>
+                    <p>Jueves<br /><strong>19:00 a 21:00</strong></p>
                   </div>
                   <h3>Niños/as</h3>
                   <div class="time-grid">
-                    <p>Miércoles<br /><strong>16:00 a 17:30</strong><br /><strong>18:00 a 19:30</strong></p>
-                    <p>Jueves<br /><strong>16:00 a 17:30</strong></p>
-                    <p>Viernes<br /><strong>16:00 a 17:30</strong></p>
+                    <p>Miércoles<br /><strong>17:00 a 18:30</strong><br /><strong>19:00 a 20:30</strong></p>
+                    <p>Jueves<br /><strong>17:00 a 18:30</strong></p>
+                    <p>Viernes<br /><strong>17:00 a 18:30</strong></p>
                   </div>
                 </div>
               </div>
@@ -384,6 +393,119 @@
                 <a class="outline-button" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20reservar%20una%20plaza%20para%20el%20taller%20de%20Navidad." target="_blank" rel="noreferrer">Reservar por WhatsApp</a>
               </div>
             </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="view" data-view="encargo" hidden>
+        <section class="event-detail panel panel--cream" aria-labelledby="encargo-title">
+          <div class="section-shell event-detail__shell">
+            <figure class="event-detail__image" data-reveal>
+              <img src="assets/images/encargos/ilustracion-17.jpg" alt="Ilustración de un rostro con alas de mariposa cubriendo los ojos" />
+            </figure>
+            <div class="event-detail__content" data-reveal>
+              <h1 id="encargo-title">Quiero un encargo</h1>
+              <p>Cuéntame tu idea y crearé una obra única para ti. Ilustraciones, cuadros y piezas personalizadas hechas desde cero.</p>
+              <div class="encargo-actions">
+                <a class="outline-button outline-button--wide" href="#/encargo-formulario">→ Empezar mi encargo</a>
+                <a class="outline-button outline-button--wide outline-button--light" href="#/encargo-galeria">Obras que ya encontraron su hogar</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="view" data-view="encargo-galeria" hidden>
+        <section class="subpage studio-page panel panel--cream" aria-labelledby="encargo-galeria-title">
+          <div class="section-shell section-shell--subpage">
+            <div class="page-heading" data-reveal>
+              <a class="back-link" href="#/encargo">← Volver</a>
+              <h1 id="encargo-galeria-title">Obras&nbsp;que&nbsp;ya encontraron su hogar</h1>
+              <p class="page-lead">Algunos de los encargos que he creado para clientes — cada uno, una historia distinta.</p>
+            </div>
+            <div class="studio-gallery" data-reveal>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-04.jpg" alt="Ilustración enmarcada de un dodo" />
+              </figure>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-06.jpg" alt="Ilustración enmarcada de un tucán" />
+              </figure>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-05.jpg" alt="Ilustración de un pelícano" />
+              </figure>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-08.jpg" alt="Ilustración enmarcada de dos peces" />
+              </figure>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-09.jpg" alt="Díptico enmarcado de peces" />
+              </figure>
+              <figure>
+                <img src="assets/images/encargos/ilustracion-10.jpg" alt="Ilustración enmarcada de un banco de peces" />
+              </figure>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="view" data-view="encargo-formulario" hidden>
+        <section class="subpage commission-page panel panel--sage" aria-labelledby="encargo-formulario-title">
+          <div class="section-shell section-shell--subpage">
+            <div class="page-heading" data-reveal>
+              <a class="back-link" href="#/encargo">← Volver</a>
+              <h1 id="encargo-formulario-title">Cuéntame tu idea</h1>
+            </div>
+
+            <form class="commission-form" data-reveal data-commission-form>
+              <fieldset class="form-field">
+                <legend>¿Qué te gustaría crear?</legend>
+                <div class="radio-options">
+                  <label class="radio-chip"><input type="radio" name="tipo" value="Ilustración" required /><span>Ilustración</span></label>
+                  <label class="radio-chip"><input type="radio" name="tipo" value="Cuadro" /><span>Cuadro</span></label>
+                  <label class="radio-chip"><input type="radio" name="tipo" value="No lo tengo claro, necesito asesoramiento" /><span>No lo tengo claro, necesito asesoramiento</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-field">
+                <legend>¿Para quién es?</legend>
+                <div class="radio-options">
+                  <label class="radio-chip"><input type="radio" name="destinatario" value="Para mí" required /><span>Para mí</span></label>
+                  <label class="radio-chip"><input type="radio" name="destinatario" value="Para regalar" /><span>Para regalar</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-field">
+                <legend>¿Qué presupuesto tienes pensado?</legend>
+                <div class="radio-options">
+                  <label class="radio-chip"><input type="radio" name="presupuesto" value="Menos de 100 €" required /><span>Menos de 100 €</span></label>
+                  <label class="radio-chip"><input type="radio" name="presupuesto" value="100-200 €" /><span>100-200 €</span></label>
+                  <label class="radio-chip"><input type="radio" name="presupuesto" value="200-400 €" /><span>200-400 €</span></label>
+                  <label class="radio-chip"><input type="radio" name="presupuesto" value="Más de 400 €" /><span>Más de 400 €</span></label>
+                  <label class="radio-chip"><input type="radio" name="presupuesto" value="Prefiero que me asesores" /><span>Prefiero que me asesores</span></label>
+                </div>
+              </fieldset>
+
+              <div class="form-field">
+                <label class="form-label" for="encargo-idea">Cuéntame tu idea</label>
+                <textarea class="form-textarea" id="encargo-idea" name="idea" rows="5" required></textarea>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="encargo-fecha">¿Cuándo lo necesitas?</label>
+                <input class="form-input" type="text" id="encargo-fecha" name="fecha" placeholder="Fecha aproximada" />
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="encargo-nombre">Tu nombre</label>
+                <input class="form-input" type="text" id="encargo-nombre" name="nombre" required />
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="encargo-contacto">WhatsApp o email</label>
+                <input class="form-input" type="text" id="encargo-contacto" name="contacto" required />
+              </div>
+
+              <button class="outline-button outline-button--wide form-submit" type="submit">Enviar mi idea</button>
+            </form>
           </div>
         </section>
       </div>
