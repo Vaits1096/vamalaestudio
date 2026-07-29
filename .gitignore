@@ -7,3 +7,11 @@
 .wrangler
 .dev.vars*
 !.dev.vars.example
+
+# Originales de cámara: pesan demasiado para publicarlos.
+# Las versiones optimizadas para la web están en assets/images/proceso/.
+assets/images/_MG_*
+assets/images/DSC*
+assets/images/FullSizeRender*
+assets/images/IMG_*
+assets/images/ Valeria.jpg

@@ -6,8 +6,8 @@
     <meta name="description" content="VAMALA, estudio creativo en Las Arenas - Getxo. Clases y talleres de arte para niños, jóvenes y adultos." />
     <meta name="theme-color" content="#b7bba3" />
     <title>VAMALA · Estudio creativo</title>
-    <link rel="stylesheet" href="assets/styles.css?v=2" />
-    <script src="assets/site.js?v=2" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=10" />
+    <script src="assets/site.js?v=10" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -150,16 +150,16 @@
                 <h2>Tarifas</h2>
                 <div>
                   <h3>Adultos/as</h3>
-                  <p class="rate-label">Mes</p>
+                  <p class="rate-label">Mes <span class="rate-label__note">(duración de las clases 2h)</span></p>
                   <ul class="rate-list">
-                    <li>1 día a la semana (2h) 70 €</li>
-                    <li>2 días a la semana (4h) 125 €</li>
+                    <li>1 día a la semana 70 €</li>
+                    <li>2 días a la semana 125 €</li>
                   </ul>
                   <h3>Niños/as</h3>
-                  <p class="rate-label">Mes</p>
+                  <p class="rate-label">Mes <span class="rate-label__note">(duración de las clases 1h y media)</span></p>
                   <ul class="rate-list">
-                    <li>1 día a la semana (1h y media) 50 €</li>
-                    <li>2 días a la semana (3h) 90 €</li>
+                    <li>1 día a la semana 50 €</li>
+                    <li>2 días a la semana 90 €</li>
                   </ul>
                 </div>
               </div>
@@ -276,7 +276,7 @@
             </div>
             <div class="about__media" data-reveal>
               <figure class="about__image">
-                <img src="assets/images/valeria-portrait.jpg" alt="Retrato en blanco y negro de Valeria junto a una obra enmarcada" />
+                <img src="assets/images/valeria-sobre-mi.jpg" alt="Valeria de pie junto a sus obras enmarcadas en una pared de ladrillo" />
               </figure>
               <a class="about__social" href="https://www.instagram.com/vamala___/" target="_blank" rel="noreferrer" aria-label="Instagram de VAMALA">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
@@ -408,7 +408,7 @@
               <p>Cuéntame tu idea y crearé una obra única para ti. Ilustraciones, cuadros y piezas personalizadas hechas desde cero.</p>
               <div class="encargo-actions">
                 <a class="outline-button outline-button--wide" href="#/encargo-formulario">→ Empezar mi encargo</a>
-                <a class="outline-button outline-button--wide outline-button--light" href="#/encargo-galeria">Obras que ya encontraron su hogar</a>
+                <a class="outline-button outline-button--wide outline-button--light" href="#/encargo-galeria">Una pequeña muestra de mi galería</a>
               </div>
             </div>
           </div>
@@ -420,28 +420,56 @@
           <div class="section-shell section-shell--subpage">
             <div class="page-heading" data-reveal>
               <a class="back-link" href="#/encargo">← Volver</a>
-              <h1 id="encargo-galeria-title">Obras&nbsp;que&nbsp;ya encontraron su hogar</h1>
-              <p class="page-lead">Algunos de los encargos que he creado para clientes — cada uno, una historia distinta.</p>
+              <h1 id="encargo-galeria-title">Una&nbsp;pequeña muestra de&nbsp;mi&nbsp;galería</h1>
+              <p class="page-lead">Algunas de las piezas que he ido creando — encargos, pruebas y trabajos personales.</p>
             </div>
-            <div class="studio-gallery" data-reveal>
+            <div class="commission-gallery" data-reveal data-zoom-group="obras">
               <figure>
-                <img src="assets/images/encargos/ilustracion-04.jpg" alt="Ilustración enmarcada de un dodo" />
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: acuarela en blanco y negro de un árbol de rama retorcida">
+                  <img src="assets/images/proceso/proceso-06.jpg" alt="Acuarela en blanco y negro de un árbol de rama retorcida" />
+                </button>
               </figure>
               <figure>
-                <img src="assets/images/encargos/ilustracion-06.jpg" alt="Ilustración enmarcada de un tucán" />
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: montaña en blanco y negro emergiendo de la niebla">
+                  <img src="assets/images/proceso/proceso-36.jpg" alt="Montaña en blanco y negro emergiendo de la niebla" />
+                </button>
+              </figure>
+            </div>
+            <div class="commission-gallery commission-gallery--tall" data-reveal data-zoom-group="obras">
+              <figure>
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: dos láminas, una del mar y otra de una montaña">
+                  <img src="assets/images/proceso/proceso-26.jpg" alt="Dos láminas, una del mar y otra de una montaña" />
+                </button>
               </figure>
               <figure>
-                <img src="assets/images/encargos/ilustracion-05.jpg" alt="Ilustración de un pelícano" />
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: ilustración de un pelícano">
+                  <img src="assets/images/encargos/ilustracion-05.jpg" alt="Ilustración de un pelícano" />
+                </button>
               </figure>
               <figure>
-                <img src="assets/images/encargos/ilustracion-08.jpg" alt="Ilustración enmarcada de dos peces" />
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: paisaje enmarcado apoyado en un muro de piedra">
+                  <img src="assets/images/proceso/proceso-20.jpg" alt="Paisaje enmarcado apoyado en un muro de piedra" />
+                </button>
+              </figure>
+            </div>
+            <div class="commission-gallery" data-reveal data-zoom-group="obras">
+              <figure>
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: ilustración enmarcada de un dodo">
+                  <img src="assets/images/encargos/ilustracion-04.jpg" alt="Ilustración enmarcada de un dodo" />
+                </button>
               </figure>
               <figure>
-                <img src="assets/images/encargos/ilustracion-09.jpg" alt="Díptico enmarcado de peces" />
+                <button class="zoom-trigger" type="button" aria-label="Ver más grande: ilustración enmarcada de un tucán">
+                  <img src="assets/images/encargos/ilustracion-06.jpg" alt="Ilustración enmarcada de un tucán" />
+                </button>
               </figure>
-              <figure>
-                <img src="assets/images/encargos/ilustracion-10.jpg" alt="Ilustración enmarcada de un banco de peces" />
-              </figure>
+            </div>
+          </div>
+
+          <div class="filmstrip" data-reveal>
+            <h2 class="filmstrip__title">Del cuaderno al papel</h2>
+            <div class="filmstrip__viewport">
+              <div class="filmstrip__track" data-filmstrip-track data-zoom-group="proceso"></div>
             </div>
           </div>
         </section>
@@ -525,6 +553,19 @@
           <span class="calendar-legend__item"><i class="calendar-legend__swatch calendar-legend__swatch--workshop"></i>Día de taller</span>
           <span class="calendar-legend__item"><i class="calendar-legend__swatch calendar-legend__swatch--closed"></i>Academia cerrada</span>
         </div>
+      </div>
+    </div>
+
+    <div class="lightbox" hidden data-lightbox>
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+        <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar">✕</button>
+        <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Imagen anterior">←</button>
+        <figure class="lightbox__figure">
+          <img data-lightbox-image alt="" />
+          <figcaption class="lightbox__counter" data-lightbox-counter></figcaption>
+        </figure>
+        <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Imagen siguiente">→</button>
       </div>
     </div>
 

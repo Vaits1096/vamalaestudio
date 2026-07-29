@@ -10,7 +10,7 @@ const routes = {
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
   "/encargo": { view: "encargo", title: "Quiero un encargo · VAMALA" },
   "/encargo-formulario": { view: "encargo-formulario", title: "Cuéntame tu idea · VAMALA" },
-  "/encargo-galeria": { view: "encargo-galeria", title: "Obras que ya encontraron su hogar · VAMALA" },
+  "/encargo-galeria": { view: "encargo-galeria", title: "Una pequeña muestra de mi galería · VAMALA" },
 };
 
 const menuButton = document.querySelector("[data-menu-toggle]");
@@ -256,4 +256,147 @@ if (commissionForm) {
     const message = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/34649599775?text=${message}`, "_blank", "noreferrer");
   });
+}
+
+const PROCESS_IMAGES = [
+  { file: "proceso-02", alt: "Ilustración a tinta de una cebolla dentro de un recuadro dibujado a mano" },
+  { file: "proceso-03", alt: "Una mano dibujando a tinta una berenjena en miniatura" },
+  { file: "proceso-04", alt: "Ilustración a tinta de un pez león sobre papel de acuarela" },
+  { file: "proceso-06", alt: "Acuarela en blanco y negro de un árbol retorcido" },
+  { file: "proceso-09", alt: "Detalle de la acuarela de la surfista y el perro corriendo por la orilla" },
+  { file: "proceso-12", alt: "Detalle de un cuadro de golf con dos jugadores y sus sombras" },
+  { file: "proceso-13", alt: "Detalle de un cuadro de golf con jugadores alrededor de la bandera" },
+  { file: "proceso-14", alt: "Ilustración de un pez sobre una lámina de papel negro" },
+  { file: "proceso-15", alt: "Cuadro enmarcado de un perro salchicha sobre un caballete" },
+  { file: "proceso-17", alt: "Acuarela de un árbol recortado contra un cielo al atardecer" },
+  { file: "proceso-18", alt: "Acuarela de una polilla sobre papel blanco" },
+  { file: "proceso-19", alt: "Dos peces pintados sobre una pieza redonda de madera" },
+  { file: "proceso-22", alt: "Ilustración de un árbol sobre papel, en una mesa de madera" },
+  { file: "proceso-23", alt: "Acuarela de una tienda de campaña al pie de una montaña" },
+  { file: "proceso-25", alt: "Ilustración de un tucán en un marco antiguo tallado" },
+  { file: "proceso-26", alt: "Dos láminas impresas sobre una superficie oscura" },
+  { file: "proceso-27", alt: "Acuarela de una montaña nevada" },
+  { file: "proceso-28", alt: "Una mano dando pinceladas a una acuarela de montañas" },
+  { file: "proceso-29", alt: "Acuarela de las olas rompiendo contra unas rocas" },
+  { file: "proceso-30", alt: "Tres ilustraciones de peces sobre una lámina en el suelo" },
+  { file: "proceso-32", alt: "Retrato en acuarela de un perro, enmarcado" },
+  { file: "proceso-33", alt: "Dos hojas secas pintadas junto a una paleta de color" },
+  { file: "proceso-34", alt: "Acuarela de unos patos sobre el agua" },
+  { file: "proceso-35", alt: "Paisaje en sepia con caballos cruzando la orilla" },
+  { file: "proceso-37", alt: "Flor blanca pintada sobre un fondo verde" },
+  { file: "proceso-38", alt: "Lámina con una flor blanca sobre una mesa de madera" },
+  { file: "proceso-39", alt: "Acuarela de una margarita con un insecto posado" },
+  { file: "proceso-40", alt: "Acuarela de unas montañas nevadas" },
+  { file: "proceso-41", alt: "Acuarela de un paisaje de marismas con casas al fondo" },
+];
+
+const filmstripTrack = document.querySelector("[data-filmstrip-track]");
+
+if (filmstripTrack) {
+  const buildSlide = (image, duplicated) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "zoom-trigger";
+    // La segunda vuelta es decorativa: se oculta a lectores de pantalla y al tabulador.
+    if (duplicated) {
+      button.setAttribute("aria-hidden", "true");
+      button.tabIndex = -1;
+    } else {
+      button.setAttribute("aria-label", `Ver más grande: ${image.alt.toLowerCase()}`);
+    }
+    const img = document.createElement("img");
+    img.src = `assets/images/proceso/${image.file}-min.jpg`;
+    img.dataset.full = `assets/images/proceso/${image.file}.jpg`;
+    img.alt = duplicated ? "" : image.alt;
+    img.loading = "lazy";
+    img.decoding = "async";
+    button.appendChild(img);
+    return button;
+  };
+
+  [false, true].forEach((duplicated) => {
+    PROCESS_IMAGES.forEach((image) => filmstripTrack.appendChild(buildSlide(image, duplicated)));
+  });
+}
+
+const lightbox = document.querySelector("[data-lightbox]");
+
+if (lightbox) {
+  const lightboxImage = lightbox.querySelector("[data-lightbox-image]");
+  const lightboxCounter = lightbox.querySelector("[data-lightbox-counter]");
+  let lightboxItems = [];
+  let lightboxIndex = 0;
+  let lightboxLastFocused = null;
+
+  function showLightboxImage(index) {
+    const total = lightboxItems.length;
+    if (!total) return;
+    lightboxIndex = (index + total) % total;
+    const image = lightboxItems[lightboxIndex];
+    // En el carrusel la miniatura es sólo la vista previa: aquí se pide la grande.
+    lightboxImage.src = image.dataset.full || image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightboxCounter.textContent = `${lightboxIndex + 1} / ${total}`;
+    lightbox.querySelectorAll("[data-lightbox-prev], [data-lightbox-next]").forEach((button) => {
+      button.hidden = total < 2;
+    });
+  }
+
+  function openLightbox(trigger) {
+    const group = trigger.closest("[data-zoom-group]");
+    const groupName = group?.dataset.zoomGroup;
+    // Las flechas recorren todas las fotos del mismo grupo, aunque estén en rejillas distintas.
+    const scope = groupName
+      ? [...document.querySelectorAll(`[data-zoom-group="${groupName}"]`)]
+      : [group].filter(Boolean);
+    lightboxItems = scope
+      .flatMap((container) => [...container.querySelectorAll(".zoom-trigger")])
+      .filter((button) => button.getAttribute("aria-hidden") !== "true")
+      .map((button) => button.querySelector("img"));
+
+    const clicked = trigger.querySelector("img");
+    const start = lightboxItems.indexOf(clicked);
+    lightboxLastFocused = trigger;
+    showLightboxImage(start < 0 ? 0 : start);
+    lightbox.hidden = false;
+    document.body.classList.add("menu-open");
+    window.requestAnimationFrame(() => lightbox.querySelector(".lightbox__close")?.focus());
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+    lightbox.hidden = true;
+    document.body.classList.remove("menu-open");
+    lightboxLastFocused?.focus();
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest(".zoom-trigger");
+    if (trigger) openLightbox(trigger);
+  });
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target.closest("[data-lightbox-close]")) closeLightbox();
+    else if (event.target.closest("[data-lightbox-prev]")) showLightboxImage(lightboxIndex - 1);
+    else if (event.target.closest("[data-lightbox-next]")) showLightboxImage(lightboxIndex + 1);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (lightbox.hidden) return;
+    if (event.key === "Escape") closeLightbox();
+    else if (event.key === "ArrowLeft") showLightboxImage(lightboxIndex - 1);
+    else if (event.key === "ArrowRight") showLightboxImage(lightboxIndex + 1);
+  });
+
+  // Deslizar con el dedo para pasar de foto en el móvil.
+  let touchStartX = null;
+  lightbox.addEventListener("touchstart", (event) => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+  lightbox.addEventListener("touchend", (event) => {
+    if (touchStartX === null) return;
+    const distance = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(distance) > 45) showLightboxImage(lightboxIndex + (distance < 0 ? 1 : -1));
+    touchStartX = null;
+  }, { passive: true });
+
+  window.addEventListener("hashchange", closeLightbox);
 }

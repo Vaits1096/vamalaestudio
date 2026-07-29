@@ -1,0 +1,12 @@
+# wrangler.jsonc publica la carpeta entera ("directory": "."), así que aquí se
+# excluye lo que no debe acabar en la web.
+.git
+.gitignore
+.assetsignore
+README.md
+wrangler.jsonc
+assets/images/_MG_*
+assets/images/DSC*
+assets/images/FullSizeRender*
+assets/images/IMG_*
+assets/images/ Valeria.jpg
