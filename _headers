@@ -1,0 +1,15 @@
+# El HTML y los assets versionados (?v=N) no deben quedarse cacheados en el móvil:
+# si el navegador sirve un site.js viejo con un index.html nuevo, las rutas nuevas
+# del menú caen en el fallback a "/" y parece que los enlaces no funcionan.
+
+/
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache
+
+/assets/site.js
+  Cache-Control: no-cache
+
+/assets/styles.css
+  Cache-Control: no-cache
