@@ -419,6 +419,18 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .about__copy p { margin-bottom: 12px; }
 .about__media { grid-column: 3; grid-row: 1 / 4; align-self: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .about__image { margin: 0; width: 100%; }
+
+/* Solo en la rejilla de tres columnas: foto y texto comparten fila y se centran
+   los dos, para que sus centros coincidan. Las posiciones van explícitas porque
+   al liberar la celda del título el primer bloque de texto se colaba en ella, y
+   el icono de Instagram sale del flujo para no desviar el centro de la foto. */
+@media (min-width: 1101px) {
+  .about__heading { grid-row: 1; }
+  .about__copy--first { grid-column: 1; grid-row: 2; }
+  .about__copy:not(.about__copy--first) { grid-column: 2; grid-row: 2; }
+  .about__media { grid-row: 2; position: relative; display: block; }
+  .about__media > .about__social { position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); }
+}
 .about__image img { width: 100%; height: auto; object-fit: contain; }
 .about__social { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); transition: background-color 180ms ease, color 180ms ease; }
 .about__social svg { width: 18px; height: 18px; }
@@ -502,9 +514,19 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 [data-view="encargo"] .event-detail__content { text-align: center; }
 [data-view="encargo"] .encargo-actions { margin-inline: auto; }
+/* Aquí la foto es apaisada: en el hueco vertical de los talleres perdía casi
+   la mitad del dibujo, así que manda su propia proporción. */
+[data-view="encargo"] .event-detail__image { aspect-ratio: auto; max-height: none; }
+[data-view="encargo"] .event-detail__image img { height: auto; object-fit: contain; }
 
-[data-view="encargo-galeria"] .page-heading { text-align: center; }
-[data-view="encargo-galeria"] .page-lead { margin-inline: auto; }
+[data-view="encargo-galeria"] .page-heading,
+[data-view="el-estudio"] .page-heading { text-align: center; }
+[data-view="encargo-galeria"] .page-lead,
+[data-view="el-estudio"] .page-lead { margin-inline: auto; }
+/* Aquí el contenido ya pasa de una pantalla: el alto mínimo solo abría un
+   hueco muerto entre la última fila de fotos y la cinta. */
+[data-view="encargo-galeria"] .section-shell--subpage { min-height: 0; padding-bottom: 0; }
+[data-view="encargo-galeria"] .panel { padding-bottom: clamp(72px, 9vh, 112px); }
 
 /* Los encargos van a color, al contrario que las fotos del estudio. Cada grupo usa
    una proporción fija para que todas las fotos salgan exactamente del mismo tamaño. */
@@ -532,7 +554,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 /* Carrusel: la cinta lleva las imágenes duplicadas y se desplaza media
    longitud, de modo que el salto al reiniciar cae en un fotograma idéntico. */
-.filmstrip { margin-top: clamp(60px, 9vh, 110px); }
+/* La cinta va pegada a las fotos fijas; el aire de abajo lo pone la sección,
+   porque .panel recorta lo que se salga y las imágenes quedaban cortadas. */
+.filmstrip { margin-top: clamp(26px, 4vh, 48px); }
 .filmstrip__title {
   margin-bottom: clamp(18px, 3vh, 30px);
   font-size: clamp(1rem, 1.5vw, 1.35rem);

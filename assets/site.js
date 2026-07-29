@@ -246,12 +246,10 @@ if (commissionForm) {
     const lines = [
       "Hola Valeria, quiero hacerte un encargo:",
       `¿Qué te gustaría crear? ${data.get("tipo") || "-"}`,
-      `¿Para quién es? ${data.get("destinatario") || "-"}`,
       `Presupuesto: ${data.get("presupuesto") || "-"}`,
       `Idea: ${data.get("idea") || "-"}`,
       `¿Cuándo lo necesita? ${data.get("fecha") || "-"}`,
       `Nombre: ${data.get("nombre") || "-"}`,
-      `WhatsApp o email: ${data.get("contacto") || "-"}`,
     ];
     const message = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/34649599775?text=${message}`, "_blank", "noreferrer");
