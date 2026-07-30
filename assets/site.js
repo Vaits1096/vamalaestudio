@@ -131,7 +131,7 @@ renderRoute({ preserveScroll: true });
 
 const CALENDAR_CLOSED_RANGES = [
   ["2026-09-24", "2026-09-24"], // Festivo local
-  ["2026-10-10", "2026-10-12"], // Puente del Pilar
+  ["2026-10-12", "2026-10-12"], // Pilar (el sábado y el domingo ya cierran solos)
   ["2026-12-24", "2027-01-06"], // Vacaciones de Navidad
   ["2027-03-25", "2027-03-29"], // Semana Santa
 ];
@@ -159,8 +159,11 @@ if (calendarModal && calendarToggleButtons.length) {
 
   const pad = (n) => String(n).padStart(2, "0");
   const toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
-  const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
+  const isClosedRange = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
   const isWorkshopDay = (iso) => CALENDAR_WORKSHOP_DATES.includes(iso);
+  // Los fines de semana el estudio está cerrado salvo que ese día haya workshop.
+  const isWeekend = (year, month, day) => [0, 6].includes(new Date(year, month, day).getDay());
+  const isClosedDay = (iso, year, month, day) => isClosedRange(iso) || isWeekend(year, month, day);
 
   function currentCalendarDate() {
     const total = CALENDAR_START.month + calendarCursor;
@@ -190,8 +193,9 @@ if (calendarModal && calendarToggleButtons.length) {
       const iso = toISO(year, month, d);
       const cell = document.createElement("span");
       cell.className = "calendar-grid__day";
-      if (isClosedDay(iso)) cell.classList.add("calendar-grid__day--closed");
+      // El workshop manda: es el único motivo por el que se abre en fin de semana.
       if (isWorkshopDay(iso)) cell.classList.add("calendar-grid__day--workshop");
+      else if (isClosedDay(iso, year, month, d)) cell.classList.add("calendar-grid__day--closed");
       cell.textContent = d;
       calendarGrid.appendChild(cell);
     }
