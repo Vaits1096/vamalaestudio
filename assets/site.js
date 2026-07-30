@@ -1,8 +1,10 @@
 const routes = {
-  "/": { view: "home", title: "VAMALA · Estudio creativo" },
-  "/que-ofrecemos": { view: "que-ofrecemos", title: "¿Qué ofrecemos? · VAMALA" },
-  "/horarios-y-tarifas": { view: "horarios-y-tarifas", title: "Horarios y tarifas · VAMALA" },
-  "/talleres-y-monograficos": { view: "talleres-y-monograficos", title: "Talleres y monográficos · VAMALA" },
+  // El título de "/" debe coincidir con el <title> del HTML: si no, el JS pisa
+  // en la carga el que ve Google.
+  "/": { view: "home", title: "Academia de pintura y dibujo en Getxo · VAMALA Estudio Creativo" },
+  "/que-ofrecemos": { view: "que-ofrecemos", title: "Clases de pintura y dibujo en Getxo · VAMALA" },
+  "/horarios-y-tarifas": { view: "horarios-y-tarifas", title: "Horarios y precios de las clases · VAMALA Getxo" },
+  "/talleres-y-monograficos": { view: "talleres-y-monograficos", title: "Talleres y monográficos de pintura en Getxo · VAMALA" },
   "/quien-hay-detras": { view: "quien-hay-detras", title: "¿Quién hay detrás? · VAMALA" },
   "/el-estudio": { view: "el-estudio", title: "El estudio · VAMALA" },
   "/taller-halloween": { view: "taller-halloween", title: "Taller de Halloween · VAMALA" },
