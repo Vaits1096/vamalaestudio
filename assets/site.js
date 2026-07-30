@@ -70,6 +70,16 @@ function setupRevealAnimations(scope = document) {
   });
 }
 
+// Las vistas ocultas llevan data-src en lugar de src: así la portada no arrastra
+// las imágenes de las demás. loading="lazy" no vale aquí, porque el navegador lo
+// ignora cuando el elemento está dentro de un contenedor oculto.
+function loadViewImages(view) {
+  view?.querySelectorAll("img[data-src]").forEach((image) => {
+    image.src = image.dataset.src;
+    delete image.dataset.src;
+  });
+}
+
 function renderRoute({ preserveScroll = false } = {}) {
   const path = currentPath();
   const route = routes[path];
@@ -94,6 +104,7 @@ function renderRoute({ preserveScroll = false } = {}) {
     else window.scrollTo({ top: 0, behavior: "instant" });
   }
   const activeView = document.querySelector(`[data-view="${route.view}"]`);
+  loadViewImages(activeView);
   setupRevealAnimations(activeView);
 }
 
@@ -308,7 +319,8 @@ if (filmstripTrack) {
       button.setAttribute("aria-label", `Ver más grande: ${image.alt.toLowerCase()}`);
     }
     const img = document.createElement("img");
-    img.src = `assets/images/proceso/${image.file}-min.jpg`;
+    // Aplazada igual que el resto: la cinta solo se ve dentro de la galería.
+    img.dataset.src = `assets/images/proceso/${image.file}-min.jpg`;
     img.dataset.full = `assets/images/proceso/${image.file}.jpg`;
     img.alt = duplicated ? "" : image.alt;
     img.loading = "lazy";
@@ -320,6 +332,11 @@ if (filmstripTrack) {
   [false, true].forEach((duplicated) => {
     PROCESS_IMAGES.forEach((image) => filmstripTrack.appendChild(buildSlide(image, duplicated)));
   });
+
+  // La cinta se monta después del primer renderRoute: si se ha entrado directo a
+  // la galería, hay que cargarla ahora porque ya no habrá otro cambio de ruta.
+  const filmstripView = filmstripTrack.closest("[data-view]");
+  if (filmstripView && !filmstripView.hidden) loadViewImages(filmstripView);
 }
 
 const lightbox = document.querySelector("[data-lightbox]");
