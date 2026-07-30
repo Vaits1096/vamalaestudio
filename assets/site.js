@@ -159,11 +159,10 @@ if (calendarModal && calendarToggleButtons.length) {
 
   const pad = (n) => String(n).padStart(2, "0");
   const toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
-  const isClosedRange = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
+  // Los findes no se marcan: se sobreentiende que no hay clase. Solo se señalan
+  // los cierres excepcionales (festivos y vacaciones).
+  const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
   const isWorkshopDay = (iso) => CALENDAR_WORKSHOP_DATES.includes(iso);
-  // Los fines de semana el estudio está cerrado salvo que ese día haya workshop.
-  const isWeekend = (year, month, day) => [0, 6].includes(new Date(year, month, day).getDay());
-  const isClosedDay = (iso, year, month, day) => isClosedRange(iso) || isWeekend(year, month, day);
 
   function currentCalendarDate() {
     const total = CALENDAR_START.month + calendarCursor;
@@ -195,7 +194,7 @@ if (calendarModal && calendarToggleButtons.length) {
       cell.className = "calendar-grid__day";
       // El workshop manda: es el único motivo por el que se abre en fin de semana.
       if (isWorkshopDay(iso)) cell.classList.add("calendar-grid__day--workshop");
-      else if (isClosedDay(iso, year, month, d)) cell.classList.add("calendar-grid__day--closed");
+      else if (isClosedDay(iso)) cell.classList.add("calendar-grid__day--closed");
       cell.textContent = d;
       calendarGrid.appendChild(cell);
     }
