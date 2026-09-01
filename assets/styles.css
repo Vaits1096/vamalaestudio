@@ -278,10 +278,24 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero__subtitle { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(1.7rem, 3vw, 3rem); }
 .hero__copy .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.8rem; }
 
-.hero__gallery { display: flex; align-items: flex-start; gap: clamp(20px, 3vw, 40px); width: 100%; max-width: 640px; margin-left: auto; }
+.hero__gallery { display: flex; align-items: flex-start; gap: clamp(14px, 2vw, 28px); width: 100%; max-width: 720px; margin-left: auto; }
 .hero__photo { flex: 1; margin: 0; overflow: hidden; background: var(--mist); aspect-ratio: 0.61; }
 .hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero__photo--accent { margin-top: clamp(60px, 13vh, 150px); }
+/* Tercera foto: se escalona a media altura para que las tres no queden a ras. */
+.hero__photo--third { margin-top: clamp(30px, 7vh, 80px); }
+
+/* Aviso de la inauguracion: fina y discreta, sin competir con el titular. */
+.hero__opening {
+  margin: clamp(16px, 2.5vh, 24px) 0 0;
+  max-width: 30ch;
+  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  /* En movil cae sobre la foto de fondo: con el gris suave no se leia. */
+  color: var(--ink);
+}
 
 .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; transform: translateX(-50%); }
 .scroll-cue i { display: block; width: 28px; height: 1px; background: currentColor; }
@@ -321,7 +335,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .studio-page { padding-top: 0; }
 .studio-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin-top: clamp(50px, 7vh, 80px); }
 .studio-gallery figure { margin: 0; height: min(46vh, 460px); overflow: hidden; }
-.studio-gallery img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+/* Las fotos del estudio van a color: son el espacio real, no una ambientacion. */
+.studio-gallery img { width: 100%; height: 100%; object-fit: cover; }
 .offer-layout { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(280px, 0.9fr); gap: clamp(40px, 6vw, 100px); margin-top: 0; padding-top: 26px; }
 .ruled-copy { position: relative; padding-top: 22px; font-size: clamp(0.8rem, 1vw, 0.95rem); }
 .ruled-copy::before { content: ""; position: absolute; top: 0; left: 0; width: min(230px, 42%); border-top: 2px solid var(--line); }
