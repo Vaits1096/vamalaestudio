@@ -259,10 +259,11 @@ figure, h1, h2, h3, p { margin-top: 0; }
   text-align: center;
 }
 
-/* El escaparate ocupa todo el bloque por detras. object-fit recorta en vez de
-   estirar, asi que la foto no se deforma al pasar de vertical a apaisado. */
+/* Solo la banda de flores del cristal, recortada de la foto del escaparate: asi
+   el rotulo no compite con el titulo. object-fit recorta en vez de estirar, de
+   modo que la imagen no se deforma en ningun tamano de pantalla. */
 .hero__bg { position: absolute; inset: 0; z-index: 0; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 88%; opacity: 0.22; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: 0.22; }
 
 .hero__copy {
   position: relative;
