@@ -251,42 +251,43 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(430px, 0.9fr) minmax(610px, 1.1fr);
-  gap: 40px;
-  align-items: center;
-  padding: calc(var(--header-height) + 34px) var(--page-pad) 52px;
-  overflow: visible;
+  grid-template-columns: 1fr;
+  place-items: center;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 36px) var(--page-pad) 52px;
+  overflow: hidden;
+  text-align: center;
 }
+
+/* El escaparate ocupa todo el bloque por detras. object-fit recorta en vez de
+   estirar, asi que la foto no se deforma al pasar de vertical a apaisado. */
+.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 88%; opacity: 0.22; }
 
 .hero__copy {
   position: relative;
-  min-height: min(700px, calc(100svh - 170px));
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-block: clamp(24px, 6vh, 72px);
-  text-align: left;
-  align-items: flex-start;
+  align-items: center;
+  max-width: 720px;
+  text-align: center;
 }
 
 .hero__intro { line-height: 1.1; letter-spacing: 0.03em; text-transform: uppercase; }
 .hero__intro > p:first-child { font-size: clamp(0.58rem, 0.85vw, 0.78rem); }
 .hero__claim { margin-top: clamp(30px, 6vh, 62px); font-size: clamp(0.74rem, 1.15vw, 1.05rem); font-weight: 700; }
-.hero h1 { margin: 0 0 4px; font-size: clamp(4rem, 6vw, 6rem); line-height: 0.95; letter-spacing: 0.015em; }
+.hero h1 { margin: clamp(34px, 6vh, 56px) 0 4px; font-size: clamp(4rem, 7vw, 7rem); line-height: 0.95; letter-spacing: 0.015em; }
 .hero__subtitle { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(1.7rem, 3vw, 3rem); }
 .hero__copy .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.8rem; }
 
-.hero__gallery { display: flex; justify-content: flex-end; width: 100%; max-width: 720px; margin-left: auto; }
-/* Sin recorte: manda la proporcion de la foto. */
-.hero__photo { margin: 0; width: min(100%, 460px); background: var(--mist); }
-.hero__photo img { display: block; width: 100%; height: auto; }
 /* Aviso de la inauguracion: fina y discreta, sin competir con el titular. */
 .hero__opening {
-  margin: clamp(16px, 2.5vh, 24px) 0 0;
-  max-width: 30ch;
-  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
-  font-weight: 300;
-  letter-spacing: 0.06em;
+  margin: clamp(18px, 2.5vh, 26px) auto 0;
+  max-width: 34ch;
+  font-size: clamp(0.86rem, 1.05vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
   line-height: 1.5;
   /* En movil cae sobre la foto de fondo: con el gris suave no se leia. */
   color: var(--ink);
@@ -648,18 +649,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .panel { min-height: auto; }
   .section-shell, .section-shell--subpage { min-height: auto; padding-top: 116px; padding-bottom: 80px; }
   .offer-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    min-height: 100svh;
-    padding-top: calc(var(--header-height) + 36px);
-    overflow: hidden;
-    text-align: center;
-  }
-  .hero__copy { position: relative; z-index: 1; min-height: auto; padding: 0; align-items: center; text-align: center; max-width: 720px; }
-  .hero h1 { margin: clamp(34px, 6vh, 56px) 0 4px; font-size: clamp(4rem, 9vw, 7.5rem); }
-  .hero__gallery { justify-content: center; max-width: 380px; margin-inline: auto; margin-top: clamp(28px, 5vh, 44px); }
+  .hero h1 { font-size: clamp(4rem, 9vw, 7.5rem); }
   .scroll-cue { display: none; }
   .manifesto { min-height: auto; padding-block: 50px; }
   .information { min-height: auto; }
