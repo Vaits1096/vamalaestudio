@@ -7,7 +7,7 @@ const routes = {
   "/talleres-y-monograficos": { view: "talleres-y-monograficos", title: "Talleres y monográficos de pintura en Getxo · VAMALA" },
   "/quien-hay-detras": { view: "quien-hay-detras", title: "¿Quién hay detrás? · VAMALA" },
   "/el-estudio": { view: "el-estudio", title: "El estudio · VAMALA" },
-  "/taller-iniciacion": { view: "taller-iniciacion", title: "Taller de iniciación a la pintura en Getxo · VAMALA" },
+  "/taller-iniciacion": { view: "taller-iniciacion", title: "Taller de iniciación a la acuarela en Getxo · VAMALA" },
   "/taller-halloween": { view: "taller-halloween", title: "Taller de Halloween · VAMALA" },
   "/taller-tarjetas-navidenas": { view: "taller-tarjetas-navidenas", title: "Taller de tarjetas navideñas · VAMALA" },
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
@@ -148,7 +148,7 @@ const CALENDAR_CLOSED_RANGES = [
   ["2027-03-25", "2027-03-29"], // Semana Santa
 ];
 const CALENDAR_WORKSHOP_DATES = [
-  "2026-09-19", // Taller de iniciación
+  "2026-09-19", // Taller de iniciación a la acuarela
   "2026-10-31", // Taller de Halloween
   "2026-12-12", // Taller de tarjetas navideñas
   "2026-12-19", // Taller de Navidad
