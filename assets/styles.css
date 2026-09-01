@@ -258,8 +258,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
   overflow: visible;
 }
 
-.hero__bg { display: none; }
-
 .hero__copy {
   position: relative;
   min-height: min(700px, calc(100svh - 170px));
@@ -278,13 +276,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero__subtitle { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(1.7rem, 3vw, 3rem); }
 .hero__copy .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.8rem; }
 
-.hero__gallery { display: flex; align-items: flex-start; gap: clamp(14px, 2vw, 28px); width: 100%; max-width: 720px; margin-left: auto; }
-.hero__photo { flex: 1; margin: 0; overflow: hidden; background: var(--mist); aspect-ratio: 0.61; }
-.hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.hero__photo--accent { margin-top: clamp(60px, 13vh, 150px); }
-/* Tercera foto: se escalona a media altura para que las tres no queden a ras. */
-.hero__photo--third { margin-top: clamp(30px, 7vh, 80px); }
-
+.hero__gallery { display: flex; justify-content: flex-end; width: 100%; max-width: 720px; margin-left: auto; }
+/* Sin recorte: manda la proporcion de la foto. */
+.hero__photo { margin: 0; width: min(100%, 460px); background: var(--mist); }
+.hero__photo img { display: block; width: 100%; height: auto; }
 /* Aviso de la inauguracion: fina y discreta, sin competir con el titular. */
 .hero__opening {
   margin: clamp(16px, 2.5vh, 24px) 0 0;
@@ -333,10 +328,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .offer-page .page-lead { font-size: clamp(0.82rem, 1vw, 0.98rem); }
 
 .studio-page { padding-top: 0; }
-.studio-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin-top: clamp(50px, 7vh, 80px); }
-.studio-gallery figure { margin: 0; height: min(46vh, 460px); overflow: hidden; }
+.studio-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin-top: clamp(50px, 7vh, 80px); align-items: start; }
+.studio-gallery figure { margin: 0; }
 /* Las fotos del estudio van a color: son el espacio real, no una ambientacion. */
-.studio-gallery img { width: 100%; height: 100%; object-fit: cover; }
+.studio-gallery img { width: 100%; height: auto; }
 .offer-layout { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(280px, 0.9fr); gap: clamp(40px, 6vw, 100px); margin-top: 0; padding-top: 26px; }
 .ruled-copy { position: relative; padding-top: 22px; font-size: clamp(0.8rem, 1vw, 0.95rem); }
 .ruled-copy::before { content: ""; position: absolute; top: 0; left: 0; width: min(230px, 42%); border-top: 2px solid var(--line); }
@@ -662,11 +657,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
     overflow: hidden;
     text-align: center;
   }
-  .hero__bg { display: block; position: absolute; top: 0; bottom: 0; left: 0; width: 100%; z-index: 0; }
-  .hero__bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.34; }
   .hero__copy { position: relative; z-index: 1; min-height: auto; padding: 0; align-items: center; text-align: center; max-width: 720px; }
   .hero h1 { margin: clamp(34px, 6vh, 56px) 0 4px; font-size: clamp(4rem, 9vw, 7.5rem); }
-  .hero__gallery { display: none; }
+  .hero__gallery { justify-content: center; max-width: 380px; margin-inline: auto; margin-top: clamp(28px, 5vh, 44px); }
   .scroll-cue { display: none; }
   .manifesto { min-height: auto; padding-block: 50px; }
   .information { min-height: auto; }
