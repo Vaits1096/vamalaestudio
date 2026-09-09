@@ -294,6 +294,33 @@ figure, h1, h2, h3, p { margin-top: 0; }
   color: var(--ink);
 }
 
+/* Aviso del proximo taller: enlaza a su ficha, asi que se marca como pulsable
+   con un recuadro fino, sin llegar al peso del boton principal. */
+.hero__aviso {
+  display: block;
+  width: fit-content;
+  margin: clamp(14px, 2vh, 20px) auto 0;
+  padding: 12px 22px;
+  border: 1px solid rgba(52, 54, 46, 0.5);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  text-align: center;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+.hero__aviso span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.hero__aviso:hover { color: var(--cream); background: var(--ink); }
+
 .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; transform: translateX(-50%); }
 .scroll-cue i { display: block; width: 28px; height: 1px; background: currentColor; }
 
