@@ -412,6 +412,15 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .calendar-grid__day { display: grid; place-items: center; aspect-ratio: 1; margin: 0 auto; width: 30px; font-size: 0.78rem; border-radius: 50%; }
 .calendar-grid__day--workshop { background: var(--paper); border: 1.5px solid var(--line); }
 .calendar-grid__day--closed { background: var(--sage); }
+/* Los talleres del mes, con nombre y enlace a su ficha. */
+.calendar-events { display: grid; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.calendar-events__item { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: inherit; text-decoration: none; transition: background 0.25s ease, transform 0.25s ease; }
+.calendar-events__item:hover, .calendar-events__item:focus-visible { background: var(--cream); transform: translateY(-1px); }
+.calendar-events__day { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border: 1.5px solid var(--line); border-radius: 50%; font-size: 0.85rem; }
+.calendar-events__body { display: grid; gap: 2px; line-height: 1.3; }
+.calendar-events__body strong { font-weight: 500; font-size: 0.85rem; }
+.calendar-events__body span { font-size: 0.7rem; color: var(--ink-soft); }
+
 .calendar-legend { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.7rem; }
 .calendar-legend__item { display: inline-flex; align-items: center; gap: 8px; }
 .calendar-legend__swatch { width: 14px; height: 14px; border-radius: 50%; }

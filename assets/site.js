@@ -147,11 +147,13 @@ const CALENDAR_CLOSED_RANGES = [
   ["2026-12-24", "2027-01-06"], // Vacaciones de Navidad
   ["2027-03-25", "2027-03-29"], // Semana Santa
 ];
-const CALENDAR_WORKSHOP_DATES = [
-  "2026-09-19", // Taller de iniciación a la acuarela
-  "2026-10-31", // Taller de Halloween
-  "2026-12-12", // Taller de tarjetas navideñas
-  "2026-12-19", // Taller de Navidad
+// Cada taller lleva su nombre y su ficha: el calendario no solo marca el día,
+// también dice de qué taller se trata y enlaza con toda la información.
+const CALENDAR_WORKSHOPS = [
+  { date: "2026-09-19", name: "Taller de iniciación a la acuarela", time: "10:00 – 13:00", path: "#/taller-iniciacion" },
+  { date: "2026-10-31", name: "Taller especial de Halloween", time: "10:00 – 13:00", path: "#/taller-halloween" },
+  { date: "2026-12-12", name: "Tarjetas navideñas en acuarela", time: "10:00 – 13:00", path: "#/taller-tarjetas-navidenas" },
+  { date: "2026-12-19", name: "Taller de Navidad", time: "10:00 – 13:00", path: "#/taller-navidad" },
 ];
 const CALENDAR_MONTH_NAMES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 const CALENDAR_WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
@@ -167,6 +169,7 @@ if (calendarModal && calendarToggleButtons.length) {
   const calendarPrev = calendarModal.querySelector("[data-calendar-prev]");
   const calendarNext = calendarModal.querySelector("[data-calendar-next]");
   const calendarPanel = calendarModal.querySelector(".calendar-modal__panel");
+  const calendarEvents = calendarModal.querySelector("[data-calendar-events]");
   let calendarCursor = 0;
   let calendarLastFocused = null;
 
@@ -175,11 +178,29 @@ if (calendarModal && calendarToggleButtons.length) {
   // Los findes no se marcan: se sobreentiende que no hay clase. Solo se señalan
   // los cierres excepcionales (festivos y vacaciones).
   const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
-  const isWorkshopDay = (iso) => CALENDAR_WORKSHOP_DATES.includes(iso);
+  const workshopOn = (iso) => CALENDAR_WORKSHOPS.find((workshop) => workshop.date === iso);
 
   function currentCalendarDate() {
     const total = CALENDAR_START.month + calendarCursor;
     return { year: CALENDAR_START.year + Math.floor(total / 12), month: total % 12 };
+  }
+
+  function renderCalendarEvents(year, month) {
+    if (!calendarEvents) return;
+    const prefix = `${year}-${pad(month + 1)}-`;
+    const workshops = CALENDAR_WORKSHOPS.filter((workshop) => workshop.date.startsWith(prefix));
+    calendarEvents.innerHTML = "";
+    calendarEvents.hidden = workshops.length === 0;
+
+    workshops.forEach((workshop) => {
+      const day = Number(workshop.date.slice(-2));
+      const link = document.createElement("a");
+      link.className = "calendar-events__item";
+      link.href = workshop.path;
+      link.innerHTML = `<span class="calendar-events__day">${day}</span><span class="calendar-events__body"><strong>${workshop.name}</strong><span>${workshop.time} · Más información</span></span>`;
+      link.addEventListener("click", closeCalendar);
+      calendarEvents.appendChild(link);
+    });
   }
 
   function renderCalendar() {
@@ -205,12 +226,19 @@ if (calendarModal && calendarToggleButtons.length) {
       const iso = toISO(year, month, d);
       const cell = document.createElement("span");
       cell.className = "calendar-grid__day";
+      const workshop = workshopOn(iso);
       // El workshop manda: es el único motivo por el que se abre en fin de semana.
-      if (isWorkshopDay(iso)) cell.classList.add("calendar-grid__day--workshop");
-      else if (isClosedDay(iso)) cell.classList.add("calendar-grid__day--closed");
+      if (workshop) {
+        cell.classList.add("calendar-grid__day--workshop");
+        cell.title = workshop.name;
+      } else if (isClosedDay(iso)) {
+        cell.classList.add("calendar-grid__day--closed");
+      }
       cell.textContent = d;
       calendarGrid.appendChild(cell);
     }
+
+    renderCalendarEvents(year, month);
 
     calendarPrev.disabled = calendarCursor <= 0;
     calendarNext.disabled = calendarCursor >= CALENDAR_MONTH_COUNT - 1;
