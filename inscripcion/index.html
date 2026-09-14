@@ -337,6 +337,7 @@
       </div>
     </form>
 
+    <p id="notaSalida" class="oculto">Copia este texto y pégalo en el chat de WhatsApp. Es tu ficha: yo la entiendo aunque a ti te parezca un lío.</p>
     <div id="salida" class="oculto no-print"></div>
   </div>
 
@@ -450,7 +451,11 @@ function construir() {
   ].join("\n");
 }
 
-function mostrar(t) { $('salida').textContent = t; $('salida').className = "no-print"; }
+function mostrar(t) {
+  $('salida').textContent = t;
+  $('salida').className = "no-print";
+  $('notaSalida').className = "ayuda no-print";
+}
 
 // Enviar la ficha en PDF.
 //
@@ -466,7 +471,6 @@ $('btnWa').addEventListener('click', async ev => {
   ev.preventDefault();
   if (!validar()) return;
   const t = construir();
-  mostrar(t);
 
   const boton = $('btnWa');
   const antes = boton.textContent;
@@ -500,16 +504,21 @@ $('btnWa').addEventListener('click', async ev => {
   }
 });
 
-// Copiar al portapapeles: funciona en todos los moviles y siempre hay plan B,
-// que es el recuadro de texto de abajo para copiarlo a mano.
+// Copiar al portapapeles.
+//
+// El recuadro con el texto en bruto solo aparece si el portapapeles falla, que
+// es el unico caso en que sirve de algo. Antes salia siempre, y lo que veia el
+// alumno al darle a enviar era un churro de NOMBRE:, GRUPOS:, CONSENT_DATOS:
+// que no le decia nada y parecia un error.
 $('btnCopiar').addEventListener('click', async () => {
   if (!validar()) return;
-  const t = construir(); mostrar(t);
+  const t = construir();
   const b = $('btnCopiar');
   try {
     await navigator.clipboard.writeText(t);
     b.textContent = "Copiado · pégalo en el chat";
   } catch (e) {
+    mostrar(t);
     b.textContent = "Copia el texto de aquí abajo";
     $('salida').scrollIntoView({behavior:"smooth", block:"center"});
   }
