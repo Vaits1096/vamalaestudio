@@ -770,6 +770,8 @@ function pdfFicha(texto) {
   return salida;
 }
 
+
+
 function nombreFichero() {
   const quien = (val('nombre') + " " + val('apellidos')).trim().replace(/[^\wÀ-ÿ ]/g, "");
   return "Ficha VAMALA - " + (quien || "inscripcion") + ".pdf";
