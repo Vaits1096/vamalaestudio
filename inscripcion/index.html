@@ -135,6 +135,21 @@
   details.dia .ops { margin:0; padding:11px; gap:7px; }
   details.dia.tiene summary b::before { content:"● "; color:var(--verde); font-size:11px; }
   @media print { details.dia .ops { display:grid !important; } }
+  /* Las normas son 2.200 caracteres de texto seguido: la cuarta parte de la
+     ficha. Plegadas siguen estando a un toque, y nadie las lee menos por eso. */
+  details.plegable { border:1px solid var(--linea); border-radius:10px; background:#fff;
+    margin-bottom:14px; overflow:hidden; }
+  details.plegable summary { list-style:none; cursor:pointer; padding:13px 15px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  details.plegable summary::-webkit-details-marker { display:none; }
+  details.plegable summary b { font-size:14px; font-weight:600; color:var(--verde-osc); }
+  details.plegable summary .pista { font-size:12.5px; color:var(--gris); text-align:right; }
+  details.plegable summary::after { content:"+"; font-size:17px; color:var(--verde);
+    line-height:1; width:14px; text-align:center; flex-shrink:0; }
+  details.plegable[open] summary::after { content:"–"; }
+  details.plegable[open] summary { border-bottom:1px solid var(--linea); }
+  details.plegable .normas { padding:14px 15px; }
+  @media print { details.plegable .normas { display:block !important; } }
 </style>
 
 <div class="hoja">
@@ -253,7 +268,10 @@
         <thead><tr><th>Tarifa</th><th>1 día/sem</th><th>2 días/sem</th></tr></thead>
         <tr><td>Adultos (2 h)</td><td>70 €</td><td>125 €</td></tr><tr><td>Niños (1 h 30)</td><td>50 €</td><td>90 €</td></tr>
       </table>
-      <div class="normas"><p class="ntit">Cuotas</p><ol class="nlista"><li>El pago es <b>mensual</b>. Los días sueltos solo se pagan en el caso de personas que no son alumnas de la academia.</li><li><b>Sin matrícula y sin permanencia:</b> puedes dejarlo cuando quieras.</li><li>Los familiares directos tienen un <b>10 % de descuento</b>, que se aplica siempre sobre <b>la cuota más barata</b> de la familia, sea quien sea quien se apuntara antes.</li><li>Si subimos los precios te avisaremos con un mes de antelación.</li></ol><p class="ntit">Pago</p><ol class="nlista"><li>La cuota se paga <b>entre el 1 y el 5 de cada mes</b>.</li><li>Si un recibo vuelve devuelto, los gastos de devolución corren por cuenta del alumno.</li><li>Dos mensualidades sin pagar suponen perder la plaza, que pasa a quien esté en lista de espera.</li></ol><p class="ntit">Altas, bajas y cambios</p><ol class="nlista"><li>La plaza queda reservada cuando recibimos la ficha y confirmamos el grupo.</li><li>Si el grupo está completo entras en <b>lista de espera por orden de fecha de solicitud</b>.</li><li>Las bajas se avisan <b>antes del día 25 del mes anterior</b>. Si no se avisa, se cobrará la mensualidad.</li><li>Los cambios de grupo se piden con la misma antelación y dependen de que haya plaza libre.</li><li>Si el familiar con el que compartías descuento se da de baja, el 10 % deja de aplicarse el mes siguiente.</li></ol><p class="ntit">Clases</p><ol class="nlista"><li>Las clases a las que el alumno no venga <b>no se descuentan</b>, pero <b>se pueden recuperar</b> en otra clase que elija, siempre que quede hueco libre en ella.</li><li>Si la clase se cancela por causa del estudio, se recupera en otra fecha o se descuenta de la cuota.</li><li>Los festivos oficiales no se recuperan: ya están contemplados en la cuota. El calendario del curso, con los días que la academia cierra, se entrega al empezar y se avisa de cualquier cambio con antelación.</li><li>El curso va de <b>septiembre a junio</b>: son <b>10 mensualidades</b>. En julio y agosto no hay clases regulares y no se cobra cuota.</li></ol><p class="ntit">Menores</p><ol class="nlista"><li>Al terminar la clase, el menor se entrega a su madre, padre o tutor legal.</li><li>Si le va a recoger otra persona, avísanos antes por escrito o por WhatsApp.</li><li>Te pedimos puntualidad en la recogida: después de la clase suele entrar otro grupo.</li></ol><p class="ntit">Material</p><ol class="nlista"><li>El estudio pone el material común de uso general.</li><li>El material personal lo trae cada alumno, y puede comprarse en el propio estudio.</li></ol><p class="ntit">Imagen y datos</p><ol class="nlista"><li>Las fotos de los trabajos o de las clases <b>solo se publican si das permiso</b>, que es opcional y puedes retirar cuando quieras.</li><li>Tus datos se usan únicamente para gestionar las clases y los cobros. No se ceden a nadie.</li></ol></div>
+            <details class="plegable">
+        <summary><b>Leer las normas</b><span class="pista">cuotas, pagos, bajas y clases</span></summary>
+        <div class="normas"><p class="ntit">Cuotas</p><ol class="nlista"><li>El pago es <b>mensual</b>. Los días sueltos solo se pagan en el caso de personas que no son alumnas de la academia.</li><li><b>Sin matrícula y sin permanencia:</b> puedes dejarlo cuando quieras.</li><li>Los familiares directos tienen un <b>10 % de descuento</b>, que se aplica siempre sobre <b>la cuota más barata</b> de la familia, sea quien sea quien se apuntara antes.</li><li>Si subimos los precios te avisaremos con un mes de antelación.</li></ol><p class="ntit">Pago</p><ol class="nlista"><li>La cuota se paga <b>entre el 1 y el 5 de cada mes</b>.</li><li>Si un recibo vuelve devuelto, los gastos de devolución corren por cuenta del alumno.</li><li>Dos mensualidades sin pagar suponen perder la plaza, que pasa a quien esté en lista de espera.</li></ol><p class="ntit">Altas, bajas y cambios</p><ol class="nlista"><li>La plaza queda reservada cuando recibimos la ficha y confirmamos el grupo.</li><li>Si el grupo está completo entras en <b>lista de espera por orden de fecha de solicitud</b>.</li><li>Las bajas se avisan <b>antes del día 25 del mes anterior</b>. Si no se avisa, se cobrará la mensualidad.</li><li>Los cambios de grupo se piden con la misma antelación y dependen de que haya plaza libre.</li><li>Si el familiar con el que compartías descuento se da de baja, el 10 % deja de aplicarse el mes siguiente.</li></ol><p class="ntit">Clases</p><ol class="nlista"><li>Las clases a las que el alumno no venga <b>no se descuentan</b>, pero <b>se pueden recuperar</b> en otra clase que elija, siempre que quede hueco libre en ella.</li><li>Si la clase se cancela por causa del estudio, se recupera en otra fecha o se descuenta de la cuota.</li><li>Los festivos oficiales no se recuperan: ya están contemplados en la cuota. El calendario del curso, con los días que la academia cierra, se entrega al empezar y se avisa de cualquier cambio con antelación.</li><li>El curso va de <b>septiembre a junio</b>: son <b>10 mensualidades</b>. En julio y agosto no hay clases regulares y no se cobra cuota.</li></ol><p class="ntit">Menores</p><ol class="nlista"><li>Al terminar la clase, el menor se entrega a su madre, padre o tutor legal.</li><li>Si le va a recoger otra persona, avísanos antes por escrito o por WhatsApp.</li><li>Te pedimos puntualidad en la recogida: después de la clase suele entrar otro grupo.</li></ol><p class="ntit">Material</p><ol class="nlista"><li>El estudio pone el material común de uso general.</li><li>El material personal lo trae cada alumno, y puede comprarse en el propio estudio.</li></ol><p class="ntit">Imagen y datos</p><ol class="nlista"><li>Las fotos de los trabajos o de las clases <b>solo se publican si das permiso</b>, que es opcional y puedes retirar cuando quieras.</li><li>Tus datos se usan únicamente para gestionar las clases y los cobros. No se ceden a nadie.</li></ol></div>
+      </details>
 
 
       <h2 id="h-pago">7 · Cómo prefieres pagar</h2>
@@ -391,7 +409,11 @@ function validar() {
   if (menor && !val('telTutor')) faltan.push("el teléfono del tutor o tutora");
   if (!radio('pago')) faltan.push("elegir la forma de pago");
   if (!$('cDatos').checked) faltan.push("el permiso de tratamiento de datos");
-  if (!$('cCond').checked) faltan.push("aceptar las normas de funcionamiento");
+  if (!$('cCond').checked) {
+    faltan.push("aceptar las normas de funcionamiento");
+    const n = document.querySelector("details.plegable");
+    if (n) n.open = true;
+  }
   $('errores').innerHTML = faltan.length
     ? '<p class="err">Falta ' + faltan.join(", ").replace(/, ([^,]*)$/, " y $1") + '.</p>' : "";
   if (faltan.length) $('errores').scrollIntoView({behavior:"smooth", block:"center"});
