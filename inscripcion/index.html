@@ -119,6 +119,22 @@
   .firma { display:none; }
   .firma .lineas { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:34px; }
   .firma .l { border-top:1px solid var(--tinta); padding-top:6px; font-size:11px; color:var(--gris); }
+  /* Los horarios, plegados por dia: siete tarjetas seguidas obligan a bajar
+     media pantalla en el movil antes de llegar al resto de la ficha. */
+  details.dia { border:1px solid var(--linea); border-radius:10px; background:#fff;
+    margin-bottom:9px; overflow:hidden; }
+  details.dia summary { list-style:none; cursor:pointer; padding:13px 15px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  details.dia summary::-webkit-details-marker { display:none; }
+  details.dia summary b { font-size:14.5px; font-weight:600; color:var(--verde-osc); }
+  details.dia summary .cuenta { font-size:12.5px; color:var(--gris); }
+  details.dia summary::after { content:"+"; font-size:17px; color:var(--verde);
+    line-height:1; width:14px; text-align:center; }
+  details.dia[open] summary::after { content:"–"; }
+  details.dia[open] summary { border-bottom:1px solid var(--linea); }
+  details.dia .ops { margin:0; padding:11px; gap:7px; }
+  details.dia.tiene summary b::before { content:"● "; color:var(--verde); font-size:11px; }
+  @media print { details.dia .ops { display:grid !important; } }
 </style>
 
 <div class="hoja">
@@ -145,36 +161,51 @@
       <p class="ayuda" id="edadTxt">Formato día/mes/año.</p>
 
       <h2>2 · Qué grupo o grupos</h2>
-      <div class="ops">
-        <div class="op">
+            <p class="ayuda">Toca el día que te venga bien para ver sus horarios. Puedes elegir más de uno.</p>
+      <details class="dia">
+        <summary><b>Miércoles</b><span class="cuenta">2 horarios</span></summary>
+        <div class="ops">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g0" value="GET-X1" autocomplete="off">
           <label for="g0"><b>Miércoles · 17:00 – 18:30</b><span>Niños · GET-X1</span></label>
         </div>
-        <div class="op">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g1" value="GET-X2" autocomplete="off">
           <label for="g1"><b>Miércoles · 18:45 – 20:15</b><span>Niños · GET-X2</span></label>
         </div>
-        <div class="op">
+        </div>
+      </details>
+      <details class="dia">
+        <summary><b>Jueves</b><span class="cuenta">3 horarios</span></summary>
+        <div class="ops">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g2" value="GET-J1" autocomplete="off">
           <label for="g2"><b>Jueves · 10:00 – 12:00</b><span>Adultos · GET-J1</span></label>
         </div>
-        <div class="op">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g3" value="GET-J2" autocomplete="off">
           <label for="g3"><b>Jueves · 17:00 – 18:30</b><span>Niños · GET-J2</span></label>
         </div>
-        <div class="op">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g4" value="GET-J3" autocomplete="off">
           <label for="g4"><b>Jueves · 18:45 – 20:45</b><span>Adultos · GET-J3</span></label>
         </div>
-        <div class="op">
+        </div>
+      </details>
+      <details class="dia">
+        <summary><b>Viernes</b><span class="cuenta">2 horarios</span></summary>
+        <div class="ops">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g5" value="GET-V1" autocomplete="off">
           <label for="g5"><b>Viernes · 10:00 – 12:00</b><span>Adultos · GET-V1</span></label>
         </div>
-        <div class="op">
+          <div class="op">
           <input type="checkbox" name="grupo" id="g6" value="GET-V2" autocomplete="off">
           <label for="g6"><b>Viernes · 17:00 – 18:30</b><span>Niños · GET-V2</span></label>
         </div>
-      </div>
+        </div>
+      </details>
+
       <p class="ayuda">Puedes marcar más de uno si quieres venir varios días: cada grupo
         tiene su cuota. Si alguno está completo entrarás en la lista de espera por orden de
         solicitud y te avisaremos en cuanto quede una plaza.</p>
@@ -272,9 +303,11 @@
       <div id="errores"></div>
 
       <div class="no-print">
-        <a id="btnWa" class="boton b1" href="#" rel="noopener">Enviar por WhatsApp</a>
+        <a id="btnWa" class="boton b1" href="#" rel="noopener">Enviarla por WhatsApp</a>
+        <p class="ayuda" id="notaWa" style="margin-top:2px">Se crea un PDF con tu ficha y se abre
+          el menú de compartir: elige WhatsApp y mándamela.</p>
+        <button type="button" class="b2" id="btnPdf">Guardar el PDF en el móvil</button>
         <button type="button" class="b2" id="btnCopiar">Copiar y pegar en el chat</button>
-        <button type="button" class="b2" id="btnPdf">Guardar en PDF</button>
         <p class="ayuda" id="notaPdf" style="margin-top:2px"></p>
       </div>
 
@@ -349,7 +382,10 @@ function validar() {
   if (!val('nombre')) faltan.push("el nombre");
   if (!val('apellidos')) faltan.push("los apellidos");
   if (!val('nacimiento') || e === null || e < 0 || e > 130) faltan.push("la fecha de nacimiento");
-  if (!gruposElegidos().length) faltan.push("elegir al menos un grupo");
+  if (!gruposElegidos().length) {
+    faltan.push("elegir al menos un grupo");
+    document.querySelectorAll("details.dia").forEach(d => { d.open = true; });
+  }
   if (!val('telefono')) faltan.push("el teléfono");
   if (menor && !val('tutor')) faltan.push("el nombre del tutor o tutora");
   if (menor && !val('telTutor')) faltan.push("el teléfono del tutor o tutora");
@@ -394,12 +430,52 @@ function construir() {
 
 function mostrar(t) { $('salida').textContent = t; $('salida').className = "no-print"; }
 
-// WhatsApp: un enlace de verdad. window.open lo bloquea el navegador del movil.
-$('btnWa').addEventListener('click', ev => {
-  if (!validar()) { ev.preventDefault(); return; }
-  const t = construir(); mostrar(t);
-  ev.currentTarget.href = (MOVIL_ESTUDIO ? "https://wa.me/" + MOVIL_ESTUDIO : "https://wa.me/")
-                          + "?text=" + encodeURIComponent(t);
+// Enviar la ficha en PDF.
+//
+// WhatsApp no deja que una pagina web adjunte un archivo a un chat: no hay
+// manera. Lo que si existe es el menu de compartir del propio movil, que si
+// lleva archivos. Asi que se genera el PDF aqui y se lo pasamos al telefono,
+// que ya se encarga de meterlo en WhatsApp.
+//
+// Donde no haya menu de compartir (moviles viejos, o el navegador de dentro de
+// WhatsApp), el plan B es descargar el PDF y abrir el chat con el texto: la
+// inscripcion llega igual, aunque tengan que adjuntarlo a mano.
+$('btnWa').addEventListener('click', async ev => {
+  ev.preventDefault();
+  if (!validar()) return;
+  const t = construir();
+  mostrar(t);
+
+  const boton = $('btnWa');
+  const antes = boton.textContent;
+  boton.textContent = "Preparando la ficha...";
+  try {
+    const pdf = pdfFicha(t);
+    const fichero = new File([pdf], nombreFichero(), {type: "application/pdf"});
+
+    if (navigator.canShare && navigator.canShare({files: [fichero]})) {
+      try {
+        // Sin "text": algunas apps, si mandas texto y archivo a la vez, se
+        // quedan solo con el texto y tiran el PDF.
+        await navigator.share({files: [fichero], title: "Ficha de inscripcion VAMALA"});
+        $('notaWa').textContent = "Ficha enviada. Si no la ves en el chat, vuelve a darle.";
+        return;
+      } catch (e) {
+        if (e && e.name === "AbortError") return;    // le ha dado a cancelar
+      }
+    }
+
+    descargar(pdf, nombreFichero());
+    $('notaWa').textContent = "Tu movil no deja compartir el archivo directamente: te lo he " +
+      "descargado. Adjuntalo en el chat que se abre ahora.";
+    setTimeout(() => {
+      window.location.href = "https://wa.me/" + MOVIL_ESTUDIO + "?text=" + encodeURIComponent(t);
+    }, 1200);
+  } catch (e) {
+    $('notaWa').textContent = "No he podido crear el PDF. Usa «Copiar y pegar en el chat».";
+  } finally {
+    boton.textContent = antes;
+  }
 });
 
 // Copiar al portapapeles: funciona en todos los moviles y siempre hay plan B,
@@ -418,14 +494,278 @@ $('btnCopiar').addEventListener('click', async () => {
   setTimeout(() => { b.textContent = "Copiar y pegar en el chat"; }, 3500);
 });
 
-// Imprimir no existe en el navegador que abre WhatsApp: hay que salir a Safari o Chrome.
-const puedeImprimir = typeof window.print === "function" && !/(FBAN|FBAV|Instagram|WhatsApp)/i.test(navigator.userAgent);
-$('notaPdf').textContent = puedeImprimir
-  ? "Se abrirá el diálogo de impresión: elige «Guardar en PDF»."
-  : "Para guardarla en PDF, abre esta ficha en Safari o Chrome (botón «Abrir en el navegador»).";
+// Guardarla sin enviarla: el mismo PDF, pero al carrete o a Archivos.
 $('btnPdf').addEventListener('click', () => {
   if (!validar()) return;
-  try { window.print(); }
-  catch (e) { $('notaPdf').textContent = "Este navegador no puede imprimir. Ábrela en Safari o Chrome."; }
+  try {
+    descargar(pdfFicha(construir()), nombreFichero());
+    $('notaPdf').textContent = "Guardada. Búscala en las descargas de tu móvil.";
+  } catch (e) {
+    $('notaPdf').textContent = "No he podido crear el PDF. Usa «Copiar y pegar en el chat».";
+  }
 });
+
+/* ------------------------------------------------------------------ el PDF
+
+   Se genera aqui mismo, sin librerias ni internet: la ficha tiene que seguir
+   siendo un unico archivo que funciona aunque no haya cobertura.
+
+   El PDF lleva los datos dos veces: dibujados para leerlos, y guardados como
+   texto dentro del propio archivo (/VamalaFicha). Por eso la app de gestion
+   puede leer el PDF y dar de alta al alumno sin teclear nada. Los flujos van
+   sin comprimir a proposito: comprimirlos ahorraria cuatro kilobytes y
+   dejaria el texto ilegible para la app.                                  */
+
+/* De texto a bytes en WinAnsi, que es lo que entiende Helvetica. Sin esto,
+   Nuria Ibanez sale como NurÃ­a IbÃ¡Ã±ez. */
+const WINANSI = {0x20AC:0x80, 0x201A:0x82, 0x0192:0x83, 0x201E:0x84, 0x2026:0x85,
+  0x2020:0x86, 0x2021:0x87, 0x02C6:0x88, 0x2030:0x89, 0x0160:0x8A, 0x2039:0x8B,
+  0x0152:0x8C, 0x017D:0x8E, 0x2018:0x91, 0x2019:0x92, 0x201C:0x93, 0x201D:0x94,
+  0x2022:0x95, 0x2013:0x96, 0x2014:0x97, 0x02DC:0x98, 0x2122:0x99, 0x0161:0x9A,
+  0x203A:0x9B, 0x0153:0x9C, 0x017E:0x9E, 0x0178:0x9F};
+
+function bytes(s) {
+  const out = [];
+  for (const ch of String(s)) {
+    const c = ch.codePointAt(0);
+    if (c < 256) out.push(c);
+    else if (WINANSI[c]) out.push(WINANSI[c]);
+    else out.push(0x3F);                       // lo que no existe, interrogante
+  }
+  return out;
+}
+
+function escapar(s) {
+  return bytes(s).flatMap(b => (b === 40 || b === 41 || b === 92) ? [92, b] : [b]);
+}
+
+/* Ancho aproximado de Helvetica. No es exacto, pero basta para decidir donde
+   cortar una linea larga. */
+function ancho(s, tam) {
+  let w = 0;
+  for (const ch of String(s)) {
+    const c = ch.codePointAt(0);
+    if ("ijlIt.,:;'|!".includes(ch)) w += 0.30;
+    else if ("fr ".includes(ch)) w += 0.36;
+    else if ("mwMW@".includes(ch)) w += 0.85;
+    else if (c >= 65 && c <= 90) w += 0.68;
+    else w += 0.53;
+  }
+  return w * tam;
+}
+
+function cortar(s, tam, max) {
+  const palabras = String(s).split(" ");
+  const lineas = [];
+  let linea = "";
+  for (const p of palabras) {
+    const prueba = linea ? linea + " " + p : p;
+    if (ancho(prueba, tam) > max && linea) { lineas.push(linea); linea = p; }
+    else linea = prueba;
+  }
+  if (linea) lineas.push(linea);
+  return lineas.length ? lineas : [""];
+}
+
+/* En el texto que lee la app va sin tilde, para no complicar el importador.
+   En el PDF, que lo lee una persona, va bien escrito. */
+function sino(v) { return v === "Si" ? "Sí" : v; }
+
+function pdfFicha(texto) {
+  const d = {};
+  texto.split("\n").forEach(l => {
+    const m = l.match(/^([A-Z_]+): ?(.*)$/);
+    if (m) d[m[1]] = m[2];
+  });
+
+  const ANCHO = 595.28, ALTO = 841.89, MARGEN = 56;
+  const UTIL = ANCHO - MARGEN * 2;
+  const paginas = [];
+  let ops = [], y = 0;
+
+  const nueva = () => { ops = []; paginas.push(ops); y = ALTO - MARGEN; };
+  const sitio = (alto) => { if (y - alto < MARGEN + 40) nueva(); };
+
+  const texto_en = (s, x, tam, negrita, gris) => {
+    ops.push("BT /" + (negrita ? "F2" : "F1") + " " + tam + " Tf");
+    if (gris) ops.push(gris + " g"); else ops.push("0.18 0.20 0.16 rg");
+    ops.push("1 0 0 1 " + x.toFixed(1) + " " + y.toFixed(1) + " Tm");
+    ops.push("(" + String.fromCharCode(...escapar(s)) + ") Tj ET");
+  };
+
+  const linea_h = () => {
+    ops.push("0.86 0.84 0.78 RG 0.7 w " + MARGEN + " " + y.toFixed(1) + " m " +
+             (ANCHO - MARGEN) + " " + y.toFixed(1) + " l S");
+  };
+
+  nueva();
+
+  // cabecera
+  texto_en("VAMALA", MARGEN, 22, true); y -= 16;
+  texto_en("estudio creativo", MARGEN, 9, false, "0.45"); y -= 22;
+  texto_en("Ficha de inscripción" + (d.SEDE ? "  ·  " + d.SEDE : ""), MARGEN, 13, true); y -= 12;
+  linea_h(); y -= 16;
+  texto_en("Rellenada el " + (d.ENVIADA || ""), MARGEN, 8.5, false, "0.45"); y -= 24;
+
+  const seccion = (t) => {
+    sitio(46); y -= 6; texto_en(t.toUpperCase(), MARGEN, 8.5, true, "0.42"); y -= 6;
+    linea_h(); y -= 15;
+  };
+
+  const campo = (etiqueta, valor) => {
+    if (!valor) return;
+    const lineas = cortar(valor, 10.5, UTIL - 130);
+    sitio(14 * lineas.length);
+    texto_en(etiqueta, MARGEN, 9, false, "0.45");
+    lineas.forEach((l, i) => {
+      if (i) y -= 13;
+      texto_en(l, MARGEN + 130, 10.5, false);
+    });
+    y -= 17;
+  };
+
+  seccion("Quién se apunta");
+  campo("Nombre", ((d.NOMBRE || "") + " " + (d.APELLIDOS || "")).trim());
+  campo("Nacimiento", d.NACIMIENTO + (d.EDAD ? "   (" + d.EDAD + " años)" : ""));
+  campo("Menor de edad", sino(d.MENOR));
+
+  seccion("Grupos");
+  (d.GRUPOS || "").split(",").map(s => s.trim()).filter(Boolean).forEach(cod => {
+    campo(cod, (typeof GRUPOS !== "undefined" && GRUPOS[cod]) ? GRUPOS[cod] : " ");
+  });
+
+  seccion("Contacto");
+  campo("Teléfono", d.TELEFONO);
+  campo("Email", d.EMAIL);
+  campo("Dirección", d.DIRECCION);
+
+  if (d.TUTOR || d.TEL_TUTOR) {
+    seccion("Tutor o tutora legal");
+    campo("Nombre", d.TUTOR);
+    campo("DNI", d.DNI_TUTOR);
+    campo("Teléfono", d.TEL_TUTOR);
+    campo("Email", d.EMAIL_TUTOR);
+    campo("Puede recogerle", d.AUTORIZADOS);
+  }
+
+  seccion("Cuota y pago");
+  campo("Forma de pago", d.PAGO);
+  campo("Familiar inscrito", d.FAMILIAR);
+
+  seccion("Permisos");
+  campo("Tratamiento de datos", sino(d.CONSENT_DATOS));
+  campo("Uso de imagen", sino(d.CONSENT_IMAGEN));
+  campo("Acepta las normas", sino(d.CONDICIONES));
+  if (d.CONOCIO) campo("Nos conoció por", d.CONOCIO);
+
+  // firma
+  sitio(80); y -= 24;
+  ops.push("0.70 0.68 0.62 RG 0.7 w " + MARGEN + " " + y.toFixed(1) + " m " +
+           (MARGEN + 220) + " " + y.toFixed(1) + " l S");
+  ops.push("0.70 0.68 0.62 RG 0.7 w " + (ANCHO - MARGEN - 150) + " " + y.toFixed(1) +
+           " m " + (ANCHO - MARGEN) + " " + y.toFixed(1) + " l S");
+  y -= 11;
+  texto_en("Firma del alumno o del tutor legal", MARGEN, 8, false, "0.45");
+  texto_en("Fecha", ANCHO - MARGEN - 150, 8, false, "0.45");
+  y -= 26;
+  texto_en("VAMALA estudio creativo · Valeria M. Lanchares · C/ Santa Ana 008A, Las Arenas, Getxo",
+           MARGEN, 7.5, false, "0.55");
+
+  // ------------------------------------------------------------ el fichero
+  const trozos = [];
+  let largo = 0;
+  const pon = (s) => {
+    const b = typeof s === "string" ? bytes(s) : s;
+    trozos.push(b); largo += b.length;
+  };
+
+  const objetos = [];
+  const obj = (cuerpo) => {
+    objetos.push(largo);
+    pon(objetos.length + " 0 obj\n" + cuerpo + "\nendobj\n");
+    return objetos.length;
+  };
+
+  pon("%PDF-1.4\n");
+
+  const nPaginas = paginas.length;
+  const idCatalogo = 1, idPaginas = 2, idF1 = 3, idF2 = 4, idInfo = 5;
+  const idPrimera = 6;                               // pagina, contenido, pagina, ...
+
+  objetos.push(largo);
+  pon("1 0 obj\n<</Type/Catalog/Pages 2 0 R>>\nendobj\n");
+
+  const hijos = [];
+  for (let i = 0; i < nPaginas; i++) hijos.push((idPrimera + i * 2) + " 0 R");
+  objetos.push(largo);
+  pon("2 0 obj\n<</Type/Pages/Kids[" + hijos.join(" ") + "]/Count " + nPaginas + ">>\nendobj\n");
+
+  objetos.push(largo);
+  pon("3 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>\nendobj\n");
+  objetos.push(largo);
+  pon("4 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>\nendobj\n");
+
+  // Los datos, guardados como texto dentro del PDF: es lo que lee la app.
+  objetos.push(largo);
+  pon("5 0 obj\n<</Title(");
+  pon(escapar("Ficha VAMALA - " + (d.NOMBRE || "") + " " + (d.APELLIDOS || "")));
+  pon(")/Creator(VAMALA estudio creativo)/VamalaFicha(");
+  pon(escapar(texto).flatMap(b => b === 10 ? [92, 110] : [b]));   // salto -> \n
+  pon(")>>\nendobj\n");
+
+  paginas.forEach((contenido, i) => {
+    const flujo = contenido.join("\n");
+    objetos.push(largo);
+    pon((idPrimera + i * 2) + " 0 obj\n<</Type/Page/Parent 2 0 R/MediaBox[0 0 " +
+        ANCHO + " " + ALTO + "]/Resources<</Font<</F1 3 0 R/F2 4 0 R>>>>/Contents " +
+        (idPrimera + i * 2 + 1) + " 0 R>>\nendobj\n");
+    const cuerpo = bytes(flujo);
+    objetos.push(largo);
+    pon((idPrimera + i * 2 + 1) + " 0 obj\n<</Length " + cuerpo.length + ">>\nstream\n");
+    pon(cuerpo);
+    pon("\nendstream\nendobj\n");
+  });
+
+  const xref = largo;
+  let tabla = "xref\n0 " + (objetos.length + 1) + "\n0000000000 65535 f \n";
+  objetos.forEach(o => { tabla += String(o).padStart(10, "0") + " 00000 n \n"; });
+  pon(tabla);
+  pon("trailer\n<</Size " + (objetos.length + 1) + "/Root 1 0 R/Info 5 0 R>>\nstartxref\n" +
+      xref + "\n%%EOF\n");
+
+  const salida = new Uint8Array(largo);
+  let i = 0;
+  trozos.forEach(t => { salida.set(t, i); i += t.length; });
+  return salida;
+}
+
+function nombreFichero() {
+  const quien = (val('nombre') + " " + val('apellidos')).trim().replace(/[^\wÀ-ÿ ]/g, "");
+  return "Ficha VAMALA - " + (quien || "inscripcion") + ".pdf";
+}
+
+function descargar(datos, nombre) {
+  const url = URL.createObjectURL(new Blob([datos], {type: "application/pdf"}));
+  const a = document.createElement("a");
+  a.href = url; a.download = nombre;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+
+
+// El dia recuerda cuantos horarios se han elegido dentro, para que al plegarlo
+// no parezca que no hay nada marcado.
+function marcarDias() {
+  document.querySelectorAll("details.dia").forEach(d => {
+    const total = d.querySelectorAll('input[name="grupo"]').length;
+    const n = d.querySelectorAll('input[name="grupo"]:checked').length;
+    d.classList.toggle("tiene", n > 0);
+    d.querySelector(".cuenta").textContent = n
+      ? (n === 1 ? "1 elegido" : n + " elegidos")
+      : (total === 1 ? "1 horario" : total + " horarios");
+  });
+}
+document.querySelectorAll('input[name="grupo"]').forEach(c =>
+  c.addEventListener("change", marcarDias));
+marcarDias();
 </script>
