@@ -21,3 +21,6 @@ assets/images/flores.PNG
 assets/images/Portada.JPG
 assets/images/portada-fondo.jpg
 assets/images/8a0ed0c9-*
+
+# El buzón es código que ejecuta Cloudflare, no una página que servir.
+worker.js
