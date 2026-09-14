@@ -282,17 +282,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero__subtitle { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(1.7rem, 3vw, 3rem); }
 .hero__copy .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.8rem; }
 
-/* Aviso de la inauguracion: fina y discreta, sin competir con el titular. */
-.hero__opening {
-  margin: clamp(18px, 2.5vh, 26px) auto 0;
-  max-width: 34ch;
-  font-size: clamp(0.86rem, 1.05vw, 1rem);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  line-height: 1.5;
-  /* En movil cae sobre la foto de fondo: con el gris suave no se leia. */
-  color: var(--ink);
-}
 
 /* Aviso del proximo taller: enlaza a su ficha, asi que se marca como pulsable
    con un recuadro fino, sin llegar al peso del boton principal. */
