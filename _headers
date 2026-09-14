@@ -13,3 +13,6 @@
 
 /assets/styles.css
   Cache-Control: no-cache
+
+/inscripcion/
+  Cache-Control: no-cache
