@@ -114,11 +114,7 @@
       border:none; border-bottom:1px solid var(--linea); border-radius:0; padding:6px 2px;
       margin-bottom:10px; }
     .perm { break-inside:avoid; }
-    .firma { display:block !important; margin-top:26px; }
   }
-  .firma { display:none; }
-  .firma .lineas { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:34px; }
-  .firma .l { border-top:1px solid var(--tinta); padding-top:6px; font-size:11px; color:var(--gris); }
   /* Los horarios, plegados por dia: siete tarjetas seguidas obligan a bajar
      media pantalla en el movil antes de llegar al resto de la ficha. */
   details.dia { border:1px solid var(--linea); border-radius:10px; background:#fff;
@@ -347,12 +343,6 @@
         <p class="ayuda" id="notaPdf" style="margin-top:2px"></p>
       </div>
 
-      <div class="firma">
-        <div class="lineas">
-          <div class="l">Firma del alumno o del tutor legal</div>
-          <div class="l">Fecha</div>
-        </div>
-      </div>
     </form>
 
     <p id="notaSalida" class="oculto">Copia este texto y pégalo en el chat de WhatsApp. Es tu ficha: yo la entiendo aunque a ti te parezca un lío.</p>
@@ -707,16 +697,10 @@ function pdfFicha(texto) {
   campo("Acepta las normas", sino(d.CONDICIONES));
   if (d.CONOCIO) campo("Nos conoció por", d.CONOCIO);
 
-  // firma
-  sitio(80); y -= 24;
-  ops.push("0.70 0.68 0.62 RG 0.7 w " + MARGEN + " " + y.toFixed(1) + " m " +
-           (MARGEN + 220) + " " + y.toFixed(1) + " l S");
-  ops.push("0.70 0.68 0.62 RG 0.7 w " + (ANCHO - MARGEN - 150) + " " + y.toFixed(1) +
-           " m " + (ANCHO - MARGEN) + " " + y.toFixed(1) + " l S");
-  y -= 11;
-  texto_en("Firma del alumno o del tutor legal", MARGEN, 8, false, "0.45");
-  texto_en("Fecha", ANCHO - MARGEN - 150, 8, false, "0.45");
-  y -= 26;
+  // El pie. No hay lineas para firmar: nadie firma con el dedo en el movil, y
+  // lo que vale como prueba son los permisos marcados con su fecha y su hora,
+  // que estan justo arriba.
+  sitio(50); y -= 30;
   texto_en("VAMALA estudio creativo · Valeria M. Lanchares · C/ Santa Ana 008A, Las Arenas, Getxo",
            MARGEN, 7.5, false, "0.55");
 
