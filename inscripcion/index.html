@@ -150,6 +150,17 @@
   details.plegable[open] summary { border-bottom:1px solid var(--linea); }
   details.plegable .normas { padding:14px 15px; }
   @media print { details.plegable .normas { display:block !important; } }
+  /* Abrir el chat antes de compartir. WhatsApp no deja que una web mande un
+     archivo a un contacto concreto, asi que lo unico que se puede hacer es que
+     el chat ya exista: entonces sale el primero en el menu de compartir, sin
+     tener el numero guardado. */
+  .abrirChat { border:1px solid var(--linea); border-radius:10px; background:#fff;
+    padding:13px 15px; margin-bottom:12px; }
+  .abrirChat b { display:block; font-size:14px; color:var(--verde-osc); }
+  .abrirChat span { display:block; font-size:12.5px; color:var(--gris); margin:3px 0 10px; }
+  .abrirChat .b2 { display:inline-block; width:auto; padding:9px 16px; margin:0; }
+  .abrirChat.hecho { background:var(--crema); border-color:var(--verde); }
+  .abrirChat.hecho b::before { content:"✓ "; color:var(--verde); }
 </style>
 
 <div class="hoja">
@@ -321,9 +332,16 @@
       <div id="errores"></div>
 
       <div class="no-print">
+        <div class="abrirChat" id="cajaChat">
+          <b>¿No tienes guardado nuestro número?</b>
+          <span>Toca aquí para abrir nuestro chat. Así, al mandarnos la ficha, VAMALA te
+            saldrá de los primeros y no tendrás que buscarnos.</span>
+          <a id="btnChat" class="b2" href="#" rel="noopener">Abrir el chat de VAMALA</a>
+        </div>
+
         <a id="btnWa" class="boton b1" href="#" rel="noopener">Enviarla por WhatsApp</a>
         <p class="ayuda" id="notaWa" style="margin-top:2px">Se crea un PDF con tu ficha y se abre
-          el menú de compartir: elige WhatsApp y mándamela.</p>
+          el menú de compartir: elige WhatsApp y luego VAMALA.</p>
         <button type="button" class="b2" id="btnPdf">Guardar el PDF en el móvil</button>
         <button type="button" class="b2" id="btnCopiar">Copiar y pegar en el chat</button>
         <p class="ayuda" id="notaPdf" style="margin-top:2px"></p>
@@ -801,4 +819,31 @@ function marcarDias() {
 document.querySelectorAll('input[name="grupo"]').forEach(c =>
   c.addEventListener("change", marcarDias));
 marcarDias();
+
+// Abrir el chat del estudio.
+//
+// WhatsApp no permite que una pagina mande un archivo a un contacto concreto:
+// el menu de compartir lo elige la persona. Lo que si se puede es que el chat
+// con VAMALA ya exista antes de compartir, y entonces sale arriba del todo
+// aunque no tengan el numero guardado. Eso es lo que hace este boton.
+$('btnChat').addEventListener('click', ev => {
+  const quien = val('nombre') ? " Soy " + val('nombre') + "." : "";
+  ev.currentTarget.href = "https://wa.me/" + MOVIL_ESTUDIO + "?text=" +
+    encodeURIComponent("Hola, voy a mandaros mi ficha de inscripcion de VAMALA." + quien);
+  try { localStorage.setItem("vamala-chat-abierto", "1"); } catch (e) {}
+  setTimeout(recordarChat, 400);
+});
+
+function recordarChat() {
+  let abierto = false;
+  try { abierto = localStorage.getItem("vamala-chat-abierto") === "1"; } catch (e) {}
+  if (!abierto) return;
+  const caja = $('cajaChat');
+  caja.className = "abrirChat hecho";
+  caja.querySelector("b").textContent = "Ya tienes abierto nuestro chat";
+  caja.querySelector("span").textContent =
+    "Al darle a «Enviarla por WhatsApp», elige WhatsApp y VAMALA te saldrá de los primeros.";
+  $('btnChat').textContent = "Volver a abrir el chat";
+}
+recordarChat();
 </script>
