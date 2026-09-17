@@ -14,5 +14,11 @@
 /assets/styles.css
   Cache-Control: no-cache
 
+/inscripcion
+  Cache-Control: no-cache
+
 /inscripcion/
+  Cache-Control: no-cache
+
+/inscripcion/index.html
   Cache-Control: no-cache
