@@ -1,0 +1,12 @@
+# La web son archivos estaticos: no hay nada que compilar, se publica la carpeta
+# entera tal cual. Los encabezados de cache los sigue poniendo _headers, que
+# Netlify entiende con la misma sintaxis que usaba Cloudflare.
+[build]
+  publish = "."
+
+# Sin esto, /inscripcion (sin barra final) no encontraria la ficha.
+[[redirects]]
+  from = "/inscripcion"
+  to = "/inscripcion/"
+  status = 301
+  force = false
