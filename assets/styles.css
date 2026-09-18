@@ -308,6 +308,14 @@ figure, h1, h2, h3, p { margin-top: 0; }
   text-align: center;
   transition: color 180ms ease, background-color 180ms ease;
 }
+/* A quien va dirigido, en una linea aparte para no alargar la caja. */
+.hero__aviso small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.82em;
+  color: var(--ink-soft);
+}
+.hero__aviso:hover small { color: inherit; }
 .hero__aviso span {
   display: block;
   margin-top: 4px;
