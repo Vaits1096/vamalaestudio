@@ -8,6 +8,7 @@ const routes = {
   "/quien-hay-detras": { view: "quien-hay-detras", title: "¿Quién hay detrás? · VAMALA" },
   "/el-estudio": { view: "el-estudio", title: "El estudio · VAMALA" },
   "/taller-iniciacion": { view: "taller-iniciacion", title: "Taller de iniciación a la acuarela en Getxo · VAMALA" },
+  "/taller-totebag": { view: "taller-totebag", title: "Taller Pinta tu totebag en Getxo · VAMALA" },
   "/taller-halloween": { view: "taller-halloween", title: "Taller de Halloween · VAMALA" },
   "/taller-tarjetas-navidenas": { view: "taller-tarjetas-navidenas", title: "Taller de tarjetas navideñas · VAMALA" },
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
@@ -151,6 +152,7 @@ const CALENDAR_CLOSED_RANGES = [
 // también dice de qué taller se trata y enlaza con toda la información.
 const CALENDAR_WORKSHOPS = [
   { date: "2026-09-19", name: "Taller de iniciación a la acuarela", time: "10:00 – 13:00", path: "#/taller-iniciacion" },
+  { date: "2026-10-24", name: "Pinta tu totebag", time: "10:00 – 13:00", path: "#/taller-totebag" },
   { date: "2026-10-31", name: "Taller especial de Halloween", time: "10:00 – 13:00", path: "#/taller-halloween" },
   { date: "2026-12-12", name: "Tarjetas navideñas en acuarela", time: "10:00 – 13:00", path: "#/taller-tarjetas-navidenas" },
   { date: "2026-12-19", name: "Taller de Navidad", time: "10:00 – 13:00", path: "#/taller-navidad" },
