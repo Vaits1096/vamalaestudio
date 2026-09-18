@@ -285,10 +285,19 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 /* Aviso del proximo taller: enlaza a su ficha, asi que se marca como pulsable
    con un recuadro fino, sin llegar al peso del boton principal. */
+/* Los talleres que vienen. Caben dos de lado a lado en el ordenador; en el
+   movil se apilan solos. */
+.hero__avisos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 14px;
+  margin: clamp(14px, 2vh, 20px) auto 0;
+}
 .hero__aviso {
   display: block;
   width: fit-content;
-  margin: clamp(14px, 2vh, 20px) auto 0;
+  margin: 0;
   padding: 12px 22px;
   border: 1px solid rgba(52, 54, 46, 0.5);
   color: var(--ink);
