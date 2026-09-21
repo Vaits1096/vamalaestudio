@@ -376,12 +376,14 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .technique-list { margin: 4px 0; padding-left: 1.5em; columns: 2; }
 
 .schedule { display: flex; align-items: stretch; }
-.schedule__shell { display: grid; grid-template-columns: minmax(600px, 1fr) minmax(430px, 0.92fr); gap: clamp(55px, 9vw, 140px); align-items: center; padding-bottom: 55px; }
-.schedule__content { padding-top: 12px; }
-.schedule-block { display: grid; grid-template-columns: 210px 1fr; gap: 40px; margin-bottom: clamp(30px, 4vh, 46px); }
-.schedule-block h2 { font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
-.schedule-block h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
-.schedule-block p { margin-bottom: 16px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); line-height: 1.25; }
+/* Tarifas a un lado, la foto en medio y los horarios al otro. */
+.schedule__shell { display: grid; grid-template-columns: minmax(230px, 1fr) minmax(280px, 0.95fr) minmax(230px, 1fr); gap: clamp(32px, 4.5vw, 80px); align-items: center; padding-bottom: 55px; }
+.schedule__col { padding-top: 12px; }
+.schedule__col-title { margin-bottom: 20px; font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
+.schedule__col h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
+.schedule__col p { margin-bottom: 16px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); line-height: 1.25; }
+/* En una columna estrecha los dias no caben en fila: van uno debajo de otro. */
+.schedule__col--hours .time-grid, .schedule__col--hours .time-grid--adults { grid-template-columns: 1fr; gap: 0; }
 .rate-label { margin: 0; font-size: clamp(0.85rem, 1.05vw, 1.05rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
 /* El resto de la etiqueta va en versales; la aclaración entre paréntesis, no. */
 .rate-label__note { text-transform: none; }
@@ -391,14 +393,18 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
 .time-grid p { margin-bottom: 16px; }
 .time-grid strong { font-weight: 400; white-space: nowrap; }
-/* La letra pequena de los dias sueltos y los botones para comprarlos. */
+/* Los dias sueltos y los bonos son informacion secundaria: van despues de la
+   cuota mensual, con el titulo del tamano de "Adultos/as" y todo un punto mas
+   pequeno para que no compitan con las tarifas de verdad. */
+.rate-aside { margin-top: clamp(26px, 3.5vh, 38px); }
+.rate-aside h4 { margin: 0 0 2px; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; }
+.rate-aside .rate-list { margin-top: 0; margin-bottom: 10px; font-size: 0.78rem; }
 .rate-list--solo { margin-top: 0; }
-.rate-note { max-width: 46ch; margin: 0 0 18px; font-size: 0.78rem !important; line-height: 1.4; color: var(--ink-soft); }
-.rate-buy { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 4px; }
-.rate-buy .outline-button { min-height: 42px; padding: 9px 18px; font-size: 0.78rem; }
+.rate-buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.rate-buy .outline-button { min-height: 38px; padding: 8px 15px; font-size: 0.72rem; }
 
-.schedule-actions { display: flex; flex-wrap: wrap; gap: 16px; }
-.schedule-actions .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.85rem; }
+.schedule-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(26px, 3.5vh, 38px); }
+.schedule-actions .outline-button { min-height: 44px; padding: 10px 18px; font-size: 0.8rem; }
 .schedule__image { height: min(74vh, 720px); margin: 0; overflow: hidden; }
 .schedule__image img { height: 100%; object-fit: cover; filter: grayscale(1); }
 
@@ -687,8 +693,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 1100px) {
   :root { --header-height: 74px; }
   .info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 70px 60px; }
-  .schedule__shell { grid-template-columns: minmax(540px, 1.1fr) minmax(330px, 0.9fr); gap: 50px; }
-  .schedule-block { grid-template-columns: 150px 1fr; gap: 25px; }
+  .schedule__shell { gap: 34px; }
   .about__shell { grid-template-columns: 1fr 1fr; }
   .about__heading { grid-column: 1 / -1; }
   .about__media { grid-column: 2; grid-row: 2 / 4; }
@@ -710,9 +715,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .manifesto { min-height: auto; padding-block: 50px; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
-  .schedule__shell { grid-template-columns: 1fr; }
+  .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
   .schedule__image { grid-row: 1; height: 55vh; min-height: 430px; }
-  .schedule-block { grid-template-columns: 170px 1fr; }
+  .schedule__col--hours .time-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .schedule__col--hours .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 26px; }
   .reservation__shell { grid-template-columns: 1fr; gap: 60px; }
   .short-rule { margin-top: 55px; }
   .workshops-intro__shell { grid-template-columns: 1fr; gap: 60px; }
@@ -753,8 +759,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .studio-gallery { grid-template-columns: 1fr; }
   .page-heading h1, .about__heading h1 { font-size: clamp(2.7rem, 15vw, 4.2rem); }
   .technique-list { columns: 1; }
-  .schedule-block { grid-template-columns: 1fr; gap: 8px; margin-bottom: 50px; }
-  .schedule-block h2 { margin-bottom: 8px; }
+  .schedule__col--hours .time-grid, .schedule__col--hours .time-grid--adults,
   .time-grid, .time-grid--adults { grid-template-columns: 1fr 1fr; gap: 12px; }
   .reservation__copy h2 { font-size: 2.9rem; }
   .workshops-intro__copy h1 { font-size: 2.9rem; }
