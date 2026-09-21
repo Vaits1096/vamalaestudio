@@ -379,7 +379,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 /* Tarifas a un lado, la foto en medio y los horarios al otro. */
 .schedule__shell {
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) minmax(280px, 0.95fr) minmax(230px, 1fr);
+  /* La columna de la izquierda va algo mas estrecha que la de la derecha: eso
+     corre la foto hacia la izquierda sin cambiarle el tamano. */
+  grid-template-columns: minmax(210px, 0.9fr) minmax(280px, 0.95fr) minmax(250px, 1.1fr);
   gap: clamp(32px, 4.5vw, 80px);
   align-items: center;
   /* La cabecera flota sobre el panel y se come parte del hueco de arriba: se le
