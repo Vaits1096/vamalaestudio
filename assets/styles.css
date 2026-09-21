@@ -382,8 +382,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .schedule__col-title { margin-bottom: 20px; font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
 .schedule__col h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
 .schedule__col p { margin-bottom: 16px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); line-height: 1.25; }
-/* En una columna estrecha los dias no caben en fila: van uno debajo de otro. */
-.schedule__col--hours .time-grid, .schedule__col--hours .time-grid--adults { grid-template-columns: 1fr; gap: 0; }
+/* Los dias, de dos en dos: en la columna no caben los tres en fila. */
+.schedule__col--hours .time-grid, .schedule__col--hours .time-grid--adults { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
 .rate-label { margin: 0; font-size: clamp(0.85rem, 1.05vw, 1.05rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
 /* El resto de la etiqueta va en versales; la aclaración entre paréntesis, no. */
 .rate-label__note { text-transform: none; }
