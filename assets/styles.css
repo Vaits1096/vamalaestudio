@@ -392,7 +392,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .time-grid p { margin-bottom: 16px; }
 .time-grid strong { font-weight: 400; white-space: nowrap; }
 /* La letra pequena de los dias sueltos y los botones para comprarlos. */
-.rate-note { max-width: 46ch; margin: 4px 0 18px; font-size: 0.78rem !important; line-height: 1.4; color: var(--ink-soft); }
+.rate-list--solo { margin-top: 0; }
+.rate-note { max-width: 46ch; margin: 0 0 18px; font-size: 0.78rem !important; line-height: 1.4; color: var(--ink-soft); }
 .rate-buy { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 4px; }
 .rate-buy .outline-button { min-height: 42px; padding: 9px 18px; font-size: 0.78rem; }
 
