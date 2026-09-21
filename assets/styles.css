@@ -391,10 +391,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
   padding-bottom: clamp(30px, 5vh, 70px);
 }
 .schedule__col { padding-top: 12px; }
-/* La columna de tarifas se arrima a la foto en vez de quedarse pegada al margen:
-   asi el hueco hasta la foto es el mismo por los dos lados. El texto sigue
-   alineado a la izquierda dentro del bloque. */
-.schedule__col:not(.schedule__col--hours) { justify-self: end; max-width: 100%; }
 
 .schedule__col-title { margin-bottom: 20px; font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
 .schedule__col h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
@@ -417,9 +413,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .rate-aside h4 { margin: 0 0 2px; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; }
 .rate-aside .rate-list { margin-top: 0; margin-bottom: 10px; font-size: 0.78rem; }
 .rate-list--solo { margin-top: 0; }
-/* Uno debajo de otro: en fila los dos botones eran mas anchos que el texto y
-   descuadraban el hueco hasta la foto. */
-.rate-buy { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 14px; }
+.rate-buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .rate-buy .outline-button { min-height: 38px; padding: 8px 15px; font-size: 0.72rem; }
 
 .schedule-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(26px, 3.5vh, 38px); }
@@ -737,9 +731,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
   .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
-  /* Apilado ya no hay foto en medio que flanquear: el texto vuelve al margen. */
-  .schedule__col:not(.schedule__col--hours) { justify-self: stretch; }
-  .rate-buy { flex-direction: row; flex-wrap: wrap; }
   .schedule__image { grid-row: 1; }
   .schedule__col--hours .time-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .schedule__col--hours .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 26px; }
