@@ -153,7 +153,7 @@ const CALENDAR_WORKSHOPS = [
   { date: "2026-10-24", name: "Pinta tu totebag", time: "10:00 – 13:00", path: "#/taller-totebag" },
   { date: "2026-10-31", name: "Taller especial de Halloween", time: "10:00 – 13:00", path: "#/taller-halloween" },
   { date: "2026-12-12", name: "Tarjetas navideñas en acuarela", time: "10:00 – 13:00", path: "#/taller-tarjetas-navidenas" },
-  { date: "2026-12-19", name: "Taller de Navidad", time: "10:00 – 13:00", path: "#/taller-navidad" },
+  { date: "2026-12-19", name: "Taller de Navidad", time: "10:00 – 12:00", path: "#/taller-navidad" },
 ];
 const CALENDAR_MONTH_NAMES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 const CALENDAR_WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
