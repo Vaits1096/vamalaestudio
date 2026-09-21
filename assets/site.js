@@ -143,7 +143,6 @@ document.querySelectorAll("[data-year]").forEach((item) => { item.textContent = 
 renderRoute({ preserveScroll: true });
 
 const CALENDAR_CLOSED_RANGES = [
-  ["2026-09-24", "2026-09-24"], // Festivo local
   ["2026-10-12", "2026-10-12"], // Pilar (el sábado y el domingo ya cierran solos)
   ["2026-12-24", "2027-01-06"], // Vacaciones de Navidad
   ["2027-03-25", "2027-03-29"], // Semana Santa
