@@ -377,7 +377,15 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .schedule { display: flex; align-items: stretch; }
 /* Tarifas a un lado, la foto en medio y los horarios al otro. */
-.schedule__shell { display: grid; grid-template-columns: minmax(230px, 1fr) minmax(280px, 0.95fr) minmax(230px, 1fr); gap: clamp(32px, 4.5vw, 80px); align-items: center; padding-bottom: 55px; }
+.schedule__shell {
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) minmax(280px, 0.95fr) minmax(230px, 1fr);
+  gap: clamp(32px, 4.5vw, 80px);
+  align-items: center;
+  /* La cabecera flota sobre el panel y se come parte del hueco de arriba: se le
+     resta al de abajo para que la foto quede centrada de verdad en lo que se ve. */
+  padding-bottom: calc(clamp(108px, 12vh, 150px) - var(--header-height));
+}
 .schedule__col { padding-top: 12px; }
 .schedule__col-title { margin-bottom: 20px; font-size: clamp(1.5rem, 2.2vw, 2.4rem); font-weight: 400; }
 .schedule__col h3 { margin: 0 0 2px; font-size: clamp(0.85rem, 1.05vw, 1.05rem); text-transform: uppercase; }
