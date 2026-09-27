@@ -12,6 +12,7 @@ const routes = {
   "/taller-halloween": { view: "taller-halloween", title: "Taller de Halloween · VAMALA" },
   "/taller-tarjetas-navidenas": { view: "taller-tarjetas-navidenas", title: "Taller de tarjetas navideñas · VAMALA" },
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
+  "/regala-arte": { view: "regala-arte", title: "Tarjetas regalo · VAMALA Estudio Creativo" },
   "/encargo": { view: "encargo", title: "Quiero un encargo · VAMALA" },
   "/encargo-formulario": { view: "encargo-formulario", title: "Cuéntame tu idea · VAMALA" },
   "/encargo-galeria": { view: "encargo-galeria", title: "Una pequeña muestra de mi galería · VAMALA" },

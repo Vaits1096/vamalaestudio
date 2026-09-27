@@ -488,6 +488,15 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .workshops-intro__copy h1 { margin-bottom: 34px; font-size: clamp(3rem, 5.5vw, 5.7rem); font-weight: 400; line-height: 1.05; }
 .workshops-intro__copy > p:not(.eyebrow) { max-width: 780px; margin-bottom: 52px; font-size: clamp(1rem, 1.45vw, 1.45rem); }
 
+/* La banda de la tarjeta regalo en la portada. No ocupa una pantalla entera
+   como el resto de paneles: es un aviso, no una seccion. */
+.gift { min-height: 0; }
+.gift__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
+.gift h2 { margin-bottom: 18px; font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
+.gift p:not(.eyebrow) { max-width: 54ch; margin: 0 auto 32px; font-size: clamp(0.95rem, 1.2vw, 1.15rem); line-height: 1.5; }
+.gift .eyebrow { margin-bottom: 14px; }
+.gift-page__lead { max-width: 60ch; margin-bottom: clamp(30px, 4vh, 44px); font-size: clamp(0.92rem, 1.1vw, 1.08rem); line-height: 1.5; }
+
 .workshop-list { min-height: 100svh; }
 .workshop-list .section-shell { padding-top: clamp(88px, 9vh, 120px); padding-bottom: clamp(40px, 5vh, 60px); }
 .workshop-list h2 { margin-bottom: clamp(24px, 3vh, 36px); font-size: clamp(1.8rem, 2.8vw, 3rem); line-height: 1; text-transform: uppercase; }
