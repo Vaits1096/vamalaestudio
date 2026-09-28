@@ -489,6 +489,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .workshop-list { min-height: 100svh; }
 .workshop-list .section-shell { padding-top: clamp(88px, 9vh, 120px); padding-bottom: clamp(40px, 5vh, 60px); }
+/* La cabecera del listado de talleres: centrada y de trazo fino. */
+#proximos-talleres > .section-shell > .eyebrow { text-align: center; color: var(--ink-soft); }
+#proximos-talleres h1 { text-align: center; font-weight: 300; letter-spacing: 0.04em; }
+
 .workshop-list h1, .workshop-list h2 { margin-bottom: clamp(24px, 3vh, 36px); font-size: clamp(1.8rem, 2.8vw, 3rem); line-height: 1; text-transform: uppercase; }
 /* Los talleres, en fichas con foto: la imagen manda y debajo van el nombre,
    la fecha y el precio, sin recuadro que los encierre. */
