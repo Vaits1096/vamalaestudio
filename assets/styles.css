@@ -145,10 +145,11 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .menu-panel__wash {
   min-height: 100vh;
+  /* La foto del menu va a color: en blanco y negro este cielo se apagaba del
+     todo. El velo oscuro se aligera por lo mismo. */
   background:
-    linear-gradient(rgba(52, 54, 46, 0.12), rgba(52, 54, 46, 0.48)),
-    url("images/valeria-portrait.jpg") center 34% / cover no-repeat;
-  filter: grayscale(1);
+    linear-gradient(rgba(52, 54, 46, 0.06), rgba(52, 54, 46, 0.28)),
+    url("images/menu-flores.jpg") center / cover no-repeat;
   opacity: 0;
   animation: menu-image 450ms 80ms ease forwards;
 }
