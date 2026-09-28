@@ -380,6 +380,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
    cuota mensual, con el titulo del tamano de "Adultos/as" y todo un punto mas
    pequeno para que no compitan con las tarifas de verdad. */
 .rate-aside { margin-top: clamp(26px, 3.5vh, 38px); }
+/* El rotulo de las clases sueltas va como "Tarifas" y "Horarios": de trazo
+   normal y en caja baja, no en versalitas negritas como los grupos. */
+.rate-aside > h3 { font-size: clamp(1.05rem, 1.3vw, 1.25rem); font-weight: 400; text-transform: none; letter-spacing: 0; margin-bottom: 10px; }
 .rate-aside h4 { margin: 0 0 2px; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; }
 .rate-aside .rate-list { margin-top: 0; margin-bottom: 10px; font-size: 0.78rem; }
 .rate-list--solo { margin-top: 0; }
