@@ -291,8 +291,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
    apelotonados debajo del titulo. */
 .upcoming { min-height: 0; }
 .upcoming__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
-.upcoming .eyebrow { margin-bottom: 14px; }
-.upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
+.upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
+.upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
 .upcoming__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
 .upcoming__card {
   flex: 1 1 280px;
@@ -301,7 +301,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   gap: 4px;
   padding: clamp(20px, 2.2vw, 28px);
   border: 1px solid var(--line);
-  background: rgba(251, 249, 245, 0.5);
+  background: rgba(184, 188, 164, 0.14);
   color: var(--ink);
   text-decoration: none;
   transition: background-color 180ms ease, transform 180ms ease;
