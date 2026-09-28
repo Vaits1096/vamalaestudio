@@ -396,10 +396,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .schedule-actions .outline-button { min-height: 44px; padding: 10px 18px; font-size: 0.8rem; }
 /* La foto guarda la proporcion del archivo (735x1103), asi se ve entera y mas
    cuadrada en vez de recortada por los lados para caber en un hueco mas alto. */
-.schedule__image { position: relative; aspect-ratio: 735 / 1103; height: auto; margin: 0; overflow: hidden; }
-/* El boton del calendario va sobre la foto, centrado. */
-.schedule__image-action { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 46px; padding: 10px 20px; font-size: 0.78rem; background: rgba(251, 249, 245, 0.92); }
-.schedule__image-action:hover { transform: translate(-50%, calc(-50% - 2px)); }
+.schedule__image { aspect-ratio: 735 / 1103; height: auto; margin: 0; overflow: hidden; }
 .schedule__image img { height: 100%; object-fit: cover; filter: grayscale(1); }
 
 .calendar-modal { position: fixed; z-index: 95; inset: 0; display: grid; place-items: center; padding: 24px; }
