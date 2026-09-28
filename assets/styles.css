@@ -293,24 +293,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .upcoming__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
 .upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
 .upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
-.upcoming__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
-.upcoming__card {
-  flex: 1 1 280px;
-  max-width: 360px;
-  display: grid;
-  gap: 4px;
-  padding: clamp(20px, 2.2vw, 28px);
-  border: 1px solid var(--line);
-  background: rgba(184, 188, 164, 0.14);
-  color: var(--ink);
-  text-decoration: none;
-  transition: background-color 180ms ease, transform 180ms ease;
-}
-.upcoming__card:hover { background: var(--paper); transform: translateY(-2px); }
-.upcoming__date { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
-.upcoming__name { font-size: clamp(1.05rem, 1.4vw, 1.3rem); }
-.upcoming__who { font-size: 0.82rem; color: var(--ink-soft); }
-.upcoming__more { margin-top: 12px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; }
+/* En la portada solo hay dos talleres: caben en dos columnas. */
+.upcoming .workshop-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 620px; }
 
 
 .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; transform: translateX(-50%); }
