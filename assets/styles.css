@@ -286,55 +286,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero__subtitle { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(1.7rem, 3vw, 3rem); }
 .hero__copy .outline-button { min-height: 46px; padding: 10px 22px; font-size: 0.8rem; }
 
-/* El clip del estudio en Halloween: una tarjetita en la esquina, con su
-   miniatura y el boton de play. El video de verdad se abre al pulsarla, que es
-   la unica forma de que suene: con sonido no arranca solo en ningun navegador. */
-.hero__clip {
-  position: absolute;
-  right: clamp(18px, 3vw, 46px);
-  bottom: clamp(18px, 3vh, 46px);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 18px 10px 10px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(251, 249, 245, 0.88);
-  backdrop-filter: blur(6px);
-  color: var(--ink);
-  cursor: pointer;
-  text-align: left;
-  transition: background-color 200ms ease, transform 200ms ease;
-}
-.hero__clip:hover { background: var(--paper); transform: translateY(-2px); }
-.hero__clip__thumb { position: relative; flex: none; width: 54px; height: 54px; border-radius: 10px; overflow: hidden; }
-.hero__clip__thumb img { width: 100%; height: 100%; object-fit: cover; }
-.hero__clip__play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(52, 54, 46, 0.34);
-}
-.hero__clip__play::before {
-  content: "";
-  border-style: solid;
-  border-width: 7px 0 7px 12px;
-  border-color: transparent transparent transparent var(--cream);
-  margin-left: 3px;
-}
-.hero__clip__label { font-size: 0.76rem; line-height: 1.35; letter-spacing: 0.08em; text-transform: uppercase; }
-
-/* El reproductor a pantalla completa. */
-.video-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: clamp(16px, 4vw, 40px); animation: calendar-fade 200ms ease forwards; }
-/* Sin esto el display: grid le gana al atributo hidden y el video sale abierto. */
-.video-modal[hidden] { display: none; }
-.video-modal__backdrop { position: absolute; inset: 0; background: rgba(28, 29, 25, 0.88); }
-.video-modal__panel { position: relative; width: min(100%, 420px); animation: calendar-pop 260ms ease forwards; }
-.video-modal__panel video { display: block; width: 100%; max-height: 82vh; border-radius: 14px; background: #000; }
-.video-modal__close { position: absolute; top: -42px; right: 0; width: 34px; height: 34px; border: 1px solid rgba(246, 242, 235, 0.5); border-radius: 50%; background: none; color: var(--cream); font-size: 0.8rem; cursor: pointer; }
-.video-modal__close:hover { background: rgba(246, 242, 235, 0.14); }
 
 
 /* Aviso del proximo taller: enlaza a su ficha, asi que se marca como pulsable
@@ -853,10 +804,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .menu-panel__contact { flex-direction: column; }
   .hero { padding-inline: 22px; padding-bottom: 28px; }
   .hero__intro { font-size: 0.72rem; }
-  .hero__clip { right: 50%; transform: translateX(50%); bottom: 20px; padding: 8px 14px 8px 8px; gap: 10px; }
-  .hero__clip:hover { transform: translateX(50%) translateY(-2px); }
-  .hero__clip__thumb { width: 44px; height: 44px; }
-  .hero__clip__label { font-size: 0.68rem; }
   .hero h1 { font-size: clamp(3.35rem, 18vw, 5rem); }
   .hero__subtitle { font-size: 1.6rem; }
   .outline-button { min-height: 54px; padding-inline: 22px; font-size: 0.86rem; }

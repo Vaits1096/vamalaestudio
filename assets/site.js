@@ -284,45 +284,6 @@ if (calendarModal && calendarToggleButtons.length) {
   window.addEventListener("hashchange", closeCalendar);
 }
 
-// El clip del estudio. Se abre al pulsar, y solo entonces se descarga el
-// video y suena: un video que arranca solo va siempre mudo.
-const videoModal = document.querySelector("[data-video-modal]");
-const videoToggles = document.querySelectorAll("[data-video-toggle]");
-
-if (videoModal && videoToggles.length) {
-  const player = videoModal.querySelector("video");
-  let videoLastFocused = null;
-
-  function openVideo() {
-    videoLastFocused = document.activeElement;
-    videoModal.hidden = false;
-    document.body.classList.add("menu-open");
-    player.currentTime = 0;
-    player.play().catch(() => {});
-    window.requestAnimationFrame(() => videoModal.querySelector(".video-modal__close")?.focus());
-  }
-
-  function closeVideo() {
-    if (videoModal.hidden) return;
-    player.pause();
-    videoModal.hidden = true;
-    document.body.classList.remove("menu-open");
-    videoLastFocused?.focus();
-  }
-
-  videoToggles.forEach((button) => button.addEventListener("click", openVideo));
-
-  videoModal.addEventListener("click", (event) => {
-    if (event.target.closest("[data-video-close]")) closeVideo();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeVideo();
-  });
-
-  window.addEventListener("hashchange", closeVideo);
-}
-
 const commissionForm = document.querySelector("[data-commission-form]");
 
 if (commissionForm) {
