@@ -785,6 +785,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .menu-panel__nav { position: relative; z-index: 1; padding-top: calc(var(--header-height) + 70px); }
   .menu-panel__contact { grid-column: 1; }
   .panel { min-height: auto; }
+  /* La portada si sigue ocupando toda la pantalla, para que la foto se vea en alto. */
+  .hero { min-height: 100svh; }
   .section-shell, .section-shell--subpage { min-height: auto; padding-top: 116px; padding-bottom: 80px; }
   .offer-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
   .hero h1 { font-size: clamp(4rem, 9vw, 7.5rem); }
