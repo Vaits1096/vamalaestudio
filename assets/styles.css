@@ -77,15 +77,13 @@ figure, h1, h2, h3, p { margin-top: 0; }
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--page-pad);
-  /* Toda la barra en el mismo salvia que el resto de la web. */
-  background: #b9bca6;
+  background: rgba(246, 242, 235, 0.93);
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(12px);
   transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
 }
-/* Al bajar, el verde desaparece y la barra vuelve al crema de siempre. */
-.site-header.is-scrolled { background: rgba(246, 242, 235, 0.93); border-color: rgba(52, 54, 46, 0.18); }
 
+.site-header.is-scrolled { border-color: rgba(52, 54, 46, 0.18); }
 
 .site-header.menu-is-open {
   color: var(--cream);
@@ -104,6 +102,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .brand__name { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; }
 .brand__tagline { margin-top: 7px; font-size: 0.65rem; letter-spacing: 0.08em; }
+/* Arriba a la izquierda, en una sola linea: VAMALA - Estudio creativo. */
+.site-header .brand { flex-direction: row; align-items: baseline; gap: 8px; }
+.site-header .brand__tagline { margin-top: 0; font-size: 0.78rem; }
+.site-header .brand__tagline::before { content: "- "; }
 
 .menu-toggle {
   display: inline-flex;
@@ -789,6 +791,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .panel { min-height: auto; }
   /* La portada si sigue ocupando toda la pantalla, para que la foto se vea en alto. */
   .hero { min-height: 100svh; }
+  /* Arriba del todo en la portada, la cabecera no tapa la foto: es transparente
+     y la foto sube hasta el borde de la pantalla. Al bajar, vuelve a su fondo. */
+  .is-home .site-header:not(.is-scrolled):not(.menu-is-open) { background: transparent; backdrop-filter: none; }
   .section-shell, .section-shell--subpage { min-height: auto; padding-top: 116px; padding-bottom: 80px; }
   .offer-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
   .hero h1 { font-size: clamp(4rem, 9vw, 7.5rem); }
@@ -824,7 +829,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .lightbox__nav--next { right: 22px; }
   .lightbox__figure img { max-height: 66vh; }
   .site-header { padding-inline: 22px; }
-  .brand__tagline { display: none; }
+  .site-header .brand__tagline { font-size: 0.72rem; }
   .menu-toggle { gap: 10px; font-size: 0.76rem; }
   .menu-panel__nav a { gap: 12px; font-size: clamp(1.1rem, 6vw, 1.6rem); }
   .menu-panel__contact { flex-direction: column; }
