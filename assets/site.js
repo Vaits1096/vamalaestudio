@@ -73,6 +73,26 @@ function setupRevealAnimations(scope = document) {
   });
 }
 
+// Las letras de la portada aparecen despacio, una tras otra. A diferencia del
+// resto, se apagan al salir de la pantalla para volver a aparecer al subir o bajar.
+function setupHeroLines() {
+  const lines = [...document.querySelectorAll("[data-hero-line]")];
+  if (!lines.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    lines.forEach((line) => line.classList.add("is-visible"));
+    return;
+  }
+  lines.forEach((line, index) => { line.style.transitionDelay = `${index * 220}ms`; });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => entry.target.classList.toggle("is-visible", entry.isIntersecting));
+    },
+    { threshold: 0.2 }
+  );
+  lines.forEach((line) => observer.observe(line));
+}
+setupHeroLines();
+
 // Las vistas ocultas llevan data-src en lugar de src: así la portada no arrastra
 // las imágenes de las demás. loading="lazy" no vale aquí, porque el navegador lo
 // ignora cuando el elemento está dentro de un contenedor oculto.
