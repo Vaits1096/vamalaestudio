@@ -83,6 +83,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
   backdrop-filter: blur(12px);
   transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
 }
+/* Al bajar, el verde desaparece y la barra vuelve al crema de siempre. */
+.site-header.is-scrolled { background: rgba(246, 242, 235, 0.93); border-color: rgba(52, 54, 46, 0.18); }
 
 
 .site-header.menu-is-open {
