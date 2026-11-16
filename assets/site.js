@@ -112,8 +112,6 @@ function renderRoute({ preserveScroll = false } = {}) {
   });
 
   document.title = route.title;
-  // En la portada la cabecera se vuelve transparente arriba, sobre la foto.
-  document.body.classList.toggle("is-home", route.view === "home");
   document.querySelectorAll("[data-route-link]").forEach((link) => {
     const isCurrent = link.getAttribute("href") === `#${path}`;
     if (isCurrent) link.setAttribute("aria-current", "page");
