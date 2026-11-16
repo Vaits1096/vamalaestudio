@@ -102,10 +102,6 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .brand__name { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; }
 .brand__tagline { margin-top: 7px; font-size: 0.65rem; letter-spacing: 0.08em; }
-/* Arriba a la izquierda, en una sola linea: VAMALA - Estudio creativo. */
-.site-header .brand { flex-direction: row; align-items: baseline; gap: 8px; }
-.site-header .brand__tagline { margin-top: 0; font-size: 0.78rem; }
-.site-header .brand__tagline::before { content: "- "; }
 
 .menu-toggle {
   display: inline-flex;
@@ -829,7 +825,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .lightbox__nav--next { right: 22px; }
   .lightbox__figure img { max-height: 66vh; }
   .site-header { padding-inline: 22px; }
-  .site-header .brand__tagline { font-size: 0.72rem; }
+  /* En el movil tambien sale Estudio creativo, debajo de VAMALA. */
+  .site-header .brand__tagline { font-size: 0.62rem; }
   .menu-toggle { gap: 10px; font-size: 0.76rem; }
   .menu-panel__nav a { gap: 12px; font-size: clamp(1.1rem, 6vw, 1.6rem); }
   .menu-panel__contact { flex-direction: column; }
