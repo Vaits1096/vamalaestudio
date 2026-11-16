@@ -263,10 +263,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 }
 
 /* La lamina de la mantis con las flores secas, aclarada detras del titulo.
-   object-fit recorta en vez de estirar, asi la foto no se deforma. En el
-   ordenador se ve la franja central: las flores y la lamina. */
+   object-fit recorta en vez de estirar, asi la foto no se deforma. */
 .hero__bg, .hero__bg picture { position: absolute; inset: 0; z-index: 0; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; opacity: 0.3; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.3; }
 
 
 .hero__copy {
