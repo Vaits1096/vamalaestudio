@@ -284,7 +284,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .hero__claim { margin-top: clamp(30px, 6vh, 62px); font-size: clamp(0.74rem, 1.15vw, 1.05rem); font-weight: 700; }
 .hero h1 { margin: clamp(34px, 6vh, 56px) 0 4px; font-size: clamp(4rem, 7vw, 7rem); line-height: 0.95; letter-spacing: 0.015em; }
 .hero__subtitle { margin-bottom: 10px; font-size: clamp(1.7rem, 3vw, 3rem); }
-.hero__tagline { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(0.78rem, 1.05vw, 0.95rem); font-weight: 300; letter-spacing: 0.24em; text-transform: uppercase; }
+.hero__tagline { margin-bottom: clamp(28px, 5vh, 48px); font-size: clamp(0.72rem, 0.9vw, 0.85rem); font-weight: 600; letter-spacing: 0.08em; }
 /* Las letras de la portada aparecen despacio, una tras otra, cada vez que la
    portada vuelve a verse al subir o bajar. */
 [data-hero-line] { opacity: 0; transform: translateY(14px); transition: opacity 1400ms ease, transform 1400ms ease; }
