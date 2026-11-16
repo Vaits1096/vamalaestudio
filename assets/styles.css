@@ -262,11 +262,11 @@ figure, h1, h2, h3, p { margin-top: 0; }
   text-align: center;
 }
 
-/* Solo la banda de flores del cristal, recortada de la foto del escaparate: asi
-   el rotulo no compite con el titulo. object-fit recorta en vez de estirar, de
-   modo que la imagen no se deforma en ningun tamano de pantalla. */
+/* La lamina de la mantis con las flores secas, aclarada detras del titulo.
+   object-fit recorta en vez de estirar, asi la foto no se deforma. En el
+   ordenador se ve la franja central: las flores y la lamina. */
 .hero__bg, .hero__bg picture { position: absolute; inset: 0; z-index: 0; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: 0.22; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; opacity: 0.3; }
 
 
 .hero__copy {
