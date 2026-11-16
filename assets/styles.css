@@ -777,8 +777,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 820px) {
-  /* La foto de la mariposa, en alto y algo mas visible que en el ordenador;
-     corrida a la derecha para que la mariposa no se quede fuera. */
+  /* La foto de la lamina, en alto y algo mas visible que en el ordenador;
+     corrida a la derecha para que la lamina no se quede fuera. */
   .hero__bg img { object-position: 70% center; opacity: 0.3; }
   .menu-panel { grid-template-columns: 1fr; }
   .menu-panel__wash { position: absolute; inset: 0; opacity: 0.15; }
