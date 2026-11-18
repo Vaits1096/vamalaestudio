@@ -28,8 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&display=swap" />
-    <link rel="stylesheet" href="assets/styles.css?v=135" />
-    <script src="assets/site.js?v=135" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=136" />
+    <script src="assets/site.js?v=136" defer></script>
 
     <!-- Ficha del negocio para Google. Los horarios salen de las clases semanales;
          si cambian, hay que actualizarlos aquí además de en la sección Horarios. -->
@@ -115,10 +115,11 @@
       <div class="view" data-view="home">
         <section class="hero panel panel--cream" aria-labelledby="hero-title">
           <div class="hero__bg" aria-hidden="true">
-            <picture>
-              <!-- El pez en acuarela: detras del texto en el movil, a la derecha en el ordenador. -->
-              <img src="assets/images/hero-pez.jpg?v=2" alt="" />
-            </picture>
+            <!-- Tres peces en acuarela. En el ordenador, uno a cada lado mirando hacia
+                 el centro; en el movil solo el del centro, detras del texto. -->
+            <img class="hero__fish hero__fish--side" src="assets/images/hero-pez-izquierda.jpg" alt="" />
+            <img class="hero__fish hero__fish--center" src="assets/images/hero-pez.jpg?v=2" alt="" />
+            <img class="hero__fish hero__fish--side" src="assets/images/hero-pez-derecha.jpg" alt="" />
           </div>
           <div class="hero__copy">
             <div class="hero__intro">

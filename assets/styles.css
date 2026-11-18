@@ -268,10 +268,10 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 /* La lamina de la mantis con las flores secas, aclarada detras del titulo.
    object-fit recorta en vez de estirar, asi la foto no se deforma. */
-.hero__bg, .hero__bg picture { position: absolute; inset: 0; z-index: 0; }
-/* El pez entero, en el centro y con las letras encima. El papel de la
-   acuarela ya viene tenido del crema de la web, asi no se ve un recuadro. */
-.hero__bg img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.hero__bg { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: center; align-items: center; gap: 1vw; }
+/* Los peces enteros, en fila, con las letras encima del central. El papel de
+   la acuarela ya viene tenido del crema de la web, asi no se ve un recuadro. */
+.hero__fish { flex: 0 1 32%; min-width: 0; height: 100%; object-fit: contain; object-position: center; }
 @media (min-width: 821px) {
   /* Por debajo de la cabecera, para que el pez se vea entero. */
   .hero__bg { inset: calc(var(--header-height) + 24px) 0 24px; }
@@ -792,7 +792,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
   /* En el movil el pez llena la pantalla, detras del texto. */
   /* El pez entero y centrado: la imagen es algo mas ancha que la pantalla y se
      corre a la izquierda lo justo para que el pez quede en medio. */
-  .hero__bg img { width: 135%; max-width: none; margin-left: -16%; object-fit: contain; object-position: center 55%; }
+  .hero__bg { display: block; }
+  .hero__fish--side { display: none; }
+  .hero__fish--center { width: 135%; max-width: none; margin-left: -16%; object-fit: contain; object-position: center 55%; }
   .menu-panel { grid-template-columns: 1fr; }
   .menu-panel__wash { position: absolute; inset: 0; opacity: 0.15; }
   .menu-panel__nav { position: relative; z-index: 1; padding-top: calc(var(--header-height) + 70px); }
