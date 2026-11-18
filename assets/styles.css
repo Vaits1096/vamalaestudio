@@ -318,22 +318,22 @@ figure, h1, h2, h3, p { margin-top: 0; }
    apelotonados debajo del titulo. */
 /* Proximos talleres, en el mismo verde salvia que el texto de "VAMALA nace". */
 .upcoming { min-height: 0; background: var(--sage); }
-.upcoming__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
+.upcoming__shell { text-align: center; padding-block: clamp(50px, 7vh, 80px); }
 .upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
-.upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
+.upcoming h2 { margin-bottom: clamp(22px, 3vh, 34px); font-size: clamp(1.4rem, 2.4vw, 2.2rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
 /* En la portada las tarjetas van centradas, haya una o dos. */
 .upcoming .workshop-tiles { display: flex; flex-wrap: wrap; justify-content: center; max-width: 620px; }
 .upcoming .workshop-tile { width: min(290px, 100%); }
 /* Tarjeta tipo cartel: la info del taller va encima de la imagen, en blanco. */
-.upcoming .workshop-tile--poster { width: min(440px, 100%); }
+.upcoming .workshop-tile--poster { width: min(320px, 100%); }
 .workshop-tile--poster .workshop-tile__media { position: relative; padding: 0; background: none; }
 .workshop-tile--poster .workshop-tile__media img { border-radius: 8px; }
 .workshop-poster { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 24px; border-radius: 8px; color: #fff; background: rgba(0, 0, 0, 0.32); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); pointer-events: none; }
-.workshop-poster__kicker { font-size: 0.78rem; letter-spacing: 0.22em; }
-.workshop-poster__title { margin: 6px 0 14px; font-size: clamp(1.7rem, 6vw, 2.5rem); font-weight: 300; letter-spacing: 0.06em; line-height: 1.05; text-transform: uppercase; }
-.workshop-poster__when { font-size: 0.86rem; letter-spacing: 0.14em; line-height: 1.7; }
-.workshop-tile--poster .workshop-tile__name { font-size: 1.35rem; }
-.workshop-tile--poster .workshop-tile__meta { font-size: 1rem; }
+.workshop-poster__kicker { font-size: 0.68rem; letter-spacing: 0.2em; }
+.workshop-poster__title { margin: 4px 0 10px; font-size: clamp(1.4rem, 5vw, 1.9rem); font-weight: 300; letter-spacing: 0.06em; line-height: 1.05; text-transform: uppercase; }
+.workshop-poster__when { font-size: 0.76rem; letter-spacing: 0.14em; line-height: 1.7; }
+.workshop-tile--poster .workshop-tile__name { font-size: 1.12rem; }
+.workshop-tile--poster .workshop-tile__meta { font-size: 0.9rem; }
 
 
 .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; transform: translateX(-50%); }
