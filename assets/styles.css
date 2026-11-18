@@ -316,8 +316,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
    movil se apilan solos. */
 /* Los talleres que vienen, en su propia banda: en la portada quedaban
    apelotonados debajo del titulo. */
-/* Proximos talleres, en verde salvia clarito para separarlo de la portada. */
-.upcoming { min-height: 0; background: #cccec5; }
+/* Proximos talleres, en el mismo verde salvia que el texto de "VAMALA nace". */
+.upcoming { min-height: 0; background: var(--sage); }
 .upcoming__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
 .upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
 .upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
