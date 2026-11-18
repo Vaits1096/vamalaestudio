@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Que Google no use la casa encantada de Halloween como foto de la web en los resultados.
+Disallow: /assets/images/halloween-art.jpg
 
 Sitemap: https://vamalaestudio.es/sitemap.xml
