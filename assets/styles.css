@@ -272,9 +272,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 /* La lamina de la mantis con las flores secas, aclarada detras del titulo.
    object-fit recorta en vez de estirar, asi la foto no se deforma. */
 .hero__bg { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: center; align-items: center; gap: 1vw; }
-/* Fondo de la portada en salvia apagado; el papel de los peces viene tenido
-   de este mismo color. Si se cambia, hay que volver a tenir las imagenes. */
-.hero { background: #cccec5; }
+/* La portada va en el crema de la web; el papel de los peces viene tenido de
+   ese mismo color. Si se cambia, hay que volver a tenir las imagenes. */
 /* Los peces enteros, en fila, con las letras encima del central. El papel de
    la acuarela ya viene tenido del crema de la web, asi no se ve un recuadro. */
 .hero__fish { flex: 0 1 32%; min-width: 0; height: 100%; object-fit: contain; object-position: center; }
@@ -317,7 +316,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
    movil se apilan solos. */
 /* Los talleres que vienen, en su propia banda: en la portada quedaban
    apelotonados debajo del titulo. */
-.upcoming { min-height: 0; }
+/* Proximos talleres, en verde salvia clarito para separarlo de la portada. */
+.upcoming { min-height: 0; background: #cccec5; }
 .upcoming__shell { text-align: center; padding-block: clamp(70px, 9vh, 110px); }
 .upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
 .upcoming h2 { margin-bottom: clamp(28px, 4vh, 44px); font-size: clamp(1.8rem, 3.2vw, 2.9rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
