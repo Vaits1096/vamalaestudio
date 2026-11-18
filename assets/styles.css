@@ -811,11 +811,14 @@ figure, h1, h2, h3, p { margin-top: 0; }
   /* La portada si sigue ocupando toda la pantalla, para que la foto se vea en alto. */
   .hero { min-height: 100svh; }
   .section-shell, .section-shell--subpage { min-height: auto; padding-top: 116px; padding-bottom: 80px; }
+  /* Proximos talleres, mas recogido en el movil: poco margen verde por arriba
+     y el texto de VAMALA nace pegado al cartel. */
+  .upcoming__shell { padding-top: 36px; padding-bottom: 8px; }
   .offer-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
   .hero h1 { font-size: clamp(4rem, 9vw, 7.5rem); }
   .scroll-cue { display: none; }
   .manifesto { min-height: auto; padding-block: 50px; }
-  .upcoming + .manifesto { padding-top: 24px; }
+  .upcoming + .manifesto { padding-top: 16px; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
   .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
