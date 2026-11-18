@@ -160,6 +160,18 @@ document.addEventListener("click", (event) => {
 });
 
 window.addEventListener("hashchange", () => renderRoute());
+
+// El dibujo de arriba y el nombre del pie llevan a la portada. Si ya estás en
+// ella, el enlace no cambia la direccion y no pasaria nada: sube arriba del todo.
+document.querySelectorAll(".brand").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (currentPath() !== "/") return;
+    event.preventDefault();
+    closeMenu();
+    if (window.location.hash !== "#/") history.replaceState(null, "", "#/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 window.addEventListener("scroll", () => header.classList.toggle("is-scrolled", window.scrollY > 18), { passive: true });
 
 document.querySelectorAll("[data-year]").forEach((item) => { item.textContent = new Date().getFullYear(); });
