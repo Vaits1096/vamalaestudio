@@ -159,7 +159,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
      todo. El velo oscuro se aligera por lo mismo. */
   background:
     linear-gradient(rgba(52, 54, 46, 0.06), rgba(52, 54, 46, 0.28)),
-    url("images/menu-flor-roja.jpg") center / cover no-repeat;
+    url("images/menu-flor-roja.jpg") center 22% / cover no-repeat; /* mas arriba de la foto: las flores bajan al centro */
   opacity: 0;
   animation: menu-image 450ms 80ms ease forwards;
 }
