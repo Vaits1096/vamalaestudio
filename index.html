@@ -28,8 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&display=swap" />
-    <link rel="stylesheet" href="assets/styles.css?v=153" />
-    <script src="assets/site.js?v=153" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=154" />
+    <script src="assets/site.js?v=154" defer></script>
 
     <!-- Ficha del negocio para Google. Los horarios salen de las clases semanales;
          si cambian, hay que actualizarlos aquí además de en la sección Horarios. -->
@@ -142,7 +142,9 @@
             <p class="eyebrow">Agenda</p>
             <h2 id="upcoming-title">Próximos talleres</h2>
             <div class="workshop-tiles">
-              <a class="workshop-tile workshop-tile--poster" href="#/taller-pastel">
+              <!-- data-until / data-from: el 21 de noviembre a las 00:00 (hora de Espana)
+                   sale el de pastel y entran los dos de diciembre. Lo hace site.js. -->
+              <a class="workshop-tile workshop-tile--poster" href="#/taller-pastel" data-until="2026-11-21T00:00:00+01:00">
                 <span class="workshop-tile__media">
                   <img decoding="async" data-src="assets/images/taller-pastel.jpg" alt="Flor de cala morada pintada a lápiz pastel sobre fondo azul, con dos lápices al lado" />
                   <span class="workshop-poster">
@@ -153,6 +155,30 @@
                 </span>
                 <span class="workshop-tile__name">Taller pinta una flor a pastel</span>
                 <span class="workshop-tile__meta">50,00 €</span>
+              </a>
+              <a class="workshop-tile workshop-tile--poster" href="#/taller-tarjetas-navidenas" data-from="2026-11-21T00:00:00+01:00" hidden>
+                <span class="workshop-tile__media">
+                  <img decoding="async" data-src="assets/images/navidad-tarjetas.jpg?v=3" alt="Tarjeta navideña con un abeto pintado en acuarela sobre papel artesanal, junto a pinceles" />
+                  <span class="workshop-poster">
+                    <span class="workshop-poster__kicker">Acuarela · Adultos/as</span>
+                    <span class="workshop-poster__title">Tarjetas navideñas</span>
+                    <span class="workshop-poster__when">12 de diciembre<br />10:00 - 13:00</span>
+                  </span>
+                </span>
+                <span class="workshop-tile__name">Tarjetas navideñas en acuarela</span>
+                <span class="workshop-tile__meta">50,00 €</span>
+              </a>
+              <a class="workshop-tile workshop-tile--poster" href="#/taller-navidad" data-from="2026-11-21T00:00:00+01:00" hidden>
+                <span class="workshop-tile__media">
+                  <img decoding="async" data-src="assets/images/navidad-elfo.jpg?v=3" alt="Ilustración infantil de un elfo navideño con gorro verde y calcetines de rayas, junto a un regalo" />
+                  <span class="workshop-poster">
+                    <span class="workshop-poster__kicker">Niños/as</span>
+                    <span class="workshop-poster__title">Taller de Navidad</span>
+                    <span class="workshop-poster__when">19 de diciembre<br />10:00 - 12:00</span>
+                  </span>
+                </span>
+                <span class="workshop-tile__name">Taller de Navidad</span>
+                <span class="workshop-tile__meta">40,00 €</span>
               </a>
             </div>
           </div>
@@ -326,7 +352,7 @@
             <p class="eyebrow">Agenda creativa</p>
             <h1 id="workshops-title">Talleres y monográficos</h1>
             <div class="workshop-tiles">
-              <a class="workshop-tile" href="#/taller-pastel" data-reveal>
+              <a class="workshop-tile" href="#/taller-pastel" data-reveal data-past-from="2026-11-21T00:00:00+01:00">
                 <span class="workshop-tile__media"><img decoding="async" data-src="assets/images/taller-pastel.jpg" alt="Flor de cala morada pintada a lápiz pastel sobre fondo azul, con dos lápices al lado" /></span>
                 <span class="workshop-tile__date">21 de noviembre</span>
                 <span class="workshop-tile__name">Pinta una flor a pastel</span>

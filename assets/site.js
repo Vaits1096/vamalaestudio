@@ -18,6 +18,31 @@ const routes = {
   "/encargo-galeria": { view: "encargo-galeria", title: "Una pequeña muestra de mi galería · VAMALA" },
 };
 
+// Talleres que cambian solos a una hora: data-until desaparece, data-from aparece
+// y data-past-from pasa a "ya impartido" (en blanco y negro, al final de la lista).
+// Las fechas llevan su hora de Espana, asi que da igual donde este quien mira.
+(function applyWorkshopSchedule() {
+  const now = Date.now();
+  const reached = (value) => now >= Date.parse(value);
+  document.querySelectorAll("[data-until]").forEach((el) => { if (reached(el.dataset.until)) el.remove(); });
+  document.querySelectorAll("[data-from]").forEach((el) => {
+    if (reached(el.dataset.from)) el.hidden = false;
+    else el.remove();
+  });
+  document.querySelectorAll("[data-past-from]").forEach((el) => {
+    if (!reached(el.dataset.pastFrom)) return;
+    const past = document.createElement("div");
+    past.className = "workshop-tile workshop-tile--sold";
+    past.setAttribute("data-reveal", "");
+    past.innerHTML = el.innerHTML;
+    past.querySelector(".workshop-tile__media")?.insertAdjacentHTML("beforeend", '<span class="workshop-tile__badge">Agotado</span>');
+    const meta = past.querySelector(".workshop-tile__meta");
+    if (meta) meta.textContent = meta.textContent.split("·")[0].trim();
+    el.parentNode.appendChild(past);
+    el.remove();
+  });
+})();
+
 const menuButton = document.querySelector("[data-menu-toggle]");
 const menuPanel = document.querySelector("[data-menu-panel]");
 const header = document.querySelector("[data-header]");
