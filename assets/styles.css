@@ -316,9 +316,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
    movil se apilan solos. */
 /* Los talleres que vienen, en su propia banda: en la portada quedaban
    apelotonados debajo del titulo. */
-/* Proximos talleres en blanco roto; la seccion de "VAMALA nace" sigue en verde. */
-.upcoming { min-height: 0; background: var(--cream); }
-.upcoming__shell { text-align: center; padding-block: clamp(50px, 7vh, 80px) 44px; }
+/* Proximos talleres, en el mismo verde salvia que el texto de "VAMALA nace". */
+.upcoming { min-height: 0; background: var(--sage); }
+.upcoming__shell { text-align: center; padding-block: clamp(50px, 7vh, 80px) 20px; }
 .upcoming .eyebrow { margin-bottom: 14px; color: var(--ink-soft); }
 .upcoming h2 { margin-bottom: clamp(22px, 3vh, 34px); font-size: clamp(1.4rem, 2.4vw, 2.2rem); font-weight: 300; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
 /* En la portada las tarjetas van centradas, haya una o dos. */
@@ -343,7 +343,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 
 .manifesto { display: grid; place-items: center; min-height: auto; padding: 60px var(--page-pad); }
 /* Justo despues del cartel de proximos talleres: poco hueco entre el precio y el texto. */
-.upcoming + .manifesto { padding-top: 44px; }
+.upcoming + .manifesto { padding-top: 24px; }
 .manifesto__inner { width: min(100%, 620px); text-align: center; }
 .manifesto__rule { display: block; width: 46px; height: 2px; margin: 0 auto 28px; background: var(--ink); }
 .manifesto__inner p { margin: 0; font-size: clamp(0.85rem, 1.2vw, 1.3rem); line-height: 1.45; }
@@ -811,12 +811,12 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .section-shell, .section-shell--subpage { min-height: auto; padding-top: 116px; padding-bottom: 80px; }
   /* Proximos talleres, mas recogido en el movil: poco margen verde por arriba
      y el texto de VAMALA nace pegado al cartel. */
-  .upcoming__shell { padding-top: 36px; padding-bottom: 32px; }
+  .upcoming__shell { padding-top: 36px; padding-bottom: 8px; }
   .offer-page .section-shell--subpage { padding-top: 116px; padding-bottom: 80px; justify-content: flex-start; }
   .hero h1 { font-size: clamp(4rem, 9vw, 7.5rem); }
   .scroll-cue { display: none; }
   .manifesto { min-height: auto; padding-block: 50px; }
-  .upcoming + .manifesto { padding-top: 32px; }
+  .upcoming + .manifesto { padding-top: 16px; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
   .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
