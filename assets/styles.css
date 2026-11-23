@@ -468,6 +468,11 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .calendar-grid__day { display: grid; place-items: center; aspect-ratio: 1; margin: 0 auto; width: 30px; font-size: 0.78rem; border-radius: 50%; }
 .calendar-grid__day--workshop { background: var(--paper); border: 1.5px solid var(--line); }
 .calendar-grid__day--closed { background: var(--sage); }
+.calendar-grid__day--today { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+/* El calendario de la portada: una tarjeta clara sobre el verde, para que los
+   dias cerrados (en salvia) se sigan viendo. */
+.calendar-card { width: min(100%, 360px); margin: clamp(36px, 5vh, 56px) auto 0; padding: 26px 26px 22px; text-align: left; background: var(--mist); border: 1px solid var(--line); }
+.calendar-card .eyebrow { margin-bottom: 14px; text-align: center; }
 /* Los talleres del mes, con nombre y enlace a su ficha. */
 .calendar-events { display: grid; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
 .calendar-events__item { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: inherit; text-decoration: none; transition: background 0.25s ease, transform 0.25s ease; }

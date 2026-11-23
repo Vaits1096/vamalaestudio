@@ -28,8 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&display=swap" />
-    <link rel="stylesheet" href="assets/styles.css?v=160" />
-    <script src="assets/site.js?v=160" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=161" />
+    <script src="assets/site.js?v=161" defer></script>
 
     <!-- Ficha del negocio para Google. Los horarios salen de las clases semanales;
          si cambian, hay que actualizarlos aquí además de en la sección Horarios. -->
@@ -180,6 +180,22 @@
                 <span class="workshop-tile__name">Taller de Navidad</span>
                 <span class="workshop-tile__meta">40,00 €</span>
               </a>
+            </div>
+
+            <!-- El calendario de talleres, visible sin tener que abrirlo. -->
+            <div class="calendar-card" data-calendar-inline>
+              <p class="eyebrow">Calendario</p>
+              <div class="calendar-modal__header">
+                <button class="calendar-nav" type="button" data-calendar-prev aria-label="Mes anterior">←</button>
+                <h3 class="calendar-modal__month" data-calendar-title></h3>
+                <button class="calendar-nav" type="button" data-calendar-next aria-label="Mes siguiente">→</button>
+              </div>
+              <div class="calendar-grid" data-calendar-grid></div>
+              <div class="calendar-events" data-calendar-events hidden></div>
+              <div class="calendar-legend">
+                <span class="calendar-legend__item"><i class="calendar-legend__swatch calendar-legend__swatch--workshop"></i>Workshop</span>
+                <span class="calendar-legend__item"><i class="calendar-legend__swatch calendar-legend__swatch--closed"></i>Academia cerrada</span>
+              </div>
             </div>
           </div>
         </section>

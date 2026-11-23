@@ -228,37 +228,41 @@ const CALENDAR_WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
 const CALENDAR_START = { year: 2026, month: 8 };
 const CALENDAR_MONTH_COUNT = 11;
 
-const calendarModal = document.querySelector("[data-calendar-modal]");
-const calendarToggleButtons = document.querySelectorAll("[data-calendar-toggle]");
+// Un mismo calendario sirve para la ventana de "Consulta el calendario" y para el
+// que se ve directamente en la portada. Los dos empiezan en el mes en curso.
+const pad = (n) => String(n).padStart(2, "0");
+const toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
+// Los findes no se marcan: se sobreentiende que no hay clase. Solo se señalan
+// los cierres excepcionales (festivos y vacaciones).
+const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
+const workshopOn = (iso) => CALENDAR_WORKSHOPS.find((workshop) => workshop.date === iso);
 
-if (calendarModal && calendarToggleButtons.length) {
-  const calendarGrid = calendarModal.querySelector("[data-calendar-grid]");
-  const calendarTitle = calendarModal.querySelector("[data-calendar-title]");
-  const calendarPrev = calendarModal.querySelector("[data-calendar-prev]");
-  const calendarNext = calendarModal.querySelector("[data-calendar-next]");
-  const calendarPanel = calendarModal.querySelector(".calendar-modal__panel");
-  const calendarEvents = calendarModal.querySelector("[data-calendar-events]");
-  let calendarCursor = 0;
-  let calendarLastFocused = null;
+// Cuantos meses van desde el primero del calendario hasta hoy, sin salirse de el.
+function todayCalendarCursor() {
+  const today = new Date();
+  const months = (today.getFullYear() - CALENDAR_START.year) * 12 + (today.getMonth() - CALENDAR_START.month);
+  return Math.min(Math.max(months, 0), CALENDAR_MONTH_COUNT - 1);
+}
 
-  const pad = (n) => String(n).padStart(2, "0");
-  const toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
-  // Los findes no se marcan: se sobreentiende que no hay clase. Solo se señalan
-  // los cierres excepcionales (festivos y vacaciones).
-  const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
-  const workshopOn = (iso) => CALENDAR_WORKSHOPS.find((workshop) => workshop.date === iso);
+function setupCalendar(root, { onEventClick } = {}) {
+  const grid = root.querySelector("[data-calendar-grid]");
+  const title = root.querySelector("[data-calendar-title]");
+  const prev = root.querySelector("[data-calendar-prev]");
+  const next = root.querySelector("[data-calendar-next]");
+  const events = root.querySelector("[data-calendar-events]");
+  let cursor = todayCalendarCursor();
 
-  function currentCalendarDate() {
-    const total = CALENDAR_START.month + calendarCursor;
+  function currentDate() {
+    const total = CALENDAR_START.month + cursor;
     return { year: CALENDAR_START.year + Math.floor(total / 12), month: total % 12 };
   }
 
-  function renderCalendarEvents(year, month) {
-    if (!calendarEvents) return;
+  function renderEvents(year, month) {
+    if (!events) return;
     const prefix = `${year}-${pad(month + 1)}-`;
     const workshops = CALENDAR_WORKSHOPS.filter((workshop) => workshop.date.startsWith(prefix));
-    calendarEvents.innerHTML = "";
-    calendarEvents.hidden = workshops.length === 0;
+    events.innerHTML = "";
+    events.hidden = workshops.length === 0;
 
     workshops.forEach((workshop) => {
       const day = Number(workshop.date.slice(-2));
@@ -266,28 +270,29 @@ if (calendarModal && calendarToggleButtons.length) {
       link.className = "calendar-events__item";
       link.href = workshop.path;
       link.innerHTML = `<span class="calendar-events__day">${day}</span><span class="calendar-events__body"><strong>${workshop.name}</strong><span>${workshop.time} · Más información</span></span>`;
-      link.addEventListener("click", closeCalendar);
-      calendarEvents.appendChild(link);
+      if (onEventClick) link.addEventListener("click", onEventClick);
+      events.appendChild(link);
     });
   }
 
-  function renderCalendar() {
-    const { year, month } = currentCalendarDate();
-    calendarTitle.textContent = `${CALENDAR_MONTH_NAMES[month].charAt(0).toUpperCase()}${CALENDAR_MONTH_NAMES[month].slice(1)} ${year}`;
-    calendarGrid.innerHTML = "";
+  function render() {
+    const { year, month } = currentDate();
+    const todayISO = toISO(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    title.textContent = `${CALENDAR_MONTH_NAMES[month].charAt(0).toUpperCase()}${CALENDAR_MONTH_NAMES[month].slice(1)} ${year}`;
+    grid.innerHTML = "";
 
     CALENDAR_WEEKDAYS.forEach((label) => {
       const cell = document.createElement("span");
       cell.className = "calendar-grid__weekday";
       cell.textContent = label;
-      calendarGrid.appendChild(cell);
+      grid.appendChild(cell);
     });
 
     const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     for (let i = 0; i < firstWeekday; i++) {
-      calendarGrid.appendChild(document.createElement("span"));
+      grid.appendChild(document.createElement("span"));
     }
 
     for (let d = 1; d <= daysInMonth; d++) {
@@ -302,30 +307,50 @@ if (calendarModal && calendarToggleButtons.length) {
       } else if (isClosedDay(iso)) {
         cell.classList.add("calendar-grid__day--closed");
       }
+      if (iso === todayISO) cell.classList.add("calendar-grid__day--today");
       cell.textContent = d;
-      calendarGrid.appendChild(cell);
+      grid.appendChild(cell);
     }
 
-    renderCalendarEvents(year, month);
-
-    calendarPrev.disabled = calendarCursor <= 0;
-    calendarNext.disabled = calendarCursor >= CALENDAR_MONTH_COUNT - 1;
+    renderEvents(year, month);
+    prev.disabled = cursor <= 0;
+    next.disabled = cursor >= CALENDAR_MONTH_COUNT - 1;
   }
 
-  function openCalendar() {
-    calendarLastFocused = document.activeElement;
-    calendarCursor = 0;
-    renderCalendar();
-    calendarModal.hidden = false;
-    document.body.classList.add("menu-open");
-    window.requestAnimationFrame(() => calendarModal.querySelector(".calendar-modal__close")?.focus());
-  }
+  prev.addEventListener("click", () => {
+    if (cursor > 0) { cursor -= 1; render(); }
+  });
+  next.addEventListener("click", () => {
+    if (cursor < CALENDAR_MONTH_COUNT - 1) { cursor += 1; render(); }
+  });
+
+  return {
+    showToday() { cursor = todayCalendarCursor(); render(); },
+  };
+}
+
+const calendarModal = document.querySelector("[data-calendar-modal]");
+const calendarToggleButtons = document.querySelectorAll("[data-calendar-toggle]");
+
+if (calendarModal && calendarToggleButtons.length) {
+  const calendarPanel = calendarModal.querySelector(".calendar-modal__panel");
+  let calendarLastFocused = null;
 
   function closeCalendar() {
     if (calendarModal.hidden) return;
     calendarModal.hidden = true;
     document.body.classList.remove("menu-open");
     calendarLastFocused?.focus();
+  }
+
+  const modalCalendar = setupCalendar(calendarModal, { onEventClick: closeCalendar });
+
+  function openCalendar() {
+    calendarLastFocused = document.activeElement;
+    modalCalendar.showToday();
+    calendarModal.hidden = false;
+    document.body.classList.add("menu-open");
+    window.requestAnimationFrame(() => calendarModal.querySelector(".calendar-modal__close")?.focus());
   }
 
   calendarToggleButtons.forEach((button) => button.addEventListener("click", openCalendar));
@@ -336,20 +361,15 @@ if (calendarModal && calendarToggleButtons.length) {
 
   calendarPanel.addEventListener("click", (event) => event.stopPropagation());
 
-  calendarPrev.addEventListener("click", () => {
-    if (calendarCursor > 0) { calendarCursor -= 1; renderCalendar(); }
-  });
-
-  calendarNext.addEventListener("click", () => {
-    if (calendarCursor < CALENDAR_MONTH_COUNT - 1) { calendarCursor += 1; renderCalendar(); }
-  });
-
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeCalendar();
   });
 
   window.addEventListener("hashchange", closeCalendar);
 }
+
+// El calendario fijo de la portada, debajo de los proximos talleres.
+document.querySelectorAll("[data-calendar-inline]").forEach((root) => setupCalendar(root).showToday());
 
 const commissionForm = document.querySelector("[data-commission-form]");
 
