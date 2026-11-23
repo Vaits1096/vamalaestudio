@@ -250,39 +250,28 @@ function todayCalendarCursor() {
   return Math.min(Math.max(months, 0), CALENDAR_MONTH_COUNT - 1);
 }
 
+// En la portada, el calendario enseña tres meses seguidos en el ordenador y uno
+// en el movil. La ventana de "Consulta el calendario" siempre enseña uno.
+const wideScreen = window.matchMedia("(min-width: 821px)");
+
 function setupCalendar(root, { onEventClick } = {}) {
-  const grid = root.querySelector("[data-calendar-grid]");
-  const title = root.querySelector("[data-calendar-title]");
+  const months = root.querySelector("[data-calendar-months]");
+  const singleGrid = root.querySelector("[data-calendar-grid]");
+  const singleTitle = root.querySelector("[data-calendar-title]");
   const prev = root.querySelector("[data-calendar-prev]");
   const next = root.querySelector("[data-calendar-next]");
   const events = root.querySelector("[data-calendar-events]");
   let cursor = todayCalendarCursor();
 
-  function currentDate() {
-    const total = CALENDAR_START.month + cursor;
+  const visibleCount = () => (months && wideScreen.matches ? 3 : 1);
+  const maxCursor = () => Math.max(0, CALENDAR_MONTH_COUNT - visibleCount());
+
+  function dateAt(offset) {
+    const total = CALENDAR_START.month + cursor + offset;
     return { year: CALENDAR_START.year + Math.floor(total / 12), month: total % 12 };
   }
 
-  function renderEvents(year, month) {
-    if (!events) return;
-    const prefix = `${year}-${pad(month + 1)}-`;
-    const workshops = CALENDAR_WORKSHOPS.filter((workshop) => workshop.date.startsWith(prefix));
-    events.innerHTML = "";
-    events.hidden = workshops.length === 0;
-
-    workshops.forEach((workshop) => {
-      const day = Number(workshop.date.slice(-2));
-      const link = document.createElement("a");
-      link.className = "calendar-events__item";
-      link.href = workshop.path;
-      link.innerHTML = `<span class="calendar-events__day">${day}</span><span class="calendar-events__body"><strong>${workshop.name}</strong><span>${workshop.time} · Más información</span></span>`;
-      if (onEventClick) link.addEventListener("click", onEventClick);
-      events.appendChild(link);
-    });
-  }
-
-  function render() {
-    const { year, month } = currentDate();
+  function renderMonth(grid, title, year, month) {
     const todayISO = toISO(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     title.textContent = `${CALENDAR_MONTH_NAMES[month].charAt(0).toUpperCase()}${CALENDAR_MONTH_NAMES[month].slice(1)} ${year}`;
     grid.innerHTML = "";
@@ -306,7 +295,7 @@ function setupCalendar(root, { onEventClick } = {}) {
       const cell = document.createElement("span");
       cell.className = "calendar-grid__day";
       const workshop = workshopOn(iso);
-      // El workshop manda: es el único motivo por el que se abre en fin de semana.
+      // El taller manda: es el único motivo por el que se abre en fin de semana.
       if (workshop) {
         cell.classList.add("calendar-grid__day--workshop");
         cell.title = workshop.name;
@@ -317,18 +306,60 @@ function setupCalendar(root, { onEventClick } = {}) {
       cell.textContent = d;
       grid.appendChild(cell);
     }
+  }
 
-    renderEvents(year, month);
+  function renderEvents(shown) {
+    if (!events) return;
+    const prefixes = shown.map(({ year, month }) => `${year}-${pad(month + 1)}-`);
+    const workshops = CALENDAR_WORKSHOPS.filter((workshop) => prefixes.some((prefix) => workshop.date.startsWith(prefix)));
+    events.innerHTML = "";
+    events.hidden = workshops.length === 0;
+
+    workshops.forEach((workshop) => {
+      const [, m, d] = workshop.date.split("-").map(Number);
+      const day = shown.length > 1 ? `${d}/${m}` : d;
+      const link = document.createElement("a");
+      link.className = "calendar-events__item";
+      link.href = workshop.path;
+      link.innerHTML = `<span class="calendar-events__day">${day}</span><span class="calendar-events__body"><strong>${workshop.name}</strong><span>${workshop.time} · Más información</span></span>`;
+      if (onEventClick) link.addEventListener("click", onEventClick);
+      events.appendChild(link);
+    });
+  }
+
+  function render() {
+    cursor = Math.min(cursor, maxCursor());
+    const shown = Array.from({ length: visibleCount() }, (_, i) => dateAt(i));
+
+    if (months) {
+      months.innerHTML = "";
+      shown.forEach(({ year, month }) => {
+        const block = document.createElement("div");
+        block.className = "calendar-month";
+        const title = document.createElement("h3");
+        title.className = "calendar-modal__month";
+        const grid = document.createElement("div");
+        grid.className = "calendar-grid";
+        block.append(title, grid);
+        months.appendChild(block);
+        renderMonth(grid, title, year, month);
+      });
+    } else {
+      renderMonth(singleGrid, singleTitle, shown[0].year, shown[0].month);
+    }
+
+    renderEvents(shown);
     prev.disabled = cursor <= 0;
-    next.disabled = cursor >= CALENDAR_MONTH_COUNT - 1;
+    next.disabled = cursor >= maxCursor();
   }
 
   prev.addEventListener("click", () => {
     if (cursor > 0) { cursor -= 1; render(); }
   });
   next.addEventListener("click", () => {
-    if (cursor < CALENDAR_MONTH_COUNT - 1) { cursor += 1; render(); }
+    if (cursor < maxCursor()) { cursor += 1; render(); }
   });
+  if (months) wideScreen.addEventListener("change", render);
 
   return {
     showToday() { cursor = todayCalendarCursor(); render(); },

@@ -475,7 +475,15 @@ figure, h1, h2, h3, p { margin-top: 0; }
    dias cerrados (en salvia) se sigan viendo. */
 .calendar-card { --calendar-light: #eae0cf; width: min(100%, 360px); margin: clamp(36px, 5vh, 56px) auto 0; padding: 26px 26px 22px; text-align: left; color: var(--calendar-light); background: #27140a; border: 1px solid #27140a; }
 /* En el marron de la portada: letras y lineas en blanco roto. */
-.calendar-card .eyebrow { margin-bottom: 14px; text-align: center; color: var(--calendar-light); }
+.calendar-card .eyebrow { margin: 0; text-align: center; color: var(--calendar-light); }
+.calendar-months { display: grid; gap: 28px; }
+.calendar-month .calendar-modal__month { margin-bottom: 14px; text-align: center; }
+/* En el ordenador, tres meses en fila. */
+@media (min-width: 821px) {
+  .calendar-card { width: min(100%, 1040px); padding: 30px 36px 26px; }
+  .calendar-months { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .calendar-card .calendar-events { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+}
 .calendar-card .calendar-nav { color: var(--calendar-light); border-color: rgba(234, 224, 207, 0.6); }
 .calendar-card .calendar-grid__weekday { color: rgba(234, 224, 207, 0.7); }
 .calendar-card .calendar-grid__day--closed { color: #27140a; }
