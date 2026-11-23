@@ -471,8 +471,19 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .calendar-grid__day--today { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 /* El calendario de la portada: una tarjeta clara sobre el verde, para que los
    dias cerrados (en salvia) se sigan viendo. */
-.calendar-card { width: min(100%, 360px); margin: clamp(36px, 5vh, 56px) auto 0; padding: 26px 26px 22px; text-align: left; background: var(--mist); border: 1px solid var(--line); }
-.calendar-card .eyebrow { margin-bottom: 14px; text-align: center; }
+.calendar-card { --calendar-light: #eae0cf; width: min(100%, 360px); margin: clamp(36px, 5vh, 56px) auto 0; padding: 26px 26px 22px; text-align: left; color: var(--calendar-light); background: #27140a; border: 1px solid #27140a; }
+/* En el marron de la portada: letras y lineas en blanco roto. */
+.calendar-card .eyebrow { margin-bottom: 14px; text-align: center; color: var(--calendar-light); }
+.calendar-card .calendar-nav { color: var(--calendar-light); border-color: rgba(234, 224, 207, 0.6); }
+.calendar-card .calendar-grid__weekday { color: rgba(234, 224, 207, 0.7); }
+.calendar-card .calendar-grid__day--workshop { color: #27140a; background: var(--calendar-light); border-color: var(--calendar-light); }
+.calendar-card .calendar-grid__day--closed { color: #27140a; }
+.calendar-card .calendar-events, .calendar-card .calendar-legend { border-top-color: rgba(234, 224, 207, 0.35); }
+.calendar-card .calendar-events__item { color: var(--calendar-light); background: transparent; border-color: rgba(234, 224, 207, 0.6); }
+.calendar-card .calendar-events__item:hover, .calendar-card .calendar-events__item:focus-visible { background: rgba(234, 224, 207, 0.1); }
+.calendar-card .calendar-events__day { border-color: var(--calendar-light); }
+.calendar-card .calendar-events__body span { color: rgba(234, 224, 207, 0.75); }
+.calendar-card .calendar-legend__swatch--workshop { background: var(--calendar-light); border-color: var(--calendar-light); }
 /* Los talleres del mes, con nombre y enlace a su ficha. */
 .calendar-events { display: grid; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
 .calendar-events__item { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: inherit; text-decoration: none; transition: background 0.25s ease, transform 0.25s ease; }
