@@ -208,7 +208,10 @@ renderRoute({ preserveScroll: true });
 
 const CALENDAR_CLOSED_RANGES = [
   ["2026-10-12", "2026-10-12"], // Pilar (el sábado y el domingo ya cierran solos)
-  ["2026-12-24", "2027-01-06"], // Vacaciones de Navidad
+  // Navidad: el 28 y 29 de diciembre y el 4 y 5 de enero hay clase.
+  ["2026-12-24", "2026-12-27"],
+  ["2026-12-30", "2027-01-03"],
+  ["2027-01-06", "2027-01-06"],
   ["2027-03-25", "2027-03-29"], // Semana Santa
 ];
 // Cada taller lleva su nombre y su ficha: el calendario no solo marca el día,
@@ -234,7 +237,10 @@ const pad = (n) => String(n).padStart(2, "0");
 const toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
 // Los findes no se marcan: se sobreentiende que no hay clase. Solo se señalan
 // los cierres excepcionales (festivos y vacaciones).
-const isClosedDay = (iso) => CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
+// Los sabados y domingos no se marcan nunca como cerrados, aunque caigan en
+// unas vacaciones: ya se sobreentiende que no hay clase.
+const isWeekend = (iso) => [0, 6].includes(new Date(`${iso}T12:00:00`).getDay());
+const isClosedDay = (iso) => !isWeekend(iso) && CALENDAR_CLOSED_RANGES.some(([start, end]) => iso >= start && iso <= end);
 const workshopOn = (iso) => CALENDAR_WORKSHOPS.find((workshop) => workshop.date === iso);
 
 // Cuantos meses van desde el primero del calendario hasta hoy, sin salirse de el.
