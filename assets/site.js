@@ -36,7 +36,7 @@ const routes = {
     past.className = "workshop-tile workshop-tile--sold";
     past.setAttribute("data-reveal", "");
     past.innerHTML = el.innerHTML;
-    past.querySelector(".workshop-tile__media")?.insertAdjacentHTML("beforeend", '<span class="workshop-tile__badge">Agotado</span>');
+    past.querySelector(".workshop-tile__media")?.insertAdjacentHTML("beforeend", '<span class="workshop-tile__badge">Realizado</span>');
     const meta = past.querySelector(".workshop-tile__meta");
     if (meta) meta.textContent = meta.textContent.split("·")[0].trim();
     el.parentNode.appendChild(past);
