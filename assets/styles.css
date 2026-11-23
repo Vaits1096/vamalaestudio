@@ -481,7 +481,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 /* En el ordenador, tres meses en fila. */
 @media (min-width: 821px) {
   .calendar-card { width: min(100%, 1040px); padding: 30px 36px 26px; }
-  .calendar-months { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .calendar-months { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  /* Cada mes en su recuadro fino verde, para distinguirlos. */
+  .calendar-month { padding: 18px 16px 14px; border: 1px solid var(--sage); }
   .calendar-card .calendar-events { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 }
 .calendar-card .calendar-nav { color: var(--calendar-light); border-color: rgba(234, 224, 207, 0.6); }
