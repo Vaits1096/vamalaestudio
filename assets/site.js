@@ -13,6 +13,7 @@ const routes = {
   "/taller-tarjetas-navidenas": { view: "taller-tarjetas-navidenas", title: "Taller de tarjetas navideñas · VAMALA" },
   "/taller-navidad": { view: "taller-navidad", title: "Taller de Navidad · VAMALA" },
   "/taller-mascota": { view: "taller-mascota", title: "Taller pinta a tu mascota en acuarela · VAMALA Getxo" },
+  "/taller-pareja": { view: "taller-pareja", title: "Taller pinta en pareja en acuarela · VAMALA Getxo" },
   "/regala-arte": { view: "regala-arte", title: "Tarjetas regalo · VAMALA Estudio Creativo" },
   "/encargo": { view: "encargo", title: "Quiero un encargo · VAMALA" },
   "/encargo-formulario": { view: "encargo-formulario", title: "Cuéntame tu idea · VAMALA" },
@@ -216,6 +217,7 @@ const CALENDAR_WORKSHOPS = [
   { date: "2026-12-12", name: "Tarjetas navideñas en acuarela", time: "10:00 – 13:00", path: "#/taller-tarjetas-navidenas" },
   { date: "2026-12-19", name: "Taller de Navidad", time: "10:00 – 12:00", path: "#/taller-navidad" },
   { date: "2027-01-23", name: "Pinta a tu mascota", time: "10:00 – 13:00", path: "#/taller-mascota" },
+  { date: "2027-02-13", name: "Pinta en pareja", time: "10:00 – 13:00", path: "#/taller-pareja" },
 ];
 const CALENDAR_MONTH_NAMES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 const CALENDAR_WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
