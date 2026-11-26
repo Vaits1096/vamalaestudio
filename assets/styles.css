@@ -391,12 +391,14 @@ figure, h1, h2, h3, p { margin-top: 0; }
 /* Horarios y tarifas como dos tablones: titulo grande en vertical en blanco
    roto y, a su lado, las filas en marron oscuro separadas por lineas. */
 .schedule-boards { min-height: 0; }
-.boards__shell { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: calc(var(--header-height) + 56px); padding-bottom: 90px; }
+.boards__shell { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: stretch; padding-top: calc(var(--header-height) + 56px); padding-bottom: 90px; }
 /* Cada tablon en su recuadro marron fino. */
-.board { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(14px, 2vw, 30px); padding: clamp(22px, 2.6vw, 36px) clamp(18px, 2.4vw, 34px); color: #27140a; border: 1.5px solid #27140a; }
+.board { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: clamp(14px, 2vw, 30px); padding: clamp(22px, 2.6vw, 36px) clamp(18px, 2.4vw, 34px); color: #27140a; border: 1.5px solid #27140a; }
 /* Horarios en tabla: dia | adultos/as | ninos/as. */
 .board__table { display: flex; flex-direction: column; }
 .board__trow { display: grid; grid-template-columns: minmax(84px, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px 0; border-bottom: 1.5px solid #27140a; }
+/* Una linea vertical separa la columna de adultos de la de ninos. */
+.board__trow > :nth-child(3) { align-self: stretch; padding-left: 12px; border-left: 1.5px solid #27140a; }
 .board__trow p { margin: 0; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
 .board__trow .board__label { padding-top: 2px; }
 .board__trow--head { padding-top: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
