@@ -397,7 +397,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .board__rows { display: flex; flex-direction: column; }
 .board__row { display: grid; grid-template-columns: minmax(118px, 0.8fr) minmax(0, 1.4fr); gap: 16px; align-items: center; padding: 20px 0; border-bottom: 1.5px solid #27140a; }
 .board__row:first-child { padding-top: 6px; }
-.board__label { margin: 0; font-family: "Permanent Marker", var(--font); font-size: clamp(1.2rem, 1.7vw, 1.55rem); font-weight: 400; line-height: 1.05; text-transform: uppercase; color: #27140a; }
+/* Solo los titulos grandes llevan la letra de rotulador; el resto, la de la web. */
+.board__label { margin: 0; font-size: clamp(0.95rem, 1.15vw, 1.1rem); font-weight: 700; line-height: 1.1; letter-spacing: 0.04em; text-transform: uppercase; color: #27140a; }
 .board__label small { display: block; margin-top: 6px; font-family: var(--font); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: none; }
 .board__list { margin: 0; padding: 0; list-style: none; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
 .board__list li::before { content: "- "; }
