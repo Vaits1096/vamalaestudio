@@ -904,13 +904,11 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .board__row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
   .board__title { font-size: 2.7rem; }
   .board { padding: 18px 12px; column-gap: 14px; }
-  /* En el movil, la informacion centrada en su hueco, con aire respecto al titulo. */
-  .board__rows { text-align: center; }
-  .board__trow { justify-items: center; }
-  .board__trow > :nth-child(3) { padding-left: 0; }
+  /* En el movil, la informacion algo separada del titulo: las lineas empiezan mas lejos. */
+  .board__rows { margin-left: 12px; }
   .board__trow { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; padding: 14px 0; }
   .board__trow p { font-size: 0.76rem; }
-  .board__trow .board__label { font-size: 0.76rem; }
+  .board__trow .board__label { font-size: 0.7rem; letter-spacing: 0; }
   .board__trow--head { font-size: 0.66rem; }
   .board__trow--head small { font-size: 0.6rem; }
   .waitlist-link { font-size: 0.72rem; }
