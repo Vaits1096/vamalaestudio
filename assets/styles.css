@@ -884,7 +884,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
   .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
-  .boards__shell { grid-template-columns: 1fr; gap: 84px; padding-top: 116px; padding-bottom: 64px; }
+  .boards__shell { grid-template-columns: 1fr; gap: 84px; padding-top: 150px; padding-bottom: 64px; }
   .schedule__image { grid-row: 1; }
   .schedule__col--hours .time-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .schedule__col--hours .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 26px; }
