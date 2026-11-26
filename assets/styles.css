@@ -459,7 +459,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .time-grid strong { font-weight: 400; white-space: nowrap; }
 /* Grupo lleno: la etiqueta y el enlace a la lista de espera por WhatsApp. */
 .slot-full { display: inline-block; margin-left: 6px; padding: 1px 7px; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); background: var(--tobacco); border-radius: 3px; vertical-align: middle; }
-.waitlist-link { display: inline-block; margin-top: 4px; font-size: 0.78rem; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.waitlist-label { display: inline-block; margin-top: 4px; font-size: 0.78rem; }
+.waitlist-link { display: inline-block; margin-top: 0; font-size: 0.78rem; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 /* Los dias sueltos y los bonos son informacion secundaria: van despues de la
    cuota mensual, con el titulo del tamano de "Adultos/as" y todo un punto mas
    pequeno para que no compitan con las tarifas de verdad. */
