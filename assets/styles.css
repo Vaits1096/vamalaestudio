@@ -912,7 +912,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .board { padding: 18px 12px; column-gap: 14px; }
   /* En el movil, el titulo arriba en horizontal y la informacion pegada a la izquierda. */
   .board { grid-template-columns: 1fr; row-gap: 14px; }
-  .board__title { writing-mode: horizontal-tb; transform: none; text-align: left; }
+  .board__title { writing-mode: horizontal-tb; transform: none; text-align: center; }
   .board__rows { width: 100%; max-width: none; justify-self: stretch; margin-left: 0; }
   .board__trow > :nth-child(3) { padding-left: 6px; }
   .board__trow { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; padding: 14px 0; }
