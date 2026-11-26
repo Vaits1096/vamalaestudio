@@ -399,6 +399,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .board__trow { display: grid; grid-template-columns: minmax(84px, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px 0; border-bottom: 1.5px solid #27140a; }
 /* Una linea vertical separa la columna de adultos de la de ninos. */
 .board__trow > :nth-child(3) { align-self: stretch; padding-left: 12px; border-left: 1.5px solid #27140a; }
+.board__table .board__trow:last-child { border-bottom: none; }
 .board__trow p { margin: 0; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
 .board__trow .board__label { padding-top: 2px; }
 .board__trow--head { padding-top: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
