@@ -308,22 +308,23 @@ function setupCalendar(root, { onEventClick } = {}) {
     }
   }
 
-  function renderEvents(shown) {
-    if (!events) return;
+  // Lista de talleres de los meses indicados, dentro de "target".
+  function renderEvents(target, shown) {
+    if (!target) return;
     const prefixes = shown.map(({ year, month }) => `${year}-${pad(month + 1)}-`);
     const workshops = CALENDAR_WORKSHOPS.filter((workshop) => prefixes.some((prefix) => workshop.date.startsWith(prefix)));
-    events.innerHTML = "";
-    events.hidden = workshops.length === 0;
+    target.innerHTML = "";
+    target.hidden = workshops.length === 0;
 
     workshops.forEach((workshop) => {
-      const [, m, d] = workshop.date.split("-").map(Number);
-      const day = shown.length > 1 ? `${d}/${m}` : d;
+      const [, , d] = workshop.date.split("-").map(Number);
+      const day = d;
       const link = document.createElement("a");
       link.className = "calendar-events__item";
       link.href = workshop.path;
       link.innerHTML = `<span class="calendar-events__day">${day}</span><span class="calendar-events__body"><strong>${workshop.name}</strong><span>${workshop.time} · Más información</span></span>`;
       if (onEventClick) link.addEventListener("click", onEventClick);
-      events.appendChild(link);
+      target.appendChild(link);
     });
   }
 
@@ -340,15 +341,20 @@ function setupCalendar(root, { onEventClick } = {}) {
         title.className = "calendar-modal__month";
         const grid = document.createElement("div");
         grid.className = "calendar-grid";
-        block.append(title, grid);
+        // Los talleres de cada mes, justo debajo de su mes.
+        const monthEvents = document.createElement("div");
+        monthEvents.className = "calendar-events";
+        block.append(title, grid, monthEvents);
         months.appendChild(block);
         renderMonth(grid, title, year, month);
+        renderEvents(monthEvents, [{ year, month }]);
       });
+      if (events) events.hidden = true;
     } else {
       renderMonth(singleGrid, singleTitle, shown[0].year, shown[0].month);
+      renderEvents(events, shown);
     }
 
-    renderEvents(shown);
     prev.disabled = cursor <= 0;
     next.disabled = cursor >= maxCursor();
   }
