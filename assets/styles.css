@@ -393,7 +393,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .schedule-boards { min-height: 0; }
 .boards__shell { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: stretch; padding-top: calc(var(--header-height) + 56px); padding-bottom: 90px; }
 /* Cada tablon en su recuadro marron fino. */
-.board { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: clamp(14px, 2vw, 30px); padding: clamp(22px, 2.6vw, 36px) clamp(18px, 2.4vw, 34px); color: #27140a; border: 1.5px solid #27140a; }
+.board { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: clamp(20px, 3vw, 48px); padding: clamp(22px, 2.6vw, 36px) clamp(18px, 2.4vw, 34px); color: #27140a; border: 1.5px solid #27140a; }
 /* Horarios en tabla: dia | adultos/as | ninos/as. */
 .board__table { display: flex; flex-direction: column; }
 .board__trow { display: grid; grid-template-columns: minmax(84px, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px 0; border-bottom: 1.5px solid #27140a; }
@@ -405,7 +405,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .board__trow--head { padding-top: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .board__trow--head small { display: block; margin-top: 3px; font-size: 0.66rem; font-weight: 400; letter-spacing: 0.02em; text-transform: none; }
 .board__title { margin: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Permanent Marker", var(--font); font-size: clamp(3.6rem, 6.5vw, 6.6rem); font-weight: 400; line-height: 0.85; letter-spacing: 0.02em; text-align: right; text-transform: uppercase; color: #eae0cf; }
-.board__rows { display: flex; flex-direction: column; }
+/* La informacion, centrada en el recuadro y separada del titulo. */
+.board__rows { display: flex; flex-direction: column; justify-self: center; width: 100%; max-width: 420px; }
 .board__row { display: grid; grid-template-columns: minmax(118px, 0.8fr) minmax(0, 1.4fr); gap: 16px; align-items: center; padding: 20px 0; border-bottom: 1.5px solid #27140a; }
 .board__row:first-child { padding-top: 6px; }
 /* Solo los titulos grandes llevan la letra de rotulador; el resto, la de la web. */
