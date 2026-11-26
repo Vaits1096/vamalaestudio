@@ -412,6 +412,8 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .board__label small { display: block; margin-top: 6px; font-family: var(--font); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: none; }
 .board__list { margin: 0; padding: 0; list-style: none; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
 .board__list li::before { content: "- "; }
+/* Cada precio en una sola linea, sin que se parta. */
+.board__list li { white-space: nowrap; }
 .board__actions { display: flex; justify-content: center; padding-top: 24px; }
 /* Botones en marron con poca opacidad, centrados bajo su tabla. */
 .board__actions .outline-button { min-height: 40px; padding: 9px 18px; font-size: 0.72rem; color: #27140a; background: rgba(39, 20, 10, 0.12); border-color: rgba(39, 20, 10, 0.45); }
