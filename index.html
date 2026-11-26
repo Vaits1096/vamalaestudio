@@ -28,8 +28,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&family=Permanent+Marker&display=swap" />
-    <link rel="stylesheet" href="assets/styles.css?v=169" />
-    <script src="assets/site.js?v=169" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=170" />
+    <script src="assets/site.js?v=170" defer></script>
 
     <!-- Ficha del negocio para Google. Los horarios salen de las clases semanales;
          si cambian, hay que actualizarlos aquí además de en la sección Horarios. -->
@@ -285,22 +285,28 @@
             <article class="board" aria-labelledby="board-horarios" data-reveal>
               <h2 class="board__title" id="board-horarios">Horarios</h2>
               <div class="board__rows">
-                <div class="board__row">
-                  <h3 class="board__label">Adultos/as<small>Clases de 2h</small></h3>
-                  <ul class="board__list">
-                    <li>Miércoles · 19:15 a 21:15</li>
-                    <li>Jueves · 10:00 a 12:00</li>
-                    <li>Jueves · 18:45 a 20:45 <span class="slot-full">Completo</span><br /><a class="waitlist-link" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20grupo%20de%20adultos%20del%20jueves%20de%2018%3A45%20a%2020%3A45." target="_blank" rel="noreferrer">Apúntate a la lista de espera</a></li>
-                    <li>Viernes · 10:00 a 12:00</li>
-                  </ul>
-                </div>
-                <div class="board__row">
-                  <h3 class="board__label">Niños/as<small>Clases de 1h y media</small></h3>
-                  <ul class="board__list">
-                    <li>Miércoles · 17:30 a 19:00</li>
-                    <li>Jueves · 17:00 a 18:30</li>
-                    <li>Viernes · 17:00 a 18:30</li>
-                  </ul>
+                <!-- Tabla: un dia por fila, adultos en una columna y ninos en otra. -->
+                <div class="board__table" role="table" aria-label="Horarios de clases">
+                  <div class="board__trow board__trow--head" role="row">
+                    <span role="columnheader"></span>
+                    <span role="columnheader">Adultos/as<small>Clases de 2h</small></span>
+                    <span role="columnheader">Niños/as<small>Clases de 1h y media</small></span>
+                  </div>
+                  <div class="board__trow" role="row">
+                    <h3 class="board__label" role="rowheader">Miércoles</h3>
+                    <p role="cell">19:15 a 21:15</p>
+                    <p role="cell">17:30 a 19:00</p>
+                  </div>
+                  <div class="board__trow" role="row">
+                    <h3 class="board__label" role="rowheader">Jueves</h3>
+                    <p role="cell">10:00 a 12:00<br />18:45 a 20:45 <span class="slot-full">Completo</span><br /><a class="waitlist-link" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20grupo%20de%20adultos%20del%20jueves%20de%2018%3A45%20a%2020%3A45." target="_blank" rel="noreferrer">Apúntate a la lista de espera</a></p>
+                    <p role="cell">17:00 a 18:30</p>
+                  </div>
+                  <div class="board__trow" role="row">
+                    <h3 class="board__label" role="rowheader">Viernes</h3>
+                    <p role="cell">10:00 a 12:00</p>
+                    <p role="cell">17:00 a 18:30</p>
+                  </div>
                 </div>
                 <div class="board__actions">
                   <button class="outline-button outline-button--light" type="button" data-calendar-toggle>Consulta el calendario</button>

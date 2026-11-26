@@ -392,7 +392,15 @@ figure, h1, h2, h3, p { margin-top: 0; }
    roto y, a su lado, las filas en marron oscuro separadas por lineas. */
 .schedule-boards { min-height: 0; }
 .boards__shell { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: calc(var(--header-height) + 56px); padding-bottom: 90px; }
-.board { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(14px, 2vw, 30px); color: #27140a; }
+/* Cada tablon en su recuadro marron fino. */
+.board { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(14px, 2vw, 30px); padding: clamp(22px, 2.6vw, 36px) clamp(18px, 2.4vw, 34px); color: #27140a; border: 1.5px solid #27140a; }
+/* Horarios en tabla: dia | adultos/as | ninos/as. */
+.board__table { display: flex; flex-direction: column; }
+.board__trow { display: grid; grid-template-columns: minmax(84px, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px 0; border-bottom: 1.5px solid #27140a; }
+.board__trow p { margin: 0; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
+.board__trow .board__label { padding-top: 2px; }
+.board__trow--head { padding-top: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.board__trow--head small { display: block; margin-top: 3px; font-size: 0.66rem; font-weight: 400; letter-spacing: 0.02em; text-transform: none; }
 .board__title { margin: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Permanent Marker", var(--font); font-size: clamp(3.6rem, 6.5vw, 6.6rem); font-weight: 400; line-height: 0.85; letter-spacing: 0.02em; text-align: right; text-transform: uppercase; color: #eae0cf; }
 .board__rows { display: flex; flex-direction: column; }
 .board__row { display: grid; grid-template-columns: minmax(118px, 0.8fr) minmax(0, 1.4fr); gap: 16px; align-items: center; padding: 20px 0; border-bottom: 1.5px solid #27140a; }
@@ -884,7 +892,14 @@ figure, h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 560px) {
   /* En el movil, cada dia o tarifa encima de su lista. */
   .board__row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
-  .board__title { font-size: 3.4rem; }
+  .board__title { font-size: 2.7rem; }
+  .board { padding: 18px 14px; column-gap: 10px; }
+  .board__trow { grid-template-columns: 70px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; padding: 14px 0; }
+  .board__trow p { font-size: 0.8rem; }
+  .board__trow .board__label { font-size: 0.76rem; }
+  .board__trow--head { font-size: 0.66rem; }
+  .board__trow--head small { font-size: 0.6rem; }
+  .waitlist-link { font-size: 0.72rem; }
   :root { --page-pad: 22px; }
   /* Con 2 y 3 columnas en pantalla estrecha, el hueco entre fotos se come el ancho. */
   .commission-gallery { gap: 10px; }
