@@ -388,6 +388,21 @@ figure, h1, h2, h3, p { margin-top: 0; }
 .ruled-copy--aside .text-link { margin-top: 18px; }
 .technique-list { margin: 4px 0; padding-left: 1.5em; columns: 2; }
 
+/* Horarios y tarifas como dos tablones: titulo grande en vertical en blanco
+   roto y, a su lado, las filas en marron oscuro separadas por lineas. */
+.schedule-boards { min-height: 0; }
+.boards__shell { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: calc(var(--header-height) + 56px); padding-bottom: 90px; }
+.board { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(14px, 2vw, 30px); color: #27140a; }
+.board__title { margin: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Permanent Marker", var(--font); font-size: clamp(3.6rem, 6.5vw, 6.6rem); font-weight: 400; line-height: 0.85; letter-spacing: 0.02em; text-align: right; text-transform: uppercase; color: #eae0cf; }
+.board__rows { display: flex; flex-direction: column; }
+.board__row { display: grid; grid-template-columns: minmax(118px, 0.8fr) minmax(0, 1.4fr); gap: 16px; align-items: center; padding: 20px 0; border-bottom: 1.5px solid #27140a; }
+.board__row:first-child { padding-top: 6px; }
+.board__label { margin: 0; font-family: "Permanent Marker", var(--font); font-size: clamp(1.2rem, 1.7vw, 1.55rem); font-weight: 400; line-height: 1.05; text-transform: uppercase; color: #27140a; }
+.board__label small { display: block; margin-top: 6px; font-family: var(--font); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: none; }
+.board__list { margin: 0; padding: 0; list-style: none; font-size: clamp(0.86rem, 1vw, 0.98rem); line-height: 1.45; }
+.board__list li::before { content: "- "; }
+.board__actions { padding-top: 24px; }
+.board__actions .outline-button { min-height: 40px; padding: 9px 18px; font-size: 0.72rem; }
 .schedule { display: flex; align-items: center; }
 /* Tarifas a un lado, la foto en medio y los horarios al otro. */
 .schedule__shell {
@@ -848,6 +863,7 @@ figure, h1, h2, h3, p { margin-top: 0; }
   .information { min-height: auto; }
   .offer-layout { grid-template-columns: 1fr; gap: 70px; }
   .schedule__shell { grid-template-columns: 1fr; gap: 46px; }
+  .boards__shell { grid-template-columns: 1fr; gap: 56px; padding-top: 116px; padding-bottom: 64px; }
   .schedule__image { grid-row: 1; }
   .schedule__col--hours .time-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .schedule__col--hours .time-grid--adults { grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 26px; }
@@ -865,6 +881,9 @@ figure, h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 560px) {
+  /* En el movil, cada dia o tarifa encima de su lista. */
+  .board__row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
+  .board__title { font-size: 3.4rem; }
   :root { --page-pad: 22px; }
   /* Con 2 y 3 columnas en pantalla estrecha, el hueco entre fotos se come el ancho. */
   .commission-gallery { gap: 10px; }

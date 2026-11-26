@@ -27,9 +27,9 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&display=swap" />
-    <link rel="stylesheet" href="assets/styles.css?v=167" />
-    <script src="assets/site.js?v=167" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400&family=Permanent+Marker&display=swap" />
+    <link rel="stylesheet" href="assets/styles.css?v=168" />
+    <script src="assets/site.js?v=168" defer></script>
 
     <!-- Ficha del negocio para Google. Los horarios salen de las clases semanales;
          si cambian, hay que actualizarlos aquí además de en la sección Horarios. -->
@@ -276,66 +276,74 @@
       </div>
 
       <div class="view" data-view="horarios-y-tarifas" hidden>
-        <section class="schedule panel panel--sage" aria-labelledby="schedule-title">
-          <div class="section-shell schedule__shell">
-            <div class="schedule__col" data-reveal>
-              <div class="page-heading page-heading--compact">
-                <h1 id="schedule-title" class="sr-only">Horarios y tarifas</h1>
-              </div>
-              <h2 class="schedule__col-title">Tarifas</h2>
-              <h3>Adultos/as</h3>
-              <p class="rate-label">Mes <span class="rate-label__note">(duración de las clases 2h)</span></p>
-              <ul class="rate-list">
-                <li>1 día a la semana 70 €</li>
-                <li>2 días a la semana 125 €</li>
-              </ul>
-              <h3>Niños/as</h3>
-              <p class="rate-label">Mes <span class="rate-label__note">(duración de las clases 1h y media)</span></p>
-              <ul class="rate-list">
-                <li>1 día a la semana 50 €</li>
-                <li>2 días a la semana 90 €</li>
-              </ul>
+        <section class="schedule-boards panel panel--sage" aria-labelledby="schedule-title">
+          <div class="section-shell boards__shell">
+            <h1 id="schedule-title" class="sr-only">Horarios y tarifas</h1>
 
-              <div class="rate-aside">
-                <h3>Clases sueltas/bono</h3>
-                <h4>Adultos/as</h4>
-                <ul class="rate-list rate-list--solo">
-                  <li>Día suelto 20 €</li>
-                  <li>Bono de 10 sesiones 180 €</li>
-                </ul>
-                <h4>Niños/as</h4>
-                <ul class="rate-list rate-list--solo">
-                  <li>Día suelto 15 €</li>
-                  <li>Bono de 10 sesiones 130 €</li>
-                </ul>
-                <div class="rate-buy">
+            <!-- Dos tablones: el titulo en vertical a la izquierda y, a la derecha,
+                 cada dia (o cada tarifa) en su fila separada por una linea. -->
+            <article class="board" aria-labelledby="board-horarios" data-reveal>
+              <h2 class="board__title" id="board-horarios">Horarios</h2>
+              <div class="board__rows">
+                <div class="board__row">
+                  <h3 class="board__label">Miércoles</h3>
+                  <ul class="board__list">
+                    <li>Niños/as · 17:30 a 19:00</li>
+                    <li>Adultos/as · 19:15 a 21:15</li>
+                  </ul>
+                </div>
+                <div class="board__row">
+                  <h3 class="board__label">Jueves</h3>
+                  <ul class="board__list">
+                    <li>Adultos/as · 10:00 a 12:00</li>
+                    <li>Niños/as · 17:00 a 18:30</li>
+                    <li>Adultos/as · 18:45 a 20:45 <span class="slot-full">Completo</span><br /><a class="waitlist-link" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20grupo%20de%20adultos%20del%20jueves%20de%2018%3A45%20a%2020%3A45." target="_blank" rel="noreferrer">Apúntate a la lista de espera</a></li>
+                  </ul>
+                </div>
+                <div class="board__row">
+                  <h3 class="board__label">Viernes</h3>
+                  <ul class="board__list">
+                    <li>Adultos/as · 10:00 a 12:00</li>
+                    <li>Niños/as · 17:00 a 18:30</li>
+                  </ul>
+                </div>
+                <div class="board__actions">
+                  <button class="outline-button outline-button--light" type="button" data-calendar-toggle>Consulta el calendario</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="board" aria-labelledby="board-tarifas" data-reveal>
+              <h2 class="board__title" id="board-tarifas">Tarifas</h2>
+              <div class="board__rows">
+                <div class="board__row">
+                  <h3 class="board__label">Adultos/as<small>Al mes · clases de 2h</small></h3>
+                  <ul class="board__list">
+                    <li>1 día a la semana · 70 €</li>
+                    <li>2 días a la semana · 125 €</li>
+                  </ul>
+                </div>
+                <div class="board__row">
+                  <h3 class="board__label">Niños/as<small>Al mes · clases de 1h y media</small></h3>
+                  <ul class="board__list">
+                    <li>1 día a la semana · 50 €</li>
+                    <li>2 días a la semana · 90 €</li>
+                  </ul>
+                </div>
+                <div class="board__row">
+                  <h3 class="board__label">Sueltas<small>Clases sueltas y bonos</small></h3>
+                  <ul class="board__list">
+                    <li>Adultos/as · día suelto 20 €</li>
+                    <li>Adultos/as · bono de 10 sesiones 180 €</li>
+                    <li>Niños/as · día suelto 15 €</li>
+                    <li>Niños/as · bono de 10 sesiones 130 €</li>
+                  </ul>
+                </div>
+                <div class="board__actions">
                   <a class="outline-button outline-button--light" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20hacer%20una%20reserva%20en%20VAMALA." target="_blank" rel="noreferrer">Quiero hacer una reserva</a>
                 </div>
               </div>
-            </div>
-
-            <figure class="schedule__image" data-reveal>
-              <img decoding="async" data-src="assets/images/horarios-pinceles.jpg" alt="Detalle de pinceles y paleta de pintura en el estudio" />
-            </figure>
-
-            <div class="schedule__col schedule__col--hours" data-reveal>
-              <h2 class="schedule__col-title">Horarios</h2>
-              <h3>Adultos/as</h3>
-              <div class="time-grid time-grid--adults">
-                <p>Miércoles<br /><strong>19:15 a 21:15</strong></p>
-                <p>Jueves<br /><strong>10:00 a 12:00</strong><br /><strong>18:45 a 20:45</strong> <span class="slot-full">Completo</span><br /><a class="waitlist-link" href="https://wa.me/34649599775?text=Hola%20Valeria%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20grupo%20de%20adultos%20del%20jueves%20de%2018%3A45%20a%2020%3A45." target="_blank" rel="noreferrer">Apúntate a la lista de espera</a></p>
-                <p>Viernes<br /><strong>10:00 a 12:00</strong></p>
-              </div>
-              <h3>Niños/as</h3>
-              <div class="time-grid">
-                <p>Miércoles<br /><strong>17:30 a 19:00</strong></p>
-                <p>Jueves<br /><strong>17:00 a 18:30</strong></p>
-                <p>Viernes<br /><strong>17:00 a 18:30</strong></p>
-              </div>
-              <div class="schedule-actions">
-                <button class="outline-button outline-button--light" type="button" data-calendar-toggle>Consulta el calendario</button>
-              </div>
-            </div>
+            </article>
           </div>
         </section>
 
