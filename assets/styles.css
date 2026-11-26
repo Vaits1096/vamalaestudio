@@ -905,15 +905,13 @@ figure, h1, h2, h3, p { margin-top: 0; }
   /* En el movil, cada dia o tarifa encima de su lista. */
   .board__row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
   .board__title { font-size: 3.1rem; }
-  /* Tarifas, mas a la derecha y con mas aire respecto a su titulo. */
-  .board--tarifas .board__rows { width: auto; margin-left: 30px; }
   .board__actions .outline-button { white-space: nowrap; padding-inline: 14px; }
   .board--tarifas .board__list { font-size: 0.8rem; }
   /* En el movil las tarifas pueden partirse, pero el precio nunca se separa. */
   .board--tarifas .board__list li { white-space: normal; }
   .board { padding: 18px 12px; column-gap: 14px; }
-  /* En el movil, la informacion algo separada del titulo: las lineas empiezan mas lejos. */
-  .board__rows { margin-left: 0; }
+  /* En el movil, el bloque de informacion en el centro de su recuadro. */
+  .board__rows { width: fit-content; max-width: 100%; justify-self: center; margin-left: 0; }
   .board__trow > :nth-child(3) { padding-left: 6px; }
   .board__trow { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; padding: 14px 0; }
   .board__trow p { font-size: 0.76rem; }
